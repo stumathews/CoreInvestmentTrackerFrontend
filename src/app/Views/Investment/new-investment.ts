@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
-import { Investment } from '../../Models/investment';
+import { Investment } from '../../Models/Investment';
 import { ActivatedRoute , Router} from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';

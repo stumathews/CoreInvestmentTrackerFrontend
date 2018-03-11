@@ -1,4 +1,4 @@
-﻿import { RisksLink } from './investment';
+﻿import { RisksLink } from './Investment';
 export interface InvestmentRisk {
   id: number;
   description: string;

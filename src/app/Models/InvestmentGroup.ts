@@ -1,4 +1,4 @@
-﻿import { GroupsLink } from './investment';
+﻿import { GroupsLink } from './Investment';
 export interface InvestmentGroup {
   id: number;
   name: string;

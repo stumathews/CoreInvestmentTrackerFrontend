@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { Investment } from './Models/investment';
+import { Investment } from './Models/Investment';
 import { InvestmentInfluenceFactor } from './Models/InvestmentInfluenceFactor';
 import { InvestmentRisk } from './Models/InvestmentRisk';
 import { InvestmentGroup } from './Models/InvestmentGroup';

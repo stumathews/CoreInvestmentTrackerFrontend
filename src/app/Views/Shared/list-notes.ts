@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
-import { Investment } from '../../Models/investment';
+import { Investment } from '../../Models/Investment';
 import { InvestmentUtilities, EntityTypes } from '../../Utilities';
 import { InvestmentNote } from '../../Models/InvestmentNote';
 import { NewInvestmentNoteComponent } from '../Note/new-note';

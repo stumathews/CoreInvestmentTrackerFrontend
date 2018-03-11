@@ -1,4 +1,4 @@
-﻿import { FactorsLink } from './investment';
+﻿import { FactorsLink } from './Investment';
 export interface InvestmentInfluenceFactor {
   id: number;
   name: string;

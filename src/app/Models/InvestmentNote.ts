@@ -1,4 +1,4 @@
-import { RisksLink } from './investment';
+import { RisksLink } from './Investment';
 import { EntityTypes } from '../Utilities';
 export interface InvestmentNote {
   id: number;

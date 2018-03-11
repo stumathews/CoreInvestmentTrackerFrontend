@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Investment } from './Models/investment';
+import { Investment } from './Models/Investment';
 import { InvestmentInfluenceFactor } from './Models/InvestmentInfluenceFactor';
 import { FactorComponent } from './Views/Factor/factor';
 import { GroupComponent } from './Views/Group/group';

@@ -1,4 +1,4 @@
-﻿import { RegionsLink } from './investment';
+﻿import { RegionsLink } from './Investment';
 export interface Region {
   id: number;
   description: string;

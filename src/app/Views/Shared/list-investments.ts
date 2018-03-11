@@ -1,6 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
-import { Investment } from '../../Models/investment';
+import { Investment } from '../../Models/Investment';
 import { InvestmentUtilities } from '../../Utilities';
 
 @Component({

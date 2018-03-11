@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
-import { Investment, RisksLink, FactorsLink, GroupsLink, RegionsLink } from '../../Models/investment';
+import { Investment, RisksLink, FactorsLink, GroupsLink, RegionsLink } from '../../Models/Investment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { EntityTypes, DetailComponentBase } from '../../Utilities';
