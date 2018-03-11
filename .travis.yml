@@ -14,6 +14,7 @@ before_script:
    - npm install -g @angular/cli
 script:
   - chmod +x ./deploy-envs.sh
+  - chmod +x ./angular-build-prod.sh
   - chmod +x ./scripts/build.sh
   - chmod +x ./scripts/deploy.sh
   - cd scripts && ./build.sh
