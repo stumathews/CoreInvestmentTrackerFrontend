@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators, InvestmentUtilities, EntityTypes} from '../../Utilities';
 import { InvestmentNote } from '../../Models/InvestmentNote';
 
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-note',

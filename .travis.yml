@@ -1,0 +1,20 @@
+language: node_js
+os: linux
+dist: trusty
+sudo: required
+node_js:
+   - "7"
+services:
+  - docker
+addons:
+  apt:
+    packages:
+      - docker-ce
+before_script:
+   - npm install -g @angular/cli
+script:
+  - chmod +x ./deploy-envs.sh
+  - chmod +x ./scripts/build.sh
+  - chmod +x ./scripts/deploy.sh
+  - cd scripts && ./build.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi

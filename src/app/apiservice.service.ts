@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
 import { Investment } from './Models/investment';
 import { InvestmentInfluenceFactor } from './Models/InvestmentInfluenceFactor';
 import { FactorComponent } from './Views/Factor/factor';
@@ -13,6 +14,8 @@ import { EntityTypes  } from './Utilities';
 import { GraphData } from './Models/GraphData';
 import { InvestmentNote } from './Models/InvestmentNote';
 
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 
 @Injectable()

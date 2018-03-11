@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators } from '../../Utilities';
 
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-risk',

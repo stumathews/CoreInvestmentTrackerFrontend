@@ -7,6 +7,8 @@ import { NewInvestmentNoteComponent } from '../Note/new-note';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-list-notes',
   templateUrl: './list-notes.html'

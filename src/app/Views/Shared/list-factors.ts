@@ -8,6 +8,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes } from '../../Utilities';
 import { DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-list-factors',
   templateUrl: './list-factors.html'

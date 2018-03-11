@@ -3,6 +3,8 @@ import { ApiService } from '../../apiservice.service';
 import { Region } from '../../Models/Region';
 import { EntityTypes  } from '../../Utilities';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-region',
   templateUrl: './region.html'

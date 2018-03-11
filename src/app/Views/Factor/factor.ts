@@ -4,6 +4,8 @@ import { InvestmentInfluenceFactor } from '../../Models/InvestmentInfluenceFacto
 import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-factor',
   templateUrl: './factor.html'

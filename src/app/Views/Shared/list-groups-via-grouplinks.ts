@@ -7,6 +7,8 @@ import { HtmlAction } from '../../Models/HtmlAction';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes } from '../../Utilities';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-list-groups-via-grouplinks',
   templateUrl: './list-groups-via-grouplinks.html'

@@ -4,6 +4,8 @@ import { InvestmentRisk } from '../../Models/InvestmentRisk';
 import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-risk',
   templateUrl: './risk.html'

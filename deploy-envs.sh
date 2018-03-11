@@ -5,7 +5,7 @@ export IMAGE_NAME=core-investment-tracker-frontend
 export IMAGE_VERSION=latest
 
 export AWS_DEFAULT_REGION=eu-west-2
-export AWS_ECS_CLUSTER_NAME=default
+export AWS_ECS_CLUSTER_NAME=core-investment-tracker-frontend-cluster
 
 
 # set any sensitive information in travis-ci encrypted project settings:

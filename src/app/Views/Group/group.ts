@@ -4,6 +4,8 @@ import { InvestmentGroup } from '../../Models/InvestmentGroup';
 import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
+import 'rxjs/add/operator/finally';
+
 @Component({
   selector: 'app-group',
   templateUrl: './group.html'
