@@ -10,8 +10,6 @@ addons:
   apt:
     packages:
       - docker-ce
-before_script:
-   - npm install
 script:
   - chmod +x ./deploy-envs.sh
   - chmod +x ./angular-build-prod.sh
