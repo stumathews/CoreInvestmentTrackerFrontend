@@ -1,3 +1,2 @@
 #!/bin/bash
-npm link @angular/cli
-ng build -prod
+ng build --prod
