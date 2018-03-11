@@ -1,0 +1,27 @@
+{
+  "family": "${ECS_TASK}",
+  "networkMode": "bridge",
+  "containerDefinitions": [
+    {
+      "image": "${AWS_ECS_REPO_DOMAIN}/${IMAGE_NAME}:${IMAGE_VERSION}",
+      "name": "${IMAGE_NAME}",
+      "cpu": 128,
+      "memory": 256,
+      "essential": true,
+      "links": [],
+      "portMappings": [
+        {
+          "containerPort": 4200,
+          "hostPort": 4200,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "VIRTUAL_HOST",
+          "value": "${AWS_VIRTUAL_HOST}"
+        }        
+      ]
+    }    
+  ]
+}

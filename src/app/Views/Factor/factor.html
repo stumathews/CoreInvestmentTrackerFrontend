@@ -1,0 +1,24 @@
+﻿<h1>Investment Influence Factors</h1>
+<p>
+    Factors are anything what influences the companies balance sheet(assets and liabilities) or income(profit/loss) statement.
+    These factors usually affect the underlying value of the investment either positively and negatively.
+</p>
+<p>Try to keep factors are specific as possible to the companies products and services such as 'Cost of Steel' when considering a steel manufacturing company.</p>
+<a [routerLink]="['/NewFactor']" class="btn btn-primary">Create Factor</a>
+
+<table class="table table-hover">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Linked investments</th>
+            <th></th> <!--Delete -->            
+        </thead>
+        <tr *ngFor="let factor of Factors">
+            <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.name }}</a></td>
+            <td>{{ factor.description }}</td>
+            <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.investments.length }}</a></td>
+            <td><a *ngIf="factor" (click)="delete(factor.id)" href="javascript:void(0)">Delete</a></td>
+        </tr>
+    </table>
+
+<p><strong>Total: {{ Factors.length }}</strong></p>

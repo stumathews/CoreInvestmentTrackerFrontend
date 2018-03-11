@@ -1,0 +1,53 @@
+﻿<h2>Create Factor</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+   <div class="form-horizontal">
+       <h4>Investment</h4>
+       <hr />
+       <div class="form-group">
+           <label class= "control-label col-md-2">Name</label>
+           <div class="col-md-10">
+               <input type="text" name="name" class="form-control" formControlName="name"/>
+           </div>            
+       </div>
+       <div *ngIf="form.controls.name.errors?.pattern">
+           <alert type="warning">
+               <strong>Warning!</strong> Better check yourself, you're not looking too good.
+             </alert>
+       </div>
+       <div class="form-group">
+           <label class= "control-label col-md-2">Description</label>
+           <div class="col-md-10">
+               <input type="text" name="description" class = "form-control" formControlName="description"/>
+           </div>
+       </div>
+       <div *ngIf="form.controls.description.errors?.pattern">
+           <alert type="warning">
+               <strong>Warning!</strong> Better check yourself, you're not looking too good.
+             </alert>
+       </div>
+
+       <div class="form-group">
+           <label class= "control-label col-md-2">Influence</label>
+           <div class="col-md-10">
+               <input type="text" name="influence" class="form-control" formControlName="influence"/>
+           </div>
+       </div>
+       <div *ngIf="form.controls.influence.errors?.pattern">
+           <alert type="warning">
+               <strong>Warning!</strong> Better check yourself, you're not looking too good.
+             </alert>
+       </div>
+
+       <div class="form-group">
+           <div class="col-md-offset-2 col-md-10">
+               <input type="submit" value="Create" class="btn btn-default" [disabled]="!form.valid" />
+           </div>
+       </div>
+   </div>
+</form>
+
+<div>
+   <a [routerLink]="['/Investments']">back to investment list</a>
+</div>
+

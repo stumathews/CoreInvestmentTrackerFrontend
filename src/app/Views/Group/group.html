@@ -1,0 +1,35 @@
+﻿<h2>Investment Groupings</h2>
+
+<p>
+    Investments can be grouped into the same containers to add a relationship between them.
+    Grouped investments share a commonality.
+</p>
+<a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a>
+<p>These are all the factors that are loaded in the database</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Linked investments</th>
+            <th>#Children</th>
+            <th>Parent</th>
+            <th></th> <!--Delete -->
+        </tr>
+    </thead>
+    <tr *ngFor="let group of Groups">
+        <td>
+            <a [routerLink]="['/GroupDetails', group.id]">{{ group.name }}</a>                 
+        </td>
+
+        <td>{{ group.description }}</td>
+        <td>{{ group.type }}</td>
+        <td><a [routerLink]="['/GroupDetails', group.id]">{{ group?.investments.length }}</a> </td>
+        <td>{{ group.children?.length }}</td>
+        <td>{{ group.parent?.name}}</td>
+        <td><a (click)="delete(group.id)" href="javascript:void(0)">Delete</a></td>
+    </tr>
+</table>
+<p><strong>Total: {{ Groups.length }}</strong></p>
+

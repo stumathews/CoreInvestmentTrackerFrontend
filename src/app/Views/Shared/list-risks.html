@@ -1,0 +1,33 @@
+﻿<div>
+
+    <h4>Risks</h4>
+    <p>
+        Risks are unknowns that affect the value of the investment. Usually risks generate split opinions and are speculative.
+        Usually difficult to predict the effect on the value of the investment.
+        Consumer perception for example can change and the affect of it can influence the value of the underlying company or it can improve it.
+    </p>
+    <p>
+        'Market' risks are those that are external to the company but affect the companies value such as the market conditions, supply and demand and customer satisfaction.
+        'Company' risks are specific to the company and thus it can influence the value such as directory dismissal, product retirement and lay-offs.
+    </p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Linked investments</th>
+            <th>Disassociate</th>
+        </tr>
+        </thead>           
+        <tr *ngFor="let risk of Risks">
+            <td><a [routerLink]="['/RiskDetails', risk.id]">{{ risk.name }}</a>      </td>
+            <td>{{ risk.description }}</td>
+            <td>{{ risk.type }}</td>
+            <td><a [routerLink]="['/RiskDetails', risk.id]">{{ risk.investments?.length }}</a></td>
+            <td><a *ngIf="risk"  href="javascript:void(0)" (click)="DissasociateEntityFromInvestment(risk.id, ParentId)">Dissasociate</a></td>               
+        </tr>
+    </table>
+    <p><strong>Total: {{Risks.length}}</strong></p>
+</div>
+

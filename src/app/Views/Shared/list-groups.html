@@ -1,0 +1,29 @@
+﻿<div>
+    <h4>{{ Title }}</h4>
+    <p>
+        Investments can be grouped into the same containers to add a relationship between them.
+        Grouped investments share a commonality.
+    </p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Linked investments</th>
+            <th>#Children</th>
+            <th>Parent</th>            
+        </tr>
+        </thead>
+        <tr *ngFor="let group of Groups">
+            <td><a [routerLink]="['/GroupDetails', group.id]">{{ group.name  }}</a>      </td>
+            <td>{{ group.description }}</td>
+            <td>{{ group.type }}</td>
+            <td><a [routerLink]="['/GroupDetails', group.id]">{{ group.investments?.length }}</a></td>
+            <td>{{ group.children?.length }}</td>
+            <td>{{ ParentGroup?.name }}</td>            
+        </tr>
+        
+    </table>
+    <p><strong>Total: {{ Groups.length }}</strong></p>    
+</div>

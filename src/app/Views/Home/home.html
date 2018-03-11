@@ -1,0 +1,20 @@
+﻿<h1>Welcome {{ title }}</h1>
+<h3>About</h3>
+<p>
+    Investment tracker is a platform that allows you to track aspects that affect your investments.
+    Investments that share the same risks, factors, regions and groups can be visually distinguished through the generated relationships graphs for each aspect.
+    Currently you can add <a href="#" th:href="{/investments/}">investments</a>, <a href="#" th:href="{/factors}">factors</a>, <a href="#" th:href="{/risk}">risks</a>, <a href="#" th:href="{/region}">regions</a> and <a href="#" th:href="{/group}">group</a> them.
+</p>
+<p>Written in C# using ASP.Net MVC 5 using Entity Framework 6 and using MSSQL database for data persistance and D3 visualization javascript API.<br /> Bootstrap and jQuery used in the front end.</p>
+<p>This app is primarily meant to be used to log your investments, define them and understand the affects that factors have on your investments.</p>
+<h3>Requirements</h3>
+<ol>
+    <li>Place to keep track of all my investments</li>
+    <li>See relationship between investments</li>
+    <li>Predict the value of investments based on the relationships to known outcomes</li>
+    <li>Track the history of an investment</li>
+</ol>
+<alert type="warning">
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</alert>
+<a [routerLink]="['/RisksGraph']" href="javascript:void(0)">RisksGrpah</a>

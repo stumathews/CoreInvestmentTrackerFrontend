@@ -1,0 +1,103 @@
+﻿<h2>Create Investment</h2> 
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <div class="form-horizontal">
+        <h4>Investment</h4>
+        <hr />
+        <div class="form-group">
+            <label class= "control-label col-md-2">Name</label>
+            <div class="col-md-10">
+                <input type="text" name="name" class="form-control" formControlName="name"/>
+            </div>            
+        </div>
+        <div *ngIf="form.controls.name.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+        <div class="form-group">
+            <label class= "control-label col-md-2">Description</label>
+            <div class="col-md-10">
+                <input type="text" name="description" class = "form-control" formControlName="description"/>
+            </div>
+        </div>
+        <div *ngIf="form.controls.description.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+
+        <div class="form-group">
+            <label class= "control-label col-md-2">Symbol</label>
+            <div class="col-md-10">
+                <input type="text" name="symbol" class="form-control" formControlName="symbol"/>
+            </div>
+        </div>
+        <div *ngIf="form.controls.symbol.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+
+        <div class="form-group">
+            <label class= "control-label col-md-2">Value proposition</label>
+            <div class="col-md-10">
+                <input type="text" name="valuePorposition" class="form-control" formControlName="valueProposition" />
+            </div>
+        </div>
+        <div *ngIf="form.controls.valueProposition.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+
+        <div class="form-group">
+            <label class= "control-label col-md-2">Desirability statement</label>
+            <div class="col-md-10">
+                <input type="text" name="desirabilityStatement" class = "form-control" formControlName="desirabilityStatement"/>
+            </div>
+        </div>
+        <div *ngIf="form.controls.desirabilityStatement.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+
+        <div class="form-group">
+            <label class= "control-label col-md-2">Initial investent</label>
+            <div class="col-md-10">
+                <input type="text" name="initialInvestment" class = "form-control" formControlName="initialInvestment"/>
+            </div>
+        </div>
+        <div *ngIf="form.controls.initialInvestment.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+
+
+        <div class="form-group">
+            <label class= "control-label col-md-2">Value</label>
+            <div class="col-md-10">
+                <input type="text" name="value" class = "form-control" formControlName="value"/>
+            </div>
+        </div>
+        <div *ngIf="form.controls.value.errors?.pattern">
+            <alert type="warning">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </alert>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" [disabled]="!form.valid" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <!-- <a [routerLink]="['/Investments']">back to investment list</a> -->
+    <!-- <a [routerLink]="['/SelectItems']">Test Select Items page</a>
+    <a [routerLink]="['/SelectFactors']">Test Select Items page</a> -->
+</div>
+

@@ -1,0 +1,23 @@
+﻿<h1>Investment Regions</h1>
+<p>Investments can be within different geographic locations that have specific influences on them. Defining regions that investments share can show how these investments are affected by those influences.</p>
+
+<a [routerLink]="['/NewRegion']" class="btn btn-primary">Create Region</a>
+
+<table class="table table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Investments</th>
+        <th><!--Delete--></th>        
+    </thead>
+    
+    <tr *ngFor="let region of Regions">
+        <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.name }}</a></td>
+        <td>{{ region.description }}</td>
+        <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.investments.length }}</a></td>
+        <td><a (click)="delete(region.id)" href="javascript:void(0)">Delete</a></td>
+    </tr>
+
+</table>
+<p><strong>Total: {{ Regions?.length }}</strong></p>
+

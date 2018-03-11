@@ -1,0 +1,29 @@
+<p>Summary Of new investment</p>
+<p>The following will be created and associated with the investment.</p>
+<table class="table table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Type</th>
+    </thead>
+    <tr *ngFor="let factor of Factors">
+        <td>{{ factor.name}}</td>
+        <td>Investment Influence Factor</td>
+    </tr> 
+    <tr *ngFor="let investment of Investment">
+        <td>{{ investment.name}}</td>
+        <td>Investment</td>
+    </tr> 
+    <tr *ngFor="let risk of Risks">
+        <td>{{ risk.name}}</td>
+        <td>Investment Risk</td>
+    </tr>  
+    <tr *ngFor="let group of Groups">
+        <td>{{ group.name}}</td>
+        <td>Investment Group</td>
+    </tr>
+    <tr *ngFor="let region of Regions">
+        <td>{{ region.name}}</td>
+        <td>Investment Region</td>
+    </tr>        
+</table>
+<button class="class="btn btn-default (click)="onFinished()" href="javascript:void(0)">Finished</button>
