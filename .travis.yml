@@ -11,10 +11,10 @@ addons:
     packages:
       - docker-ce
 before_script: # commands to run before the build step
-   - npm install -g --silent @angular/cli
+   - npm install -g @angular/cli
 script:
+  - ng build --env=prod
   - chmod +x ./deploy-envs.sh
-  - chmod +x ./angular-build-prod.sh
   - chmod +x ./scripts/build.sh
   - chmod +x ./scripts/deploy.sh
   - cd scripts && ./build.sh
