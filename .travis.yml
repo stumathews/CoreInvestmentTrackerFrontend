@@ -11,7 +11,7 @@ addons:
     packages:
       - docker-ce
 before_script:
-   - npm install -g @angular/cli
+   - npm install
 script:
   - chmod +x ./deploy-envs.sh
   - chmod +x ./angular-build-prod.sh
