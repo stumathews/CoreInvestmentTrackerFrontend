@@ -15,8 +15,7 @@
             <dd><inline-editor #thisElement type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(thisElement, Entity.id)" name="initialInvestment" size="8"></inline-editor></dd>
         <dt>Value</dt>
             <dd><inline-editor #thisElement  type="text" [(ngModel)]="Entity.value" (onSave)="saveEditable(thisElement, Entity.id)" name="value" size="8"></inline-editor></dd>
-    </dl>
-    
+    </dl>    
     <div>
         <tabset>
           <tab heading="Groups" id="tab1">

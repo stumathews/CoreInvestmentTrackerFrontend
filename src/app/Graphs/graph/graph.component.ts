@@ -56,28 +56,32 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
   simulation;
   link;
   node;
+  circles;
+  labels;
   constructor(protected apiService: ApiService) { }
   ngOnInit() {
 
   }
 
   ngAfterViewInit() {
-
     const SvgTagName = '#' + EntityTypes[this.EntityType];
-    console.log('svgtagname=' + SvgTagName);
     this.svg = d3.select(SvgTagName);
     const width = +this.svg.attr('width');
     const height = +this.svg.attr('height');
 
     this.color = d3.scaleOrdinal(d3.schemeCategory20);
+
     this.simulation = d3.forceSimulation()
         .force('link', d3.forceLink().distance(90))
         .force('charge', d3.forceManyBody())
         .force('center', d3.forceCenter(width / 2, height / 2));
-         this.apiService.GetInvestmentGraphData(this.EntityType, this.InvestmentId)
-         .subscribe( (graphData) => this.render(graphData),
-          error => console.log('Error occured getting graph data:' + error));
+
+    this.apiService
+    .GetInvestmentGraphData(this.EntityType, this.InvestmentId)
+    .subscribe( (graphData) => this.render(graphData),
+      error => console.log('Error occured getting graph data:' + error));
   }
+
   ticked() {
     this.link
         .attr('x1', function(d) { return d.source.x; })
@@ -85,10 +89,11 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
         .attr('x2', function(d) { return d.target.x; })
         .attr('y2', function(d) { return d.target.y; });
 
-    this.node
-        .attr('cx', function(d) { return d.x; })
-        .attr('cy', function(d) { return d.y; });
+        this.node.attr('transform', function(d) {
+          return 'translate(' + d.x + ',' + d.y + ')';
+        });
   }
+
   render(graph) {
     this.link = this.svg.append('g')
                 .attr('class', 'links')
@@ -99,23 +104,29 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
 
     this.node = this.svg.append('g')
                 .attr('class', 'nodes')
-                .selectAll('circle')
+                .selectAll('g')
                 .data(graph.nodes)
-                .enter().append('g').append('circle')
-                .text(function (d) { return d.name; })
+                .enter()
+                .append('g');
+
+    this.circles = this.node
+                .append('circle')
                   .attr('r', function(d) { return Math.sqrt(d.value) * 5; })
                   .attr('fill', (d) => this.color(d.value))
                   .call(d3.drag()
-                      .on('start', (d) => this.dragstarted(d))
-                      .on('drag', (d) => this.dragged(d))
-                      .on('end', (d) => this.dragended(d)));
+                    .on('start', (d) => this.dragstarted(d))
+                    .on('drag', (d) => this.dragged(d))
+                    .on('end', (d) => this.dragended(d)));
 
-      this.node.append('title')
-      .text(function(d) { return d.name; });
+    this.labels = this.node.append('text')
+                  .text(function (d) { return d.name; })
+                  .attr('x', 6)
+                  .attr('y', 3);
 
+    this.node.append('title').text('d');
     this.simulation
-      .nodes(graph.nodes)
-      .on('tick', () =>  this.ticked());
+          .nodes(graph.nodes)
+          .on('tick', () =>  this.ticked());
 
     this.simulation.force('link')
       .links(graph.links);
@@ -140,6 +151,5 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
     d.fy = d.y;
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() { }
 }
