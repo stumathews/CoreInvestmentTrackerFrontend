@@ -13,12 +13,14 @@ import { Observable } from 'rxjs/Observable';
   <router-outlet></router-outlet>
   <hr />
   <footer>
-      <p>&copy; @DateTime.Now.Year - Investment Tracker</p>
+      <p>&copy; {{dateNow | date: yearFmt}} - Investment Tracker</p>
   </footer>
   </div>
 </div>`,
   styleUrls: ['./app.css']
 })
 export class AppComponent {
-  title = 'Investment Tracker';
+  title: String = 'Investment Tracker';
+  dateNow: Date = new Date();
+  yearFmt = 'yyyy';
 }

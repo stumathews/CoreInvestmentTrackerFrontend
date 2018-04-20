@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Investment } from './Models/Investment';
@@ -242,24 +242,18 @@ export class ApiService {
     }
 
     DeleteEntity(entityType: EntityTypes, id: number): Observable<any>  {
-        let mapFunction;
         let url;
 
         if (entityType === EntityTypes.Investment) {
             url =  this.InvestmentByIdUrlEndpoint.replace('{id}', '' + id);
-            mapFunction = (response: Response) => <Region>response.json();
         } else if (entityType === EntityTypes.InvestmentInfluenceFactor) {
             url =  this.FactorByIdUrlEndpoint.replace('{id}', '' + id);
-            mapFunction = (response: Response) => <InvestmentInfluenceFactor>response.json();
         } else if (entityType === EntityTypes.InvestmentRisk) {
             url =  this.RiskByIdUrlEndpoint.replace('{id}', '' + id);
-            mapFunction = (response: Response) => <InvestmentRisk>response.json();
         } else if (entityType === EntityTypes.InvestmentGroup) {
             url =  this.GroupByIdUrlEndpoint.replace('{id}', '' + id);
-            mapFunction = (response: Response) => <InvestmentGroup>response.json();
         } else if (entityType === EntityTypes.Region) {
             url =  this.RegionByIdUrlEndpoint.replace('{id}', '' + id);
-            mapFunction = (response: Response) => <Region>response.json();
         }
 
         console.log('Delete entity via url:' + url);
@@ -271,11 +265,9 @@ export class ApiService {
 
     DeleteInvestmentNote(OwningEntityId: number, OwningEntityType: EntityTypes, id: number): Observable<any> {
         console.log(`OwningEntityId=${OwningEntityId}, OwningEntityType=${OwningEntityType}, id=${id}`);
-            let mapFunction;
             const url = this.NotesByParamsUrlEndpoint.replace('{owningEntityId}', '' + OwningEntityId)
                                                     .replace('{owningEntityType}', '' + EntityTypes[OwningEntityType])
                                                     .replace('{id}', '' + id);
-            mapFunction = (response: Response) => <InvestmentNote>response.json();
             console.log('Delete entity via url:' + url);
             return this.http.delete(url)
             .do((data => console.log('do DeleteEntity: ' + JSON.stringify(data))))
@@ -316,8 +308,8 @@ export class ApiService {
         .catch(this.handleError);
     }
 
-    private handleError(error: Response) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'server error');
+    private handleError(err: HttpErrorResponse) {
+        console.error('An error occurred:', err.error);
+        return Observable.throw(err.error || 'server error');
     }
 }

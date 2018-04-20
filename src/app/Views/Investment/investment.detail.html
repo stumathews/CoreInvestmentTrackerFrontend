@@ -4,19 +4,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>Description</dt>
-            <dd><inline-editor #thisElement type="textarea" [(ngModel)]="Entity.description" (onSave)="saveEditable(thisElement, Entity.id)" name="description" size="8"></inline-editor></dd>
+            <dd><inline-editor #thisElement  *ngIf="Entity?.description" type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(thisElement, Entity.id)" name="description" size="8"></inline-editor></dd>            
         <dt>Symbol</dt>
-            <dd><inline-editor #thisElement type="text" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(thisElement, Entity.id)" name="symbol" size="8"></inline-editor></dd>
+            <dd><inline-editor #thisElement *ngIf="Entity?.description" type="text" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(thisElement, Entity.id)" name="symbol" size="8"></inline-editor></dd>
         <dt>Value proposition</dt>
-            <dd><inline-editor #thisElement type="text" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(thisElement, Entity.id)" name="valueProposition" size="8"></inline-editor></dd>
+            <dd><inline-editor #thisElement *ngIf="Entity?.description" type="text" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(thisElement, Entity.id)" name="valueProposition" size="8"></inline-editor></dd>
         <dt>DesirabilityStatement</dt>
-            <dd><inline-editor #thisElement type="text" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(thisElement, Entity.id)" name="desirabilityStatement" size="8"></inline-editor></dd>
+            <dd><inline-editor #thisElement *ngIf="Entity?.description" type="text" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(thisElement, Entity.id)" name="desirabilityStatement" size="8"></inline-editor></dd>
         <dt>Initial Investment</dt>
-            <dd><inline-editor #thisElement type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(thisElement, Entity.id)" name="initialInvestment" size="8"></inline-editor></dd>
+            <dd><inline-editor #thisElement *ngIf="Entity?.description" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(thisElement, Entity.id)" name="initialInvestment" size="8"></inline-editor></dd>
         <dt>Value</dt>
-            <dd><inline-editor #thisElement  type="text" [(ngModel)]="Entity.value" (onSave)="saveEditable(thisElement, Entity.id)" name="value" size="8"></inline-editor></dd>
+            <dd><inline-editor #thisElement *ngIf="Entity?.description" type="text" [(ngModel)]="Entity.value" (onSave)="saveEditable(thisElement, Entity.id)" name="value" size="8"></inline-editor></dd>
     </dl>    
-    <div>
+    <div>            
         <tabset>
           <tab heading="Groups" id="tab1">
             <app-list-groups-via-grouplinks *ngIf="Entity" [ParentId]="Entity.id" [GroupLinks]="Entity.groups"></app-list-groups-via-grouplinks>
