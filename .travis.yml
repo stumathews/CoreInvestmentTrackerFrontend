@@ -13,7 +13,7 @@ addons:
 before_script: # commands to run before the build step
    - npm install -g @angular/cli
    - sudo apt-get -y update
-   - sudo apt-get -y upgrade 
+   - sudo apt-get -y upgrade --allow-unauthenticated
    - sudo -H pip install --upgrade pip
    - sudo pip install pyOpenSSL ndg-httpsclient pyasn1
    - sudo apt-get install jq -y #install jq for json parsing
