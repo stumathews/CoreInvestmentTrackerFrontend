@@ -16,6 +16,8 @@ after_success:
    - docker --version
    - pip install --user awscli
    - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+   - sudo apt-get install jq -y #install jq for json parsing
+   - sudo apt-get install gettext -y 
 script:
   - ng build --env=prod
   - chmod +x ./deploy-envs.sh
