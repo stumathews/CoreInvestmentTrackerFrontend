@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { APP_ROUTING } from './app.routing';
@@ -66,7 +66,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
   ],
   imports: [
     TabsModule.forRoot(),
-    BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpModule, FormsModule, ReactiveFormsModule,
+    BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
     InlineEditorModule, Angular2FontawesomeModule
   ],
   entryComponents: [
