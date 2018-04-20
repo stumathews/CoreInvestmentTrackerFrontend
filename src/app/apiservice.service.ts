@@ -16,12 +16,12 @@ import { InvestmentNote } from './Models/InvestmentNote';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class ApiService {
 
-    private baseURL = 'http://localhost:5000/api';
+    private baseURL = environment.baseUrl;
     private InvestmentsUrlEndpoint = this.baseURL + '/Investment';
     private FactorsUrlEndpoint = this.baseURL + '/Factor';
     private GroupsUrlEndpoint = this.baseURL + '/Group';
