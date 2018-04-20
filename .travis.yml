@@ -12,17 +12,21 @@ addons:
       - docker-ce
 before_script: # commands to run before the build step
    - npm install -g @angular/cli
-   - sudo apt-get -y update
-   - sudo apt-get -y upgrade --allow-unauthenticated
-   - sudo -H pip install --upgrade pip
-   - sudo pip install pyOpenSSL ndg-httpsclient pyasn1
-   - sudo apt-get install jq -y #install jq for json parsing
-   - sudo apt-get install gettext -y 
-   - pip install --user awscli # install aws cli w/o sudo
-script:
-  - ng build --env=prod
-  - chmod +x ./deploy-envs.sh
-  - chmod +x ./scripts/build.sh
-  - chmod +x ./scripts/deploy.sh
-  - cd scripts && ./build.sh
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
+after_success:
+   - docker --version
+   - pip install --user awscli
+   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+   - export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+   - export ECS_SERVICE=$IMAGE_NAME-service
+   - export ECS_TASK=$IMAGE_NAME-task
+   - eval $(aws ecr get-login --region $AWS_DEFAULT_REGION) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+   - docker build -t my_example_app .
+   - docker tag $IMAGE_NAME:latest $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:latest
+   - docker push $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:latest
+#script:
+#  - ng build --env=prod
+#  - chmod +x ./deploy-envs.sh
+#  - chmod +x ./scripts/build.sh
+#  - chmod +x ./scripts/deploy.sh
+#  - cd scripts && ./build.sh
+#  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
