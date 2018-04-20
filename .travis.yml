@@ -16,11 +16,9 @@ after_success:
    - docker --version
    - pip install --user awscli
    - export PATH=$PATH:$HOME/.local/bin # put aws in the path
-   - export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-   - export ECS_SERVICE=$IMAGE_NAME-service
-   - export ECS_TASK=$IMAGE_NAME-task
+   - export AWS_ECS_REPO_DOMAIN=$AWS_ACCOUNT_NUMBER.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com   
    - eval $(aws ecr get-login --region $AWS_DEFAULT_REGION) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-   - docker build -t my_example_app .
+   - docker build -t$IMAGE_NAME .
    - docker tag $IMAGE_NAME:latest $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:latest
    - docker push $AWS_ECS_REPO_DOMAIN/$IMAGE_NAME:latest
 #script:
