@@ -4,14 +4,13 @@ node_js:
 os: linux
 dist: trusty
 sudo: required
-services:
-  - docker
-addons:
-  apt:
-    packages:
-      - docker-ce
 before_script: # commands to run before the build step
    - npm install -g @angular/cli
+   - sudo apt-get -y update
+   - sudo apt-get -y install -o Dpkg::Options::="--force-confnew" docker-ce=18.03.0~ce-0~ubuntu
+   - sudo apt-get install jq -y #install jq for json parsing
+   - sudo apt-get install gettext -y 
+   - pip install --user awscli # install aws cli w/o sudO
 script:
   - ng build --env=prod
   - chmod +x ./deploy-envs.sh
