@@ -6,10 +6,11 @@ export ECS_SERVICE=$IMAGE_NAME-service
 export ECS_TASK=$IMAGE_NAME-task
 
 # install dependencies
-sudo pip install --upgrade pip
+sudo pip install --yes --upgrade pip
+sudo pip install --yes pyOpenSSL ndg-httpsclient pyasn1
 sudo apt-get install jq -y #install jq for json parsing
 sudo apt-get install gettext -y 
-pip install --user awscli # install aws cli w/o sudo
+pip install --yes --user awscli # install aws cli w/o sudo
 export PATH=$PATH:$HOME/.local/bin # put aws in the path
 
 # replace environment variables in task-definition
