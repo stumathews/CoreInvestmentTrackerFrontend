@@ -21,7 +21,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ApiService {
 
-    private baseURL = 'http://localhost:5000/api';
+    private baseURL = 'http://ec2-18-130-12-117.eu-west-2.compute.amazonaws.com:5000/api';
     private InvestmentsUrlEndpoint = this.baseURL + '/Investment';
     private FactorsUrlEndpoint = this.baseURL + '/Factor';
     private GroupsUrlEndpoint = this.baseURL + '/Group';
