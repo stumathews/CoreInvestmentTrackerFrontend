@@ -21,7 +21,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class ApiService {
 
-    private baseURL = environment.baseUrl;
+    private baseURL = environment.baseUrl + '/api';
     private InvestmentsUrlEndpoint = this.baseURL + '/Investment';
     private FactorsUrlEndpoint = this.baseURL + '/Factor';
     private GroupsUrlEndpoint = this.baseURL + '/Group';
