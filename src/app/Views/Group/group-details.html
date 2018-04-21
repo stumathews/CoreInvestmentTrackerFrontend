@@ -6,11 +6,11 @@
        
         <dt>Description</dt>
 
-        <dd><inline-editor #thisElement type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(thisElement, Entity.id)" name="description" size="8"></inline-editor></dd>
+        <dd><inline-editor #thisElement #thisElement pattern="^.+$" *ngIf="Entity.description" type="text" min="1" type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(thisElement, Entity.id)" name="description" size="15"></inline-editor></dd>
 
         <dt>Type</dt>
 
-        <dd><inline-editor #thisElement  type="text" [(ngModel)]="Entity.type" (onSave)="saveEditable(thisElement, Entity.id)" name="type" size="8"></inline-editor></dd>
+        <dd><inline-editor #thisElement  #thisElement pattern="^.+$" *ngIf="Entity.type" type="text" min="1" type="text" [(ngModel)]="Entity.type" (onSave)="saveEditable(thisElement, Entity.id)" name="type" size="8"></inline-editor></dd>
 
     </dl>
 </div>
