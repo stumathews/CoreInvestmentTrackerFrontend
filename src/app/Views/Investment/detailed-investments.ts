@@ -7,10 +7,10 @@ import { EntityTypes, InvestmentUtilities  } from '../../Utilities';
 import 'rxjs/add/operator/finally';
 
 @Component({
-  selector: 'app-investment',
-  templateUrl: './investment.html'
+  selector: 'app-detailed-investments',
+  templateUrl: './detailed-investments.html'
 })
-export class InvestmentComponent extends InvestmentUtilities implements OnInit {
+export class DetailedInvestmentsComponent extends InvestmentUtilities implements OnInit {
   Investments: Investment[];
   errorMessage: string;
 
@@ -31,7 +31,7 @@ export class InvestmentComponent extends InvestmentUtilities implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.GetInvestments(false).subscribe(investments => {
+    this.apiService.GetInvestments().subscribe(investments => {
       this.Investments = investments;
       investments.forEach((investment, iindex) => { investment = this.populateInvestmentFully(investment); });
     }, error => this.errorMessage = <any>error);

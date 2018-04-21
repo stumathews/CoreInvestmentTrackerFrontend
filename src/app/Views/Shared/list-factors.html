@@ -9,6 +9,7 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Influence</th>
             <th>Linked investments</th>
             <th>Dissasociate</th>
            
@@ -18,6 +19,7 @@
             <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.name }}</a>   </td>
 
             <td>{{ factor.description }}</td>
+            <td>{{ factor.influence }}</td>
             <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.investments.length }}</a></td>
             <td><a *ngIf="factor"  href="javascript:void(0)" (click)="DissasociateEntityFromInvestment(factor.id, ParentId)">Dissasociate</a></td>
         </tr>

@@ -6,10 +6,7 @@
 <table *ngIf="Investments" class="table table-hover">
     <thead>
         <th>Name</th>
-        <th>Regions</th>
-        <th>Risks</th>
-        <th>Factors</th>
-        <th>Groups</th>
+        <th>Description</th>        
         <th>Value</th>
         <th></th> <!--Delete -->
     </thead>   
@@ -17,26 +14,8 @@
             <td>         
                 <strong><a *ngIf="investment" [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a></strong>
             </td>
-            <td>
-                <span *ngFor="let region of investment.regions">
-                    <a *ngIf="region" [routerLink]="['/RegionDetails', region.region?.id]">{{ region.region?.name }}</a>
-                </span>                
-            </td>
-            <td>
-                <span *ngFor="let risk of investment.risks">
-                        <a *ngIf="risk" [routerLink]="['/RiskDetails', risk?.investmentRisk?.id]">{{ risk.investmentRisk?.name }}</a>  
-                </span>                
-            </td>
-            <td>
-                <span *ngFor="let factor of investment.factors">
-                    <a *ngIf="factor" [routerLink]="['/FactorDetails', factor.investmentInfluenceFactorID]">{{ factor.investmentInfluenceFactor?.name }}</a> 
-                </span>                
-            </td>
-            <td>
-                <span *ngFor="let group of investment.groups">
-                        <a *ngIf="group" [routerLink]="['/GroupDetails', group.investmentGroupID]">{{ group.investmentGroup?.name }}</a> 
-                </span>
-            </td>
+            <td>{{investment.description}}</td>
+            
             <td>
                 <span>{{ investment.symbol}} {{ investment.value }} </span><br />
             </td>

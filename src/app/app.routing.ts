@@ -31,11 +31,13 @@ import { AssociateGroupsComponent } from './Views/Investment/associate-groups';
 import { AssociateRegionsComponent } from './Views/Investment/associate-regions';
 import { GraphComponent } from './Graphs/graph/graph.component';
 import { NewInvestmentNoteComponent } from './Views/Note/new-note';
+import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Home', pathMatch: 'full'},
     { path : 'Home', component: HomeComponent },
     { path : 'Investments', component: InvestmentComponent },
+    { path : 'DetailedInvestments', component: DetailedInvestmentsComponent },
     { path : 'InvestmentDetails/:id', component: InvestmentDetailComponent },
     { path : 'Factors', component: FactorComponent },
     { path : 'FactorDetails/:id', component: FactorDetailsComponent },

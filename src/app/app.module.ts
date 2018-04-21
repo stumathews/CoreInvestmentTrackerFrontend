@@ -50,6 +50,7 @@ import { ListNotesComponent } from './Views/Shared/list-notes';
 import { NewInvestmentNoteComponent } from './Views/Note/new-note';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     NewInvestmentWizardComponent, SelectRisksComponent, SelectGroupsComponent, SelectRegionsComponent,
     SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
     AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
-    ListNotesComponent, NewInvestmentNoteComponent
+    ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent
   ],
   imports: [
     TabsModule.forRoot(),

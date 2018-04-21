@@ -1,0 +1,48 @@
+<h1>Investments</h1>
+<p>Investments represent the assets that are valuable to you. </p>
+<p>
+    <a [routerLink]="['/NewInvestmentWizard']" class="btn btn-primary">Create Investment</a>    
+</p>
+<table *ngIf="Investments" class="table table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Regions</th>
+        <th>Risks</th>
+        <th>Factors</th>
+        <th>Groups</th>
+        <th>Value</th>
+        <th></th> <!--Delete -->
+    </thead>   
+        <tr *ngFor="let investment of Investments">
+            <td>         
+                <strong><a *ngIf="investment" [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a></strong>
+            </td>
+            <td>{{investment.description}}</td>
+            <td>
+                <span *ngFor="let region of investment.regions">
+                    <a *ngIf="region" [routerLink]="['/RegionDetails', region.region?.id]">{{ region.region?.name }}</a>
+                </span>                
+            </td>
+            <td>
+                <span *ngFor="let risk of investment.risks">
+                        <a *ngIf="risk" [routerLink]="['/RiskDetails', risk?.investmentRisk?.id]">{{ risk.investmentRisk?.name }}</a>  
+                </span>                
+            </td>
+            <td>
+                <span *ngFor="let factor of investment.factors">
+                    <a *ngIf="factor" [routerLink]="['/FactorDetails', factor.investmentInfluenceFactorID]">{{ factor.investmentInfluenceFactor?.name }}</a> 
+                </span>                
+            </td>
+            <td>
+                <span *ngFor="let group of investment.groups">
+                        <a *ngIf="group" [routerLink]="['/GroupDetails', group.investmentGroupID]">{{ group.investmentGroup?.name }}</a> 
+                </span>
+            </td>
+            <td>
+                <span>{{ investment.symbol}} {{ investment.value }} </span><br />
+            </td>
+            <td><a (click)="delete(investment.id)" href="javascript:void(0)">Delete investment</a></td>            
+        </tr>
+</table>
+<p>Total: {{Investments.length}}</p>

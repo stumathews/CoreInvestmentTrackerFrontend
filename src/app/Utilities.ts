@@ -77,7 +77,9 @@ export abstract class DetailComponentBase implements OnInit  {
     Entity: Investment | InvestmentGroup | InvestmentInfluenceFactor | InvestmentRisk | Region;
     MyType: EntityTypes;
     errorMessage: string;
-    constructor(protected apiService: ApiService) { }
+    constructor(protected apiService: ApiService) { 
+        this.MyType = EntityTypes.Investment;
+    }
 
     ngOnInit() { }
 

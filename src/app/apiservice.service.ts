@@ -25,6 +25,7 @@ export class ApiService {
 
     private baseURL = environment.baseUrl + '/api';
     private InvestmentsUrlEndpoint = this.baseURL + '/Investment';
+    private InvestmentsWithoutChildrenUrlEndpoint = this.InvestmentsUrlEndpoint + '/WithoutChildren';
     private FactorsUrlEndpoint = this.baseURL + '/Factor';
     private GroupsUrlEndpoint = this.baseURL + '/Group';
     private RisksUrlEndpoint = this.baseURL + '/Risk';
@@ -78,9 +79,9 @@ export class ApiService {
                         .catch(this.handleError);
     }
 
-    GetInvestments(): Observable<Investment[]> {
+    GetInvestments(withChildren: boolean = true): Observable<Investment[]> {
         console.log('Getting investments...');
-        return this.http.get(this.InvestmentsUrlEndpoint)
+        return this.http.get( withChildren ? this.InvestmentsUrlEndpoint : this.InvestmentsWithoutChildrenUrlEndpoint)
                         .do((data => console.log('All: ' + JSON.stringify(data))))
                         .catch(this.handleError);
     }

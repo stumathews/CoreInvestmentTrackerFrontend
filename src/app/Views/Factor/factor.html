@@ -10,11 +10,13 @@
         <thead>
             <th>Name</th>
             <th>Description</th>
+            <th>Influence</th>
             <th>Linked investments</th>
             <th></th> <!--Delete -->            
         </thead>
         <tr *ngFor="let factor of Factors">
             <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.name }}</a></td>
+            <td>{{ factor.influence }}</td>
             <td>{{ factor.description }}</td>
             <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.investments.length }}</a></td>
             <td><a *ngIf="factor" (click)="delete(factor.id)" href="javascript:void(0)">Delete</a></td>
