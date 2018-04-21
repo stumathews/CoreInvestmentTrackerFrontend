@@ -24,7 +24,7 @@
         <td><a [routerLink]="['/RiskDetails', risk.id]">{{ risk.name }}</a></td>
         <td>{{ risk.description }}</td>
         <td>{{ risk.type }}</td>
-        <td><a [routerLink]="['/RiskDetails', risk.id]">{{ risk.investments.length }}</a></td>
+        <td><a [routerLink]="['/RiskDetails', risk.id]">{{ risk.investments?.length }}</a></td>
         <td><a (click)="delete(risk.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 </table>

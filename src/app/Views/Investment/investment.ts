@@ -31,9 +31,10 @@ export class InvestmentComponent extends InvestmentUtilities implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('not getting investment children');
     this.apiService.GetInvestments(false).subscribe(investments => {
       this.Investments = investments;
-      investments.forEach((investment, iindex) => { investment = this.populateInvestmentFully(investment); });
+      // this is a unpopulated investment meant to be lean and quick in terms of wmount of data it contains
     }, error => this.errorMessage = <any>error);
   }
 }

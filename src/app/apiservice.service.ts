@@ -79,9 +79,16 @@ export class ApiService {
                         .catch(this.handleError);
     }
 
-    GetInvestments(withChildren: boolean = true): Observable<Investment[]> {
-        console.log('Getting investments...');
-        return this.http.get( withChildren ? this.InvestmentsUrlEndpoint : this.InvestmentsWithoutChildrenUrlEndpoint)
+    GetInvestments(withChildren = true): Observable<Investment[]> {
+        console.log('withChildren=' + withChildren);
+        let endpoint: string;
+        if (withChildren === true) {
+            endpoint = this.InvestmentsUrlEndpoint;
+        } else {
+            endpoint = this.InvestmentsWithoutChildrenUrlEndpoint;
+        }
+        console.log('Getting investments...endpoint:' + endpoint);
+        return this.http.get(endpoint)
                         .do((data => console.log('All: ' + JSON.stringify(data))))
                         .catch(this.handleError);
     }
