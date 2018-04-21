@@ -99,4 +99,8 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
       this.modalRef.hide();
     });
   }
+
+  myHandleError(event) {
+    console.log(event);
+  }
 }
