@@ -6,7 +6,8 @@
 <table *ngIf="Investments" class="table table-hover">
     <thead>
         <th>Name</th>
-        <th>Description</th>        
+        <th>Description</th>  
+        <th>Symbol</th>      
         <th>Value</th>
         <th></th> <!--Delete -->
     </thead>   
@@ -16,9 +17,8 @@
             </td>
             <td>{{investment.description}}</td>
             
-            <td>
-                <span>{{ investment.symbol}} {{ investment.value }} </span><br />
-            </td>
+            <td>{{investment.symbol}}</td>
+            <td>{{investment.value}}</td>
             <td><a (click)="delete(investment.id)" href="javascript:void(0)">Delete investment</a></td>            
         </tr>
 </table>
