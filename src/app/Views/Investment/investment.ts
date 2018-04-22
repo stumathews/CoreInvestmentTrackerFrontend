@@ -4,6 +4,7 @@ import { Investment } from '../../Models/Investment';
 import { InvestmentDetailComponent } from './investment.detail';
 import { EntityTypes, InvestmentUtilities  } from '../../Utilities';
 
+
 import 'rxjs/add/operator/finally';
 
 @Component({

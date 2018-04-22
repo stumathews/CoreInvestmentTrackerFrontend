@@ -3,6 +3,7 @@
 <p>
     <a [routerLink]="['/NewInvestmentWizard']" class="btn btn-primary">Create Investment</a>    
 </p>
+<p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
 <table *ngIf="Investments" class="table table-hover">
     <thead>
         <th>Name</th>
@@ -11,7 +12,7 @@
         <th>Value</th>
         <th></th> <!--Delete -->
     </thead>   
-        <tr *ngFor="let investment of Investments">
+        <tr *ngFor="let investment of Investments | filter : searchText">
             <td>         
                 <strong><a *ngIf="investment" [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a></strong>
             </td>

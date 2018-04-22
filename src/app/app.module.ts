@@ -51,6 +51,7 @@ import { NewInvestmentNoteComponent } from './Views/Note/new-note';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { DetailedInvestmentsComponent } from './Views/Investment/detailed-invest
     NewInvestmentWizardComponent, SelectRisksComponent, SelectGroupsComponent, SelectRegionsComponent,
     SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
     AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
-    ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent
+    ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent, FilterPipe
   ],
   imports: [
     TabsModule.forRoot(),
