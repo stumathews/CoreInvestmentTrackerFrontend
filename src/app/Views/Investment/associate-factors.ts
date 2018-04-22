@@ -25,7 +25,7 @@ export class AssociateFactorsComponent extends SelectEntitiesComponent implement
               private router: Router) {
                 super();
                }
-
+  EntityType : EntityTypes = EntityTypes.InvestmentInfluenceFactor;
   @Input() InvestmentId: number;
   @Output() AssociatedFactorEvent = new EventEmitter<InvestmentInfluenceFactor>();
   Entities: InvestmentInfluenceFactor[];

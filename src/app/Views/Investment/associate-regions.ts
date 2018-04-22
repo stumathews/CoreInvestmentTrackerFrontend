@@ -26,7 +26,7 @@ export class AssociateRegionsComponent extends SelectEntitiesComponent implement
               private router: Router) {
                   super();
               }
-
+EntityType: EntityTypes = EntityTypes.Region;
 @Input() InvestmentId: number;
 @Output() AssociatedRegionEvent = new EventEmitter<Region>();
 ngOnInit(): void {

@@ -6,11 +6,11 @@
         <th>Type</th>
     </thead>
     <tr *ngFor="let factor of Factors">
-        <td>{{ factor.name}}</td>
+        <td>{{factor.name}}</td>
         <td>Investment Influence Factor</td>
     </tr> 
     <tr *ngFor="let investment of Investment">
-        <td>{{ investment.name}}</td>
+        <td>{{investment.name}}</td>
         <td>Investment</td>
     </tr> 
     <tr *ngFor="let risk of Risks">
@@ -18,12 +18,12 @@
         <td>Investment Risk</td>
     </tr>  
     <tr *ngFor="let group of Groups">
-        <td>{{ group.name}}</td>
+        <td>{{group.name}}</td>
         <td>Investment Group</td>
     </tr>
     <tr *ngFor="let region of Regions">
-        <td>{{ region.name}}</td>
+        <td>{{region.name}}</td>
         <td>Investment Region</td>
     </tr>        
 </table>
-<button class="class="btn btn-default (click)="onFinished()" href="javascript:void(0)">Finished</button>
+<button class="btn btn-primary" (click)="onFinished()" href="javascript:void(0)">Finished</button>

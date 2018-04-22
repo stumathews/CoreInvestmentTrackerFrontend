@@ -24,6 +24,8 @@ export class SelectGroupsComponent extends SelectEntitiesComponent implements On
               private investmentService: InvestmentService) {
                   super();
                 }
+  EntityTypes = EntityTypes;
+  EntityType: EntityTypes = EntityTypes.InvestmentGroup;
   ngOnInit(): void {
     if (this.investmentService.SelectedGroups && this.investmentService.SelectedGroups.length > 0) {
         console.log('Restoring selected groups');

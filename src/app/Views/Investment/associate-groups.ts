@@ -24,7 +24,7 @@ export class AssociateGroupsComponent extends SelectEntitiesComponent implements
               private router: Router) {
                   super();
                 }
-
+  EntityType: EntityTypes = EntityTypes.InvestmentGroup;
   @Input() InvestmentId: number;
   @Output() AssociatedGroupEvent = new EventEmitter<InvestmentGroup>();
   ngOnInit(): void {

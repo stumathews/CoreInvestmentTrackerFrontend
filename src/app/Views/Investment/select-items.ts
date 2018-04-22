@@ -18,6 +18,8 @@ export class SelectItemsComponent {
               private route: ActivatedRoute,
               private location: Location,
               private router: Router) { }
+  EntityTypes = EntityTypes;
   @Input() Items: CheckModel[];
+  @Input() EntityType: EntityTypes;
 
 }

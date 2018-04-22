@@ -30,7 +30,7 @@ export class AssociateRisksComponent extends SelectEntitiesComponent implements 
                   this.ExtraLinks = [ {displayName: 'Add New Risk', url: '/NewRisk'},
                                       {displayName: 'test1', url: 'testUrl1'}];
                 }
-
+  EntityType : EntityTypes = EntityTypes.InvestmentRisk;
   @Input() InvestmentId: number;
   @Output() AssociatedRiskEvent = new EventEmitter<InvestmentRisk>();
   ngOnInit(): void {

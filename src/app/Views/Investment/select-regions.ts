@@ -26,7 +26,8 @@ export class SelectRegionsComponent extends SelectEntitiesComponent implements O
               private investmentService: InvestmentService) {
                   super();
               }
-
+   EntityTypes = EntityTypes;
+   EntityType: EntityTypes = EntityTypes.Region;
 ngOnInit(): void {
     if (this.investmentService.SelectedRegions && this.investmentService.SelectedRegions.length > 0) {
         console.log('Restoring selected regions');

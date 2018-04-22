@@ -28,7 +28,9 @@ export class SelectFactorsComponent extends SelectEntitiesComponent implements O
               private investmentService: InvestmentService) {
                 super();
                }
+  EntityTypes = EntityTypes;
   Entities: InvestmentInfluenceFactor[];
+  EntityType: EntityTypes = EntityTypes.InvestmentInfluenceFactor;
   ngOnInit(): void {
     if (this.investmentService.SelectedFactors && this.investmentService.SelectedFactors.length > 0) {
       console.log('Restoring selected factors..');

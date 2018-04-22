@@ -26,6 +26,8 @@ export class SelectRisksComponent extends SelectEntitiesComponent implements OnI
               private investmentService: InvestmentService) {
                   super();
               }
+  EntityTypes = EntityTypes;
+  EntityType: EntityTypes = EntityTypes.InvestmentRisk;
   ngOnInit(): void {
     if (this.investmentService.SelectedRisks && this.investmentService.SelectedRisks.length > 0) {
         console.log('Restoring slected risks');

@@ -1,6 +1,5 @@
 <div id="content" >
-<p>Please select what you'd like to associate with this investment</p>
-<button class="class="btn btn-default (click)="onNext()" href="javascript:void(0)">Save</button>       
-<app-select-items [(Items)]="Items"></app-select-items>
+<button class="btn btn-primary" (click)="onNext()" href="javascript:void(0)">Next</button>       
+<app-select-items [(Items)]="Items" [EntityType]="EntityType"></app-select-items>
  <!-- <a *ngFor="let link of ExtraLinks" [routerLink]="['{{link.url}}']">{{link.displayName}}</a> -->
  </div>
