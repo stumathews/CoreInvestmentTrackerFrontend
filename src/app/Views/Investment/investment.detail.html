@@ -1,20 +1,20 @@
 ﻿<div *ngIf="Entity">
-    <h1><inline-editor #thisElement *ngIf="Entity?.name" type="text" [(ngModel)]="Entity.name" (onSave)="saveEditable(thisElement, Entity.id)" name="name" size="8"></inline-editor></h1>    
+    <h1><inline-editor #nameElement type="text" [(ngModel)]="Entity.name" (onSave)="saveEditable(nameElement, Entity.id)" name="name" size="8"></inline-editor></h1>    
     <h4>Investment</h4>        
     <hr />
     <dl class="dl-horizontal">
         <dt>Description</dt>
-            <dd><inline-editor  #thisElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="Entity.description" (onSave)="saveEditable(thisElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
+            <dd><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
         <dt>Symbol</dt>
-            <dd><inline-editor #thisElement pattern="^.+$" *ngIf="Entity.symbol" type="text" min="1" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(thisElement, Entity.id)" name="symbol" size="8" (onError)="myHandleError()"></inline-editor></dd>
+            <dd><inline-editor #symbolElement pattern="^.+$"  type="text" min="1" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(symbolElement, Entity.id)" name="symbol" size="8" (onError)="myHandleError()"></inline-editor></dd>
         <dt>Value proposition</dt>
-            <dd><inline-editor #thisElement pattern="^.+$" *ngIf="Entity?.valueProposition" type="text" size="100" min="1" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(thisElement, Entity.id)" name="valueProposition" (onError)="myHandleError()"></inline-editor></dd>
+            <dd><inline-editor #valuePropositionElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(valuePropositionElement, Entity.id)" name="valueProposition" (onError)="myHandleError()"></inline-editor></dd>
         <dt>DesirabilityStatement</dt>
-            <dd><inline-editor #thisElement pattern="^.+$" *ngIf="Entity?.desirabilityStatement" type="text" size="100" min="1" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(thisElement, Entity.id)" name="desirabilityStatement" (onError)="myHandleError()"></inline-editor></dd>
+            <dd><inline-editor #desirabilityStatementElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(desirabilityStatementElement, Entity.id)" name="desirabilityStatement" (onError)="myHandleError()"></inline-editor></dd>
         <dt>Initial Investment</dt>
-            <dd><inline-editor #thisElement pattern="^[\d.]+$" *ngIf="Entity.initialInvestment" min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(thisElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
+            <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
         <dt>Value</dt>
-            <dd><inline-editor #thisElement pattern="^[\d.]+$" *ngIf="Entity.value" type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(thisElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>
+            <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>
     </dl>    
     <div>            
         <tabset>
