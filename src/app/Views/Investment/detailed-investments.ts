@@ -13,7 +13,7 @@ import 'rxjs/add/operator/finally';
 export class DetailedInvestmentsComponent extends InvestmentUtilities implements OnInit {
   Investments: Investment[];
   errorMessage: string;
-
+  searchText: string;
   constructor(protected apiService: ApiService) {
     super(apiService);
    }

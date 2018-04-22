@@ -14,7 +14,7 @@ import 'rxjs/add/operator/finally';
 export class InvestmentComponent extends InvestmentUtilities implements OnInit {
   Investments: Investment[];
   errorMessage: string;
-
+  searchText: string;
   constructor(protected apiService: ApiService) {
     super(apiService);
    }
