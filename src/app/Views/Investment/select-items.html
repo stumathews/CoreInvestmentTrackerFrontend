@@ -3,13 +3,15 @@
        <hr />
        <table class="table table-hover">
             <thead>                                   
-                <th>Name</th>     
+                <th>Name</th>
+                <th>Description</th>     
             </thead>
             <tr *ngFor="let item of Items">
                 <td>
                     <input type="checkbox" name="item" [(ngModel)]="item.checked" value="{{item.name}}"/>
-                    <span style="padding-left: 5px;">{{ item.name }} </span>
+                    <span style="padding-left: 5px;">{{item.name}}</span>
                 </td>                
+                <td>{{item.description}} </td>
             </tr>
         </table>
    </div>
