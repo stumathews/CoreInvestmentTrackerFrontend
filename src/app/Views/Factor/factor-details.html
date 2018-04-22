@@ -1,17 +1,14 @@
 ﻿<div *ngIf="Entity">
-    <h1><inline-editor #nameElement type="text" [(ngModel)]="Entity.name" (onSave)="saveEditable(nameElement, Entity.id)" name="name" size="8"></inline-editor></h1>
+    <h1>
+        <inline-editor #nameElement type="text" size="30" [(ngModel)]="Entity.name" (onSave)="saveEditable(nameElement, Entity.id)" name="name" ></inline-editor>
+    </h1>
     <h4>Investment Influence Factor</h4>
     <hr />
-    <dl class="dl-horizontal">
-       
+    <dl class="dl-horizontal">       
         <dt>Description</dt>
-
-        <dd><inline-editor #descriptionElement  type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description" size="8"></inline-editor></dd>
-
+        <dd><inline-editor #descriptionElement type="text" size="30" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"></inline-editor></dd>
         <dt>Influence</dt>
-
-        <dd><inline-editor #influenceElement type="text" [(ngModel)]="Entity.influence" (onSave)="saveEditable(influenceElement, Entity.id)" name="influence" size="8"></inline-editor></dd>
-
+        <dd><inline-editor #influenceElement type="text" size="30" [(ngModel)]="Entity.influence" (onSave)="saveEditable(influenceElement, Entity.id)" name="influence"></inline-editor></dd>
     </dl>
     <div><app-list-investments [Entity]="Entity"></app-list-investments></div>
     <div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]" [OwningEntityId]="Entity.id"></app-list-notes></div>

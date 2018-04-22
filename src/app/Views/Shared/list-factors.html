@@ -16,8 +16,7 @@
         </tr>
         </thead>
         <tr *ngFor="let factor of Factors">
-            <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.name }}</a>   </td>
-
+            <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.name }}</a></td>
             <td>{{ factor.description }}</td>
             <td>{{ factor.influence }}</td>
             <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.investments?.length }}</a></td>
