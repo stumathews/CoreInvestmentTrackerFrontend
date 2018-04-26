@@ -55,7 +55,27 @@ export class ApiService {
     private InvestmentGroupsGraphUrl = this.InvestmentsUrlEndpoint + '/GroupsGraph/{id}';
     private InvestmentFactorsGraphUrl = this.InvestmentsUrlEndpoint + '/FactorsGraph/{id}';
     private InvestmentRegionsGraphUrl = this.InvestmentsUrlEndpoint + '/RegionsGraph/{id}';
+    private GenerateSharedInvestmentsGraphDataForUrl = this.baseURL + '/{entityType}/GenerateSharedInvestmentsGraphDataFor';
     constructor(private http: HttpClient) { }
+
+    GetSharedInvestmentGraphData(type: EntityTypes): Observable<GraphData> {
+        console.log('GetSharedInvestmentGraphData: Entity=' + EntityTypes[type]);
+        let url;
+
+        if ( type === EntityTypes.InvestmentGroup) {
+            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Group');
+        } else if (type === EntityTypes.InvestmentInfluenceFactor) {
+            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Factor');
+        } else if (type === EntityTypes.InvestmentRisk) {
+            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Risk');
+        } else if ( type === EntityTypes.Region) {
+            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Region');
+        }
+        console.log('GetSharedInvestmentGraphData: Url=' + url);
+        return this.http.get(url)
+                        .do((data => console.log('All: ' + JSON.stringify(data))))
+                        .catch(this.handleError);
+    }
 
     GetInvestmentGraphData(type: EntityTypes , investmentID: number): Observable<GraphData> {
         console.log('Entity=' + EntityTypes[type] +

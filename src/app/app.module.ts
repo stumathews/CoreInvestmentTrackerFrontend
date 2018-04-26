@@ -45,6 +45,7 @@ import { AssociateRisksComponent } from './Views/Investment/associate-risks';
 import { AssociateGroupsComponent } from './Views/Investment/associate-groups';
 import { AssociateRegionsComponent } from './Views/Investment/associate-regions';
 import { GraphComponent } from './Graphs/graph/graph.component';
+import {  SharedGraphComponent } from './Graphs/graph/shared.graph.component';
 import { ListGroupsComponent } from './Views/Shared/list-groups';
 import { ListNotesComponent } from './Views/Shared/list-notes';
 import { NewInvestmentNoteComponent } from './Views/Note/new-note';
@@ -63,7 +64,7 @@ import { FilterPipe } from './filter.pipe';
     NewRegionComponent, NewRiskComponent, SelectItemsComponent, SelectFactorsComponent,
     NewInvestmentWizardComponent, SelectRisksComponent, SelectGroupsComponent, SelectRegionsComponent,
     SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
-    AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
+    AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent, SharedGraphComponent,
     ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent, FilterPipe
   ],
   imports: [

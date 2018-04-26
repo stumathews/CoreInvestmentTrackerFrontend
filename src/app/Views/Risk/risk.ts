@@ -11,6 +11,7 @@ import 'rxjs/add/operator/finally';
   templateUrl: './risk.html'
 })
 export class RiskComponent implements OnInit {
+  EntityTypes = EntityTypes;
   Risks: InvestmentRisk[];
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,

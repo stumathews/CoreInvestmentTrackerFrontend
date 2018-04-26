@@ -13,7 +13,7 @@ import 'rxjs/add/operator/finally';
 export class FactorComponent implements OnInit {
   Factors: InvestmentInfluenceFactor[];
   constructor(private apiService: ApiService) { }
-
+  EntityTypes = EntityTypes;
   errorMessage: string;
   ngOnInit(): void {
     this.apiService.GetFactors().subscribe(factors => this.Factors = factors,

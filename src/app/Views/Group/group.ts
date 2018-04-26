@@ -11,6 +11,7 @@ import 'rxjs/add/operator/finally';
   templateUrl: './group.html'
 })
 export class GroupComponent implements OnInit {
+  EntityTypes = EntityTypes;
   @Input() Groups: InvestmentGroup[];
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,

@@ -10,6 +10,7 @@ import 'rxjs/add/operator/finally';
   templateUrl: './region.html'
 })
 export class RegionComponent  implements OnInit {
+  EntityTypes = EntityTypes;
   Regions: Region[];
   constructor(private apiService: ApiService) { }
 

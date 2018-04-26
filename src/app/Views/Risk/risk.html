@@ -28,5 +28,6 @@
         <td><a (click)="delete(risk.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 </table>
-<p><strong>Total: {{ Risks.length }}</strong></p>
+<app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="0"></app-shared-graph>
+<p><strong>Total: {{ Risks?.length }}</strong></p>
 

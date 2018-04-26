@@ -23,4 +23,7 @@
         </tr>
     </table>
 
-<p><strong>Total: {{ Factors.length }}</strong></p>
+    <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="0"></app-shared-graph>
+    
+
+<p><strong>Total: {{ Factors?.length }}</strong></p>

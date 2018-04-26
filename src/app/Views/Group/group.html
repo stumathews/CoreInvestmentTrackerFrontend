@@ -31,5 +31,7 @@
         <td><a (click)="delete(group.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 </table>
-<p><strong>Total: {{ Groups.length }}</strong></p>
+<app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="0"></app-shared-graph>
+    
+<p><strong>Total: {{ Groups?.length }}</strong></p>
 
