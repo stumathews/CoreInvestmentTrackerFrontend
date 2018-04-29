@@ -1,7 +1,7 @@
 import { Component, Input, Output, OnInit } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
-import { InvestmentUtilities, EntityTypes } from '../../Utilities';
+import { EntityUtilities, EntityTypes } from '../../Utilities';
 import { InvestmentNote } from '../../Models/InvestmentNote';
 import { NewInvestmentNoteComponent } from '../Note/new-note';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -13,12 +13,12 @@ import 'rxjs/add/operator/finally';
   selector: 'app-list-notes',
   templateUrl: './list-notes.html'
 })
-export class ListNotesComponent extends InvestmentUtilities implements OnInit {
+export class ListNotesComponent extends EntityUtilities implements OnInit {
   modalRef: BsModalRef;
   EntityTypes = EntityTypes;
   errorMessage: string;
-  Title = 'Investment Notes';
-  @Input() Notes: InvestmentNote[];
+  Title = 'Notes';
+  @Input() Notes: InvestmentNote[] = [];
   private _OwningEntityType: EntityTypes;
   @Input() OwningEntityId: number;
   @Input()
