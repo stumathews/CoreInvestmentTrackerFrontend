@@ -12,4 +12,5 @@
     </dl>
     <div><app-list-investments [Entity]="Entity"></app-list-investments></div>
     <div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]" [OwningEntityId]="Entity.id"></app-list-notes></div>
+    <app-new-note [OwningEntityId]="Entity.id" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]"></app-new-note>
 </div>

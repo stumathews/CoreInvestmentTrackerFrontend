@@ -21,13 +21,13 @@
                 <td>{{ investment.description }}</td>
                 <td>
                     <span *ngFor="let region of investment.regions">
-                        <a [routerLink]="['/RegionDetails', region.region.id    ]">{{ region.region?.name }}</a>
+                        <a [routerLink]="['/RegionDetails', region.id    ]">{{ region.region?.name }}</a>
                     </span>
                     
                 </td>
                 <td>
                         <span *ngFor="let risk of investment.risks">
-                                <a [routerLink]="['/RiskDetails', risk.investmentRisk.id    ]">{{ risk.investmentRisk?.name }}</a>  
+                                <a *ngIf=" risk.investmentRisk" [routerLink]="['/RiskDetails', risk?.investmentRisk?.id    ]">{{ risk.investmentRisk?.name }}</a>  
                         </span>
                     
                 </td>

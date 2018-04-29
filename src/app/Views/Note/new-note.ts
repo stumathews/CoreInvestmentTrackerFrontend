@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GetRequiredTextValidators, GetRequiredNumberValidators, InvestmentUtilities, EntityTypes} from '../../Utilities';
+import { GetRequiredTextValidators, GetRequiredNumberValidators, EntityUtilities, EntityTypes} from '../../Utilities';
 import { InvestmentNote } from '../../Models/InvestmentNote';
 
 import 'rxjs/add/operator/finally';
@@ -16,7 +16,7 @@ import 'rxjs/add/operator/finally';
   styleUrls: ['../Investment/select-entities.css']
   })
 
-export class NewInvestmentNoteComponent extends InvestmentUtilities implements OnInit {
+export class NewInvestmentNoteComponent extends EntityUtilities implements OnInit {
   form;
   constructor(protected apiService: ApiService,
               private route: ActivatedRoute,

@@ -1,13 +1,13 @@
 import { Component, Input, Output } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
-import { InvestmentUtilities } from '../../Utilities';
+import { EntityUtilities } from '../../Utilities';
 
 @Component({
   selector: 'app-list-investments',
   templateUrl: './list-investments.html'
 })
-export class ListInvestmentsComponent extends InvestmentUtilities {
+export class ListInvestmentsComponent extends EntityUtilities {
   errorMessage: string;
   Investments: Investment[] = [];
   _Entity: any;

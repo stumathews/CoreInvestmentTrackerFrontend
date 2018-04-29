@@ -10,6 +10,8 @@
 </p>
 
 <a [routerLink]="['/NewRisk']" class="btn btn-primary">Create Risk</a>
+<p></p>
+<p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -20,7 +22,7 @@
             <th></th> <!--Delete -->
         </tr>
     </thead>
-    <tr *ngFor="let risk of Risks">
+    <tr *ngFor="let risk of Risks | filter : searchText">
         <td><a [routerLink]="['/RiskDetails', risk.id]">{{ risk.name }}</a></td>
         <td>{{ risk.description }}</td>
         <td>{{ risk.type }}</td>

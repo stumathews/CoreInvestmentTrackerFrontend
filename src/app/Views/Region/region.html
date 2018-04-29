@@ -2,7 +2,8 @@
 <p>Investments can be within different geographic locations that have specific influences on them. Defining regions that investments share can show how these investments are affected by those influences.</p>
 
 <a [routerLink]="['/NewRegion']" class="btn btn-primary">Create Region</a>
-
+<p></p>
+<p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
 <table class="table table-hover">
     <thead>
         <th>Name</th>
@@ -11,7 +12,7 @@
         <th><!--Delete--></th>        
     </thead>
     
-    <tr *ngFor="let region of Regions">
+    <tr *ngFor="let region of Regions | filter : searchText">
         <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.name }}</a></td>
         <td>{{ region.description }}</td>
         <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.investments.length }}</a></td>

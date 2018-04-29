@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Region } from '../../Models/Region';
-import { EntityTypes  } from '../../Utilities';
+import { EntityTypes, EntityUtilities  } from '../../Utilities';
 
 import 'rxjs/add/operator/finally';
 
@@ -9,10 +9,12 @@ import 'rxjs/add/operator/finally';
   selector: 'app-region',
   templateUrl: './region.html'
 })
-export class RegionComponent  implements OnInit {
+export class RegionComponent extends EntityUtilities implements OnInit {
   EntityTypes = EntityTypes;
   Regions: Region[];
-  constructor(private apiService: ApiService) { }
+  constructor(protected apiService: ApiService) {
+    super(apiService);
+   }
 
   errorMessage: string;
   ngOnInit(): void {

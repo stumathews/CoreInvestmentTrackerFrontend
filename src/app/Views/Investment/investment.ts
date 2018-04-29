@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
 import { InvestmentDetailComponent } from './investment.detail';
-import { EntityTypes, InvestmentUtilities  } from '../../Utilities';
+import { EntityTypes, EntityUtilities  } from '../../Utilities';
 
 
 import 'rxjs/add/operator/finally';
@@ -11,10 +11,10 @@ import 'rxjs/add/operator/finally';
   selector: 'app-investment',
   templateUrl: './investment.html'
 })
-export class InvestmentComponent extends InvestmentUtilities implements OnInit {
+export class InvestmentComponent extends EntityUtilities implements OnInit {
   Investments: Investment[];
   errorMessage: string;
-  searchText: string;
+
   constructor(protected apiService: ApiService) {
     super(apiService);
    }

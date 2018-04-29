@@ -5,7 +5,8 @@
 </p>
 <p>Try to keep factors are specific as possible to the companies products and services such as 'Cost of Steel' when considering a steel manufacturing company.</p>
 <a [routerLink]="['/NewFactor']" class="btn btn-primary">Create Factor</a>
-
+<p></p>
+<p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
 <table class="table table-hover">
         <thead>
             <th>Name</th>
@@ -14,7 +15,7 @@
             <th>Linked investments</th>
             <th></th> <!--Delete -->            
         </thead>
-        <tr *ngFor="let factor of Factors">
+        <tr *ngFor="let factor of Factors | filter : searchText">
             <td><a [routerLink]="['/FactorDetails', factor.id]">{{ factor.name }}</a></td>
             <td>{{ factor.influence }}</td>
             <td>{{ factor.description }}</td>

@@ -29,15 +29,14 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   Entity: Investment;
   Notes: InvestmentNote[] = [];
   errorMessage: string;
-  modalRef: BsModalRef;
+
   @ViewChild('childModal') childModal: ModalDirective;
   constructor(protected apiService: ApiService,
-    private route: ActivatedRoute,
-    private location: Location,
-    private modalService: BsModalService,
-    private router: Router) {
-    super(apiService);
-    this.MyType = EntityTypes.Investment;
+    protected route: ActivatedRoute,
+    protected location: Location,
+    protected modalService: BsModalService,
+    protected router: Router) {
+      super(apiService, EntityTypes.Investment, route, location, modalService, router);
    }
 
   ngOnInit(): void {

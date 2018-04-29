@@ -5,7 +5,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InvestmentService } from '../../investment.service';
-import { InvestmentUtilities, EntityTypes, GetRequiredNumberValidators, GetRequiredTextValidators  } from '../../Utilities';
+import { EntityUtilities, EntityTypes, GetRequiredNumberValidators, GetRequiredTextValidators  } from '../../Utilities';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { InvestmentUtilities, EntityTypes, GetRequiredNumberValidators, GetRequi
   templateUrl: 'new-investment.html',
   })
 
-export class NewInvestmentComponent extends InvestmentUtilities implements OnInit {
+export class NewInvestmentComponent extends EntityUtilities implements OnInit {
   form;
   constructor(protected apiService: ApiService,
               private route: ActivatedRoute,

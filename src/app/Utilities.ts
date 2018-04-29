@@ -8,6 +8,9 @@ import { ApiService } from './apiservice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CheckModel } from './Models/CheckModel';
 import { Link } from './Models/Link';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 export abstract class SelectEntitiesComponent {
@@ -77,8 +80,14 @@ export abstract class DetailComponentBase implements OnInit  {
     Entity: Investment | InvestmentGroup | InvestmentInfluenceFactor | InvestmentRisk | Region;
     MyType: EntityTypes;
     errorMessage: string;
-    constructor(protected apiService: ApiService) { 
-        this.MyType = EntityTypes.Investment;
+    modalRef: BsModalRef;
+    constructor(protected apiService: ApiService,
+        protected myType: EntityTypes,
+        protected route: ActivatedRoute,
+        protected location: Location,
+        protected modalService: BsModalService,
+        protected router: Router) {
+        this.MyType = myType;
     }
 
     ngOnInit() { }
@@ -117,10 +126,11 @@ export enum EntityTypes {
     Note
 }
 
-export abstract class InvestmentUtilities {
+export abstract class EntityUtilities {
     EntityTypes = EntityTypes;
     constructor(protected apiService: ApiService) { }
     errorMessage: string;
+    searchText: string;
     populateInvestmentFully(investment: Investment) {
         investment.factors.forEach((factor, findex) => {
         this.apiService.GetFactor(factor.investmentInfluenceFactorID).subscribe( result => {
