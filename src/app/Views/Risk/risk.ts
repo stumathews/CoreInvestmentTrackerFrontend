@@ -13,6 +13,7 @@ import 'rxjs/add/operator/finally';
 export class RiskComponent implements OnInit {
   EntityTypes = EntityTypes;
   Risks: InvestmentRisk[];
+  searchText: string;
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router) { }

@@ -12,6 +12,7 @@ import 'rxjs/add/operator/finally';
 })
 export class GroupComponent implements OnInit {
   EntityTypes = EntityTypes;
+  searchText: string;
   @Input() Groups: InvestmentGroup[];
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,

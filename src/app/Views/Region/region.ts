@@ -9,12 +9,11 @@ import 'rxjs/add/operator/finally';
   selector: 'app-region',
   templateUrl: './region.html'
 })
-export class RegionComponent extends EntityUtilities implements OnInit {
+export class RegionComponent  implements OnInit {
   EntityTypes = EntityTypes;
   Regions: Region[];
-  constructor(protected apiService: ApiService) {
-    super(apiService);
-   }
+  searchText: string;
+  constructor(protected apiService: ApiService) { }
 
   errorMessage: string;
   ngOnInit(): void {

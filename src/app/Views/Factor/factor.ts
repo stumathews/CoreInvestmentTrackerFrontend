@@ -15,6 +15,7 @@ export class FactorComponent implements OnInit {
   constructor(private apiService: ApiService) { }
   EntityTypes = EntityTypes;
   errorMessage: string;
+  searchText: string;
   ngOnInit(): void {
     this.apiService.GetFactors().subscribe(factors => this.Factors = factors,
                    error => this.errorMessage = <any>error);
