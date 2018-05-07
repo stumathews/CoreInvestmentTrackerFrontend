@@ -32,9 +32,11 @@ import { AssociateRegionsComponent } from './Views/Investment/associate-regions'
 import { GraphComponent } from './Graphs/graph/graph.component';
 import { NewInvestmentNoteComponent } from './Views/Note/new-note';
 import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
+import { LoginComponent } from './Views/Login/login.component';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Home', pathMatch: 'full'},
+    { path : 'Login', component: LoginComponent },
     { path : 'Home', component: HomeComponent },
     { path : 'Investments', component: InvestmentComponent },
     { path : 'DetailedInvestments', component: DetailedInvestmentsComponent },
