@@ -1,7 +1,7 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <div class="form-horizontal">
-        <h4>Login</h4>
+        <h1>Login</h1>
         <hr />
         <p>Please login in order to use the site</p>
         <div class="form-group">
@@ -10,7 +10,7 @@
                 <input type="text" name="username" class="form-control" formControlName="username"/>
             </div>            
         </div>
-        <div *ngIf="form.controls.name.errors?.pattern">
+        <div *ngIf="form.controls.username.errors?.pattern">
             <alert type="warning">
                 <strong>Warning!</strong> There is an issue with this input
               </alert>
@@ -21,7 +21,7 @@
                 <input type="text" name="password" class = "form-control" formControlName="password"/>
             </div>
         </div>
-        <div *ngIf="form.controls.description.errors?.pattern">
+        <div *ngIf="form.controls.password.errors?.pattern">
             <alert type="warning">
               <strong>Warning!</strong> There is an issue with this input
               </alert>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { EntityUtilities, EntityTypes, GetRequiredNumberValidators, GetRequiredTextValidators  } from '../../Utilities';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EntityUtilities, EntityTypes, GetRequiredNumberValidators, GetRequiredTextValidators,
+   GetPasswordValidators  } from '../../Utilities';
 
 import { ApiService } from '../../apiservice.service';
 import { LoginDetails } from '../../Models/LoginDetails';
@@ -10,22 +11,21 @@ import { LoginDetails } from '../../Models/LoginDetails';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends EntityUtilities implements OnInit {
-  form;
-  logindetails: LoginDetails;
-  constructor(apiService: ApiService) {
-    super(apiService);
-   }
+export class LoginComponent implements OnInit {
+  form: FormGroup;
+  logindetails: LoginDetails = <LoginDetails> {username: '', password: ''};
+  constructor(apiService: ApiService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      name: new FormControl(this.logindetails.username, GetRequiredTextValidators()),
-      description: new FormControl(this.logindetails.password, GetRequiredTextValidators()),
-  });
+      username: new FormControl(this.logindetails.username, GetRequiredTextValidators()),
+      password: new FormControl(this.logindetails.password, GetPasswordValidators()),
+    });
   }
 
   onSubmit(form: LoginDetails) {
     this.logindetails = form;
+    console.log(`ok logging in... username=${this.logindetails.username} password= ${this.logindetails.password}`);
   }
 
 }
