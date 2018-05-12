@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { AlertModule } from 'ngx-bootstrap';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AlertModule, CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { APP_ROUTING } from './app.routing';
 import { FormsModule } from '@angular/forms';
@@ -54,6 +54,10 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
 import { FilterPipe } from './filter.pipe';
 import { LoginComponent } from './Views/Login/login.component';
+import { AuthGuard } from './AuthGuardService';
+import { UrlInterceptor as MyFirstInterceptor } from './UrlInterceptor';
+import { AuthService } from './AuthService';
+import { NavbarComponent } from './Views/App/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -66,17 +70,18 @@ import { LoginComponent } from './Views/Login/login.component';
     NewInvestmentWizardComponent, SelectRisksComponent, SelectGroupsComponent, SelectRegionsComponent,
     SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
     AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent, SharedGraphComponent,
-    ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent, FilterPipe, LoginComponent
+    ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent
   ],
   imports: [
     TabsModule.forRoot(),
     BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
-    InlineEditorModule, Angular2FontawesomeModule
+    InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot()
   ],
   entryComponents: [
     ListGroupsComponent,
   ],
-  providers: [ApiService, InvestmentService, BsModalService],
+  providers: [InvestmentService, AuthService, ApiService, BsModalService, AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

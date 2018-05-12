@@ -19,6 +19,8 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { environment } from '../environments/environment';
+import { UserLoginInfo } from './Models/UserLoginInfo';
+import { AuthService } from './AuthService';
 
 @Injectable()
 export class ApiService {
@@ -36,6 +38,7 @@ export class ApiService {
     private FactorByIdUrlEndpoint = this.baseURL + '/Factor/{id}';
     private GroupByIdUrlEndpoint = this.baseURL + '/Group/{id}';
     private RegionByIdUrlEndpoint = this.baseURL + '/Region/{id}';
+    private TokenUrlEndpoint = this.baseURL + '/Token';
     private NotesByParamsUrlEndpoint = this.baseURL + '/Notes/{owningEntityId}/{owningEntityType}/{id}';
 
     private OwningEntityNotesUrlEndpoint = this.NotesUrlEndpoint + '/{owningEntityID}/{owningEntityType}';
@@ -56,7 +59,15 @@ export class ApiService {
     private InvestmentFactorsGraphUrl = this.InvestmentsUrlEndpoint + '/FactorsGraph/{id}';
     private InvestmentRegionsGraphUrl = this.InvestmentsUrlEndpoint + '/RegionsGraph/{id}';
     private GenerateSharedInvestmentsGraphDataForUrl = this.baseURL + '/{entityType}/GenerateSharedInvestmentsGraphDataFor';
+
+    private GetTokenEndpointUrl = this.TokenUrlEndpoint;
     constructor(private http: HttpClient) { }
+
+    Login(userLoginInfo: UserLoginInfo): Observable<any> {
+        return this.http
+        .post(this.GetTokenEndpointUrl, userLoginInfo)
+        .catch(this.handleError);
+    }
 
     GetSharedInvestmentGraphData(type: EntityTypes): Observable<GraphData> {
         console.log('GetSharedInvestmentGraphData: Entity=' + EntityTypes[type]);
@@ -335,6 +346,8 @@ export class ApiService {
         .do((data => console.log('do patch risk: ' + JSON.stringify(data))))
         .catch(this.handleError);
     }
+
+    
 
     private handleError(err: HttpErrorResponse) {
         console.error('An error occurred:', err.error);

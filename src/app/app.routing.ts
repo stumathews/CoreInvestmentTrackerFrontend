@@ -33,29 +33,30 @@ import { GraphComponent } from './Graphs/graph/graph.component';
 import { NewInvestmentNoteComponent } from './Views/Note/new-note';
 import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
 import { LoginComponent } from './Views/Login/login.component';
+import { AuthGuard } from './AuthGuardService';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Home', pathMatch: 'full'},
     { path : 'Login', component: LoginComponent },
-    { path : 'Home', component: HomeComponent },
-    { path : 'Investments', component: InvestmentComponent },
-    { path : 'DetailedInvestments', component: DetailedInvestmentsComponent },
-    { path : 'InvestmentDetails/:id', component: InvestmentDetailComponent },
-    { path : 'Factors', component: FactorComponent },
-    { path : 'FactorDetails/:id', component: FactorDetailsComponent },
-    { path : 'Groups', component: GroupComponent },
-    { path : 'GroupDetails/:id', component: GroupDetailsComponent },
-    { path : 'Risks', component: RiskComponent },
-    { path : 'RiskDetails/:id', component: RiskDetailsComponent },
-    { path : 'Regions', component: RegionComponent },
-    { path : 'RegionDetails/:id', component: RegionDetailsComponent },
-    { path : 'NewInvestment', component: NewInvestmentComponent },
-    { path : 'NewFactor', component: NewFactorComponent },
-    { path : 'NewGroup', component: NewGroupComponent },
-    { path : 'NewRegion', component: NewRegionComponent },
-    { path : 'NewRisk', component: NewRiskComponent },
+    { path : 'Home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path : 'Investments', component: InvestmentComponent, canActivate: [AuthGuard]  },
+    { path : 'DetailedInvestments', component: DetailedInvestmentsComponent, canActivate: [AuthGuard]  },
+    { path : 'InvestmentDetails/:id', component: InvestmentDetailComponent, canActivate: [AuthGuard]  },
+    { path : 'Factors', component: FactorComponent, canActivate: [AuthGuard]  },
+    { path : 'FactorDetails/:id', component: FactorDetailsComponent, canActivate: [AuthGuard]  },
+    { path : 'Groups', component: GroupComponent, canActivate: [AuthGuard]  },
+    { path : 'GroupDetails/:id', component: GroupDetailsComponent, canActivate: [AuthGuard]  },
+    { path : 'Risks', component: RiskComponent, canActivate: [AuthGuard]  },
+    { path : 'RiskDetails/:id', component: RiskDetailsComponent, canActivate: [AuthGuard]  },
+    { path : 'Regions', component: RegionComponent, canActivate: [AuthGuard]  },
+    { path : 'RegionDetails/:id', component: RegionDetailsComponent, canActivate: [AuthGuard]  },
+    { path : 'NewInvestment', component: NewInvestmentComponent, canActivate: [AuthGuard]  },
+    { path : 'NewFactor', component: NewFactorComponent, canActivate: [AuthGuard]  },
+    { path : 'NewGroup', component: NewGroupComponent, canActivate: [AuthGuard]  },
+    { path : 'NewRegion', component: NewRegionComponent, canActivate: [AuthGuard]  },
+    { path : 'NewRisk', component: NewRiskComponent, canActivate: [AuthGuard]  },
    /* { path : 'SelectItems', component: SelectItemsComponent, }, */
-    { path : 'NewInvestmentWizard', component: NewInvestmentWizardComponent,  children: [
+    { path : 'NewInvestmentWizard', component: NewInvestmentWizardComponent, canActivate: [AuthGuard],  children: [
            { path : 'NewInvestment', component: NewInvestmentComponent, outlet: 'NewInvestmentWizardOutlet' },
            { path : 'SelectFactors', component: SelectFactorsComponent, outlet: 'NewInvestmentWizardOutlet' },
            { path : 'SelectRisks', component: SelectRisksComponent, outlet: 'NewInvestmentWizardOutlet' },
@@ -63,12 +64,12 @@ const appRoutes: Routes = [
            { path : 'SelectRegions', component: SelectRegionsComponent, outlet: 'NewInvestmentWizardOutlet' },
            { path : 'SummaryOfNewInvestment', component: SummaryOfNewInvestmentComponent, outlet: 'NewInvestmentWizardOutlet' }
     ] },
-    { path : 'AssociateFactors/:id', component: AssociateFactorsComponent },
-    { path : 'AssociateRisks/:id', component: AssociateRisksComponent },
-    { path : 'AssociateGroups/:id', component: AssociateGroupsComponent },
-    { path : 'AssociateRegions/:id', component: AssociateRegionsComponent },
-    { path : 'RisksGraph', component: GraphComponent },
-    { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent }
+    { path : 'AssociateFactors/:id', component: AssociateFactorsComponent, canActivate: [AuthGuard]  },
+    { path : 'AssociateRisks/:id', component: AssociateRisksComponent, canActivate: [AuthGuard]  },
+    { path : 'AssociateGroups/:id', component: AssociateGroupsComponent, canActivate: [AuthGuard]  },
+    { path : 'AssociateRegions/:id', component: AssociateRegionsComponent, canActivate: [AuthGuard]  },
+    /*{ path : 'RisksGraph', component: GraphComponent },*/
+    { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent, canActivate: [AuthGuard]  }
 ];
 
 export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -4,7 +4,10 @@ import { EntityUtilities, EntityTypes, GetRequiredNumberValidators, GetRequiredT
    GetPasswordValidators  } from '../../Utilities';
 
 import { ApiService } from '../../apiservice.service';
-import { LoginDetails } from '../../Models/LoginDetails';
+import { UserLoginInfo } from '../../Models/UserLoginInfo';
+import { AuthService } from '../../AuthService';
+import { TokenResponse } from '../../Models/TokenResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,19 +16,28 @@ import { LoginDetails } from '../../Models/LoginDetails';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  logindetails: LoginDetails = <LoginDetails> {username: '', password: ''};
-  constructor(apiService: ApiService) { }
+  isLoggedIn = false;
+  logindetails: UserLoginInfo = <UserLoginInfo> {Username: '', Password: ''};
+  constructor(private apiService: ApiService,
+    private readonly authService: AuthService,
+    private readonly router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      username: new FormControl(this.logindetails.username, GetRequiredTextValidators()),
-      password: new FormControl(this.logindetails.password, GetPasswordValidators()),
+      Username: new FormControl(this.logindetails.Username, GetRequiredTextValidators()),
+      Password: new FormControl(this.logindetails.Password, GetRequiredTextValidators()),
     });
   }
 
-  onSubmit(form: LoginDetails) {
+  onSubmit(form: UserLoginInfo) {
     this.logindetails = form;
-    console.log(`ok logging in... username=${this.logindetails.username} password= ${this.logindetails.password}`);
+    console.log(form);
+    this.apiService.Login(form).subscribe( (response: TokenResponse) => {
+      this.authService.setToken(response.token);
+      if (this.authService.hasValidIdToken()) {
+        this.isLoggedIn = true;
+        this.router.navigate(['/Home']);
+      }
+    } );
   }
-
 }
