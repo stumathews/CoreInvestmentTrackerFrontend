@@ -10,6 +10,7 @@
         <dt>Influence</dt>
         <dd><inline-editor #influenceElement type="text" size="30" [(ngModel)]="Entity.influence" (onSave)="saveEditable(influenceElement, Entity.id)" name="influence"></inline-editor></dd>
     </dl>
+    <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Id]="Entity.id"></app-shared-graph>
     <div><app-list-investments [Entity]="Entity"></app-list-investments></div>
     <div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]" [OwningEntityId]="Entity.id"></app-list-notes></div>
     <app-new-note [OwningEntityId]="Entity.id" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]"></app-new-note>

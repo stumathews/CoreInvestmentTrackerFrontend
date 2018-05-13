@@ -58,7 +58,8 @@ export class ApiService {
     private InvestmentGroupsGraphUrl = this.InvestmentsUrlEndpoint + '/GroupsGraph/{id}';
     private InvestmentFactorsGraphUrl = this.InvestmentsUrlEndpoint + '/FactorsGraph/{id}';
     private InvestmentRegionsGraphUrl = this.InvestmentsUrlEndpoint + '/RegionsGraph/{id}';
-    private GenerateSharedInvestmentsGraphDataForUrl = this.baseURL + '/{entityType}/GenerateSharedInvestmentsGraphDataFor';
+    private GenerateSharedInvestmentsGraphDataForAllUrl = this.baseURL + '/{entityType}/GenerateSharedInvestmentsGraphDataForAll';
+    private GenerateEntityInvestmentsGraphForForUrl = this.baseURL + '/{entityType}/GenerateEntityInvestmentsGraphFor/{id}';
 
     private GetTokenEndpointUrl = this.TokenUrlEndpoint;
     constructor(private http: HttpClient) { }
@@ -69,24 +70,44 @@ export class ApiService {
         .catch(this.handleError);
     }
 
+    ReplaceEntityTypeInUrl(type: EntityTypes, url: string): string {
+        if ( type === EntityTypes.InvestmentGroup) {
+            url = url.replace('{entityType}', 'Group');
+        } else if (type === EntityTypes.InvestmentInfluenceFactor) {
+            url = url.replace('{entityType}', 'Factor');
+        } else if (type === EntityTypes.InvestmentRisk) {
+            url = url.replace('{entityType}', 'Risk');
+        } else if ( type === EntityTypes.Region) {
+            url = url.replace('{entityType}', 'Region');
+        }
+        return url;
+    }
+
     GetSharedInvestmentGraphData(type: EntityTypes): Observable<GraphData> {
         console.log('GetSharedInvestmentGraphData: Entity=' + EntityTypes[type]);
-        let url;
+           let url = this.GenerateSharedInvestmentsGraphDataForAllUrl;
 
-        if ( type === EntityTypes.InvestmentGroup) {
-            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Group');
-        } else if (type === EntityTypes.InvestmentInfluenceFactor) {
-            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Factor');
-        } else if (type === EntityTypes.InvestmentRisk) {
-            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Risk');
-        } else if ( type === EntityTypes.Region) {
-            url = this.GenerateSharedInvestmentsGraphDataForUrl.replace('{entityType}', 'Region');
-        }
+        url = this.ReplaceEntityTypeInUrl(type, url);
         console.log('GetSharedInvestmentGraphData: Url=' + url);
         return this.http.get(url)
                         .do((data => console.log('All: ' + JSON.stringify(data))))
                         .catch(this.handleError);
     }
+
+    GetSharedInvestmentGraphDataFor(type: EntityTypes, entityId: number): Observable<GraphData> {
+        console.log('GetSharedInvestmentGraphData: Entity=' + EntityTypes[type]);
+           let url = this.GenerateEntityInvestmentsGraphForForUrl;
+               url = this.ReplaceEntityTypeInUrl(type, url);
+               url = url.replace('{id}', entityId + '');
+
+        url = this.ReplaceEntityTypeInUrl(type, url);
+        console.log('GetSharedInvestmentGraphData: Url=' + url);
+        return this.http.get(url)
+                        .do((data => console.log('All: ' + JSON.stringify(data))))
+                        .catch(this.handleError);
+    }
+
+
 
     GetInvestmentGraphData(type: EntityTypes , investmentID: number): Observable<GraphData> {
         console.log('Entity=' + EntityTypes[type] +
@@ -346,8 +367,6 @@ export class ApiService {
         .do((data => console.log('do patch risk: ' + JSON.stringify(data))))
         .catch(this.handleError);
     }
-
-    
 
     private handleError(err: HttpErrorResponse) {
         console.error('An error occurred:', err.error);
