@@ -18,7 +18,7 @@
         <div class="form-group">
             <label class= "control-label col-md-2">Password</label>
             <div class="col-md-4">
-                <input type="text" name="Password" class = "form-control" formControlName="Password"/>
+                <input type="password" name="Password" class = "form-control" formControlName="Password"/>
             </div>
         </div>
         <div *ngIf="form.controls.Password.errors?.pattern">
@@ -29,7 +29,10 @@
         <div class="form-group">            
           <div class="col-md-offset-2 col-md-10">
               <input type="submit" value="Login" class="btn btn-default" [disabled]="!form.valid" />
-          </div>          
+          </div>                    
+          <div class="col-md-offset-2 col-md-10">
+                <a [routerLink]="['/Signup']">Sign-up</a>
+          </div>
       </div>
     </div>
 </form>

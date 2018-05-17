@@ -18,6 +18,7 @@ import { AssociateGroupsComponent } from './associate-groups';
 import { InvestmentGroup } from '../../Models/InvestmentGroup';
 import { AssociateRegionsComponent } from './associate-regions';
 import { Region } from '../../Models/Region';
+import { Activity } from '../../Models/Activity';
 
 @Component({
   selector: 'app-investment-detail',
@@ -28,6 +29,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   EntityTypes = EntityTypes;
   Entity: Investment;
   Notes: InvestmentNote[] = [];
+  Activities: Activity[] = [];
   errorMessage: string;
 
   @ViewChild('childModal') childModal: ModalDirective;

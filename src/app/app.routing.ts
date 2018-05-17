@@ -34,6 +34,7 @@ import { NewInvestmentNoteComponent } from './Views/Note/new-note';
 import { DetailedInvestmentsComponent } from './Views/Investment/detailed-investments';
 import { LoginComponent } from './Views/Login/login.component';
 import { AuthGuard } from './AuthGuardService';
+import { SignupComponent } from './Views/signup/signup.component';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Home', pathMatch: 'full'},
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     { path : 'AssociateGroups/:id', component: AssociateGroupsComponent, canActivate: [AuthGuard]  },
     { path : 'AssociateRegions/:id', component: AssociateRegionsComponent, canActivate: [AuthGuard]  },
     /*{ path : 'RisksGraph', component: GraphComponent },*/
-    { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent, canActivate: [AuthGuard]  }
+    { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent, canActivate: [AuthGuard]  },
+    { path : 'Signup', component: SignupComponent}
 ];
 
 export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot(appRoutes);

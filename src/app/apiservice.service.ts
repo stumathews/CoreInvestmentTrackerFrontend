@@ -20,6 +20,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { environment } from '../environments/environment';
 import { UserLoginInfo } from './Models/UserLoginInfo';
+import { SignupDetails } from './Models/SignupDetails';
+import { Activity } from './Models/Activity';
 import { AuthService } from './AuthService';
 
 @Injectable()
@@ -33,6 +35,7 @@ export class ApiService {
     private RisksUrlEndpoint = this.baseURL + '/Risk';
     private RegionsUrlEndpoint = this.baseURL + '/Region';
     private NotesUrlEndpoint = this.baseURL + '/Notes';
+    private ActivitiesUrlEndpoint = this.baseURL + '/Activity';
     private InvestmentByIdUrlEndpoint = this.baseURL + '/Investment/{id}';
     private RiskByIdUrlEndpoint = this.baseURL + '/Risk/{id}';
     private FactorByIdUrlEndpoint = this.baseURL + '/Factor/{id}';
@@ -40,8 +43,11 @@ export class ApiService {
     private RegionByIdUrlEndpoint = this.baseURL + '/Region/{id}';
     private TokenUrlEndpoint = this.baseURL + '/Token';
     private NotesByParamsUrlEndpoint = this.baseURL + '/Notes/{owningEntityId}/{owningEntityType}/{id}';
+    private ActivitiesByParamsUrlEndpoint = this.baseURL + '/Activities/{owningEntityId}/{owningEntityType}/{id}';
+    private SignupUrlEndpoint = this.baseURL + '/Signup';
 
     private OwningEntityNotesUrlEndpoint = this.NotesUrlEndpoint + '/{owningEntityID}/{owningEntityType}';
+    private OwningEntityActivitiessUrlEndpoint = this.ActivitiesUrlEndpoint + '/{owningEntityID}/{owningEntityType}';
 
     private DissassociateGroupFromInvestmentUrl = this.InvestmentsUrlEndpoint + '/DissassociateGroup/{groupID}/{investmentID}';
     private DissassociateRegionFromInvestmentUrl = this.InvestmentsUrlEndpoint + '/DissassociateRegion/{regionID}/{investmentID}';
@@ -62,11 +68,19 @@ export class ApiService {
     private GenerateEntityInvestmentsGraphForForUrl = this.baseURL + '/{entityType}/GenerateEntityInvestmentsGraphFor/{id}';
 
     private GetTokenEndpointUrl = this.TokenUrlEndpoint;
+    private GetSignupEndpointUrl = this.SignupUrlEndpoint;
     constructor(private http: HttpClient) { }
 
     Login(userLoginInfo: UserLoginInfo): Observable<any> {
         return this.http
         .post(this.GetTokenEndpointUrl, userLoginInfo)
+        .catch(this.handleError);
+    }
+
+    Signup(signupDetails: SignupDetails): Observable<any> {
+        console.log('API call signup...');
+        return this.http
+        .post(this.GetSignupEndpointUrl, signupDetails)
         .catch(this.handleError);
     }
 
@@ -206,6 +220,14 @@ export class ApiService {
         return this.http.get(this.OwningEntityNotesUrlEndpoint.replace('{owningEntityID}', '' + OwningEntityId)
                                                                .replace('{owningEntityType}', EntityTypes[OwningEntityType]))
         .do((data => console.log('Got Note:' + JSON.stringify(data))))
+        .catch(this.handleError);
+    }
+
+    GetActivities(OwningEntityType: EntityTypes, OwningEntityId: number): Observable<Activity[]> {
+        console.log('Getting ' + OwningEntityType + 'activites...');
+        return this.http.get(this.OwningEntityActivitiessUrlEndpoint.replace('{owningEntityID}', '' + OwningEntityId)
+                                                               .replace('{owningEntityType}', EntityTypes[OwningEntityType]))
+        .do((data => console.log('Got Activity:' + JSON.stringify(data))))
         .catch(this.handleError);
     }
 

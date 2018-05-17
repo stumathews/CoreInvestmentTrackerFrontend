@@ -1,0 +1,23 @@
+<div *ngIf="Activities">
+        <h4>{{ Title }}</h4>
+        <p>
+            Notes add small extra pieces of information that inform about the investment.
+        </p>
+        <table class="table table-hover">
+            <thead>
+                <td>Time</td>
+                <th>Activity details</th>
+            </thead>
+            <tr *ngFor="let activity of Activities">
+                    <td>{{ activity.atTime  }}</td>
+                <td>{{ activity.details  }}</td>
+                
+            </tr>
+            
+        </table>
+        
+        <p><strong>Total: {{ Activities.length }}</strong></p>        
+        <!-- This still works
+             p><a *ngIf="OwningEntityType" [routerLink]="['/NewNote', EntityTypes[OwningEntityType], OwningEntityId]" class="btn btn-primary">Create Note</a></p> -->
+    </div>
+    

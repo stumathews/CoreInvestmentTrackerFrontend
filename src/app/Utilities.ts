@@ -117,6 +117,7 @@ export function GetRequiredTextValidators() {
       Validators.pattern('\\d+')]);
    }
 
+
   export function GetPasswordValidators() {
       return Validators.compose([
           Validators.required,
@@ -124,12 +125,15 @@ export function GetRequiredTextValidators() {
   }
 
 export enum EntityTypes {
-    Investment = 0,
+    None = 0,
+    Investment,
     InvestmentGroup,
     InvestmentRisk,
     InvestmentInfluenceFactor,
     Region,
-    Note
+    User,
+    Note,
+    Activity
 }
 
 export abstract class EntityUtilities {

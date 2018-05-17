@@ -58,6 +58,8 @@ import { AuthGuard } from './AuthGuardService';
 import { UrlInterceptor as MyFirstInterceptor } from './UrlInterceptor';
 import { AuthService } from './AuthService';
 import { NavbarComponent } from './Views/App/navbar/navbar.component';
+import { SignupComponent } from './Views/signup/signup.component';
+import { ListActivitiesComponent } from './Views/Shared/list-activites';
 
 @NgModule({
   declarations: [
@@ -69,8 +71,9 @@ import { NavbarComponent } from './Views/App/navbar/navbar.component';
     NewRegionComponent, NewRiskComponent, SelectItemsComponent, SelectFactorsComponent,
     NewInvestmentWizardComponent, SelectRisksComponent, SelectGroupsComponent, SelectRegionsComponent,
     SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
-    AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent, SharedGraphComponent,
-    ListNotesComponent, NewInvestmentNoteComponent, DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent
+    AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
+    SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
+    DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent
   ],
   imports: [
     TabsModule.forRoot(),
