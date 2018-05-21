@@ -20,7 +20,7 @@
        <div class="form-group">
            <label class= "control-label col-md-2">Note</label>
            <div class="col-md-10">
-               <input type="textarea" name="description" class = "form-control" formControlName="description"/>
+               <textarea rows="5" cols="50" name="description" class = "form-control" formControlName="description"></textarea>
            </div>
        </div>
        <div *ngIf="form.controls.description.errors?.pattern">
