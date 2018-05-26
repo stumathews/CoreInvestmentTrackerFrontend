@@ -56,7 +56,7 @@
       </div>
   </form>
   <div class="row" >
-      <div class="col-md-6 offset-md-3" *ngIf="!isLoggedIn">
+      <div class="col-md-6 offset-md-3" *ngIf="!authService.hasValidIdToken()">
               <alert type="danger">
                   <strong>Oh snap!</strong> Login failed. Try again.
               </alert>

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService,
+  constructor(protected authService: AuthService,
     protected readonly router: Router) { }
   isCollapsed = true;
   ngOnInit() {

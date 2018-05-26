@@ -6,6 +6,7 @@ import { EntityUtilities, EntityTypes,
 import { SignupDetails } from '../../Models/SignupDetails';
 import { ApiService } from '../../apiservice.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../AuthService';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  constructor(private apiService: ApiService,
+  constructor(
+    protected authService: AuthService,
+    private apiService: ApiService,
     private readonly router: Router) { }
   form: FormGroup;
   signupdetails: SignupDetails = <SignupDetails> {Username: '', Password: '', Email: '', Timezone: 0};
