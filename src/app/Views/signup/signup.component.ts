@@ -15,7 +15,7 @@ import { AuthService } from '../../AuthService';
 })
 export class SignupComponent implements OnInit {
   constructor(
-    protected authService: AuthService,
+    public authService: AuthService,
     private apiService: ApiService,
     private readonly router: Router) { }
   form: FormGroup;
