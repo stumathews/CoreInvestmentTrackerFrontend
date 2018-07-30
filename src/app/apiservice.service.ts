@@ -23,6 +23,7 @@ import { UserLoginInfo } from './Models/UserLoginInfo';
 import { SignupDetails } from './Models/SignupDetails';
 import { Activity } from './Models/Activity';
 import { AuthService } from './AuthService';
+import { CustomEntityType } from './Models/CustomEntityType';
 
 @Injectable()
 export class ApiService {
@@ -45,6 +46,8 @@ export class ApiService {
     private NotesByParamsUrlEndpoint = this.baseURL + '/Notes/{owningEntityId}/{owningEntityType}/{id}';
     private ActivitiesByParamsUrlEndpoint = this.baseURL + '/Activities/{owningEntityId}/{owningEntityType}/{id}';
     private SignupUrlEndpoint = this.baseURL + '/Signup';
+    private CustomEntityEndpoint = this.baseURL + '/CustomEntity';
+    private CustomEntityTypeEndpoint = this.baseURL + '/CustomEntityType';
 
     private OwningEntityNotesUrlEndpoint = this.NotesUrlEndpoint + '/{owningEntityID}/{owningEntityType}';
     private OwningEntityActivitiessUrlEndpoint = this.ActivitiesUrlEndpoint + '/{owningEntityID}/{owningEntityType}';
@@ -66,9 +69,11 @@ export class ApiService {
     private InvestmentRegionsGraphUrl = this.InvestmentsUrlEndpoint + '/RegionsGraph/{id}';
     private GenerateSharedInvestmentsGraphDataForAllUrl = this.baseURL + '/{entityType}/GenerateSharedInvestmentsGraphDataForAll';
     private GenerateEntityInvestmentsGraphForForUrl = this.baseURL + '/{entityType}/GenerateEntityInvestmentsGraphFor/{id}';
-
     private GetTokenEndpointUrl = this.TokenUrlEndpoint;
     private GetSignupEndpointUrl = this.SignupUrlEndpoint;
+    private GetCustomEntityTypesUrl = this.CustomEntityTypeEndpoint;
+    private GetCustomEntitiesByTypeAndIdUrl = this.CustomEntityEndpoint + '/ByType/{type}/{id}';
+
     constructor(private http: HttpClient) { }
 
     Login(userLoginInfo: UserLoginInfo): Observable<any> {
@@ -387,6 +392,22 @@ export class ApiService {
 
         return this.http.patch(url, patchObj, httpOptions)
         .do((data => console.log('do patch risk: ' + JSON.stringify(data))))
+        .catch(this.handleError);
+    }
+
+    GetCustomEntitiesByType(type: string, id: string): Observable<CustomEntity[]> {
+        console.log('Getting custom entity types...');
+        return this.http.get(this.GetCustomEntitiesByTypeAndIdUrl
+            .replace('{type}', '' + type)
+            .replace('{id}', id))
+        .do((data => console.log('Got Types:' + JSON.stringify(data))))
+        .catch(this.handleError);
+    }
+
+    GetCustomEntityTypes(): Observable<CustomEntityType[]> {
+        console.log('Getting custom entity types...');
+        return this.http.get(this.GetCustomEntityTypesUrl)
+        .do((data => console.log('Got Types:' + JSON.stringify(data))))
         .catch(this.handleError);
     }
 

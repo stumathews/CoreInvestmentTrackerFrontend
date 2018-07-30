@@ -60,6 +60,8 @@ import { AuthService } from './AuthService';
 import { NavbarComponent } from './Views/App/navbar/navbar.component';
 import { SignupComponent } from './Views/signup/signup.component';
 import { ListActivitiesComponent } from './Views/Shared/list-activites';
+import { ListCustomEntitiesComponent } from './Views/Shared/list-custom-entities';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { ListActivitiesComponent } from './Views/Shared/list-activites';
     SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
     AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
     SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
-    DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent
+    DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
+    ListCustomEntitiesComponent
   ],
   imports: [
     TabsModule.forRoot(),

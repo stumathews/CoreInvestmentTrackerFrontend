@@ -19,6 +19,7 @@ import { InvestmentGroup } from '../../Models/InvestmentGroup';
 import { AssociateRegionsComponent } from './associate-regions';
 import { Region } from '../../Models/Region';
 import { Activity } from '../../Models/Activity';
+import { CustomEntityType } from '../../Models/CustomEntityType';
 
 @Component({
   selector: 'app-investment-detail',
@@ -30,6 +31,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   Entity: Investment;
   Notes: InvestmentNote[] = [];
   Activities: Activity[] = [];
+  CustomTypes: CustomEntityType[] = [];
   errorMessage: string;
 
   @ViewChild('childModal') childModal: ModalDirective;
@@ -45,6 +47,8 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     const id = +this.route.snapshot.paramMap .get('id');
     this.apiService.GetInvestment(id)
         .subscribe(investment => this.Entity = investment, error => this.errorMessage = <any>error);
+    this.apiService.GetCustomEntityTypes()
+        .subscribe(types => this.CustomTypes = types, error => this.errorMessage = <any>error);
   }
 
   openModalWithAssociateRisksComponent() {

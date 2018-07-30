@@ -1,0 +1,22 @@
+<div *ngIf="CustomEntities">
+    <h4>{{Type}}s</h4>
+    <p>
+        These are the associated {{Type}}s
+    </p>
+    <table class="table table-hover">
+        <thead>
+            <td>Name</td>
+            <th>Description</th>
+            <!-- <th>Owning Entity</th> -->
+        </thead>
+        <tr *ngFor="let entity of CustomEntities">
+                <td>{{ entity.name  }}</td>
+            <td>{{ entity.description  }}</td>   
+            <!-- <td>{{entity.?owningCustomEntity}}</td>         -->
+        </tr>
+        
+    </table>
+    
+    <p><strong>Total: {{ CustomEntities.length }}</strong></p>        
+   
+</div>

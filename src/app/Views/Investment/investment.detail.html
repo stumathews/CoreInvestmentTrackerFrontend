@@ -55,7 +55,11 @@
             <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id">
 
             </app-list-activities>          
-        </tab>           
+        </tab>
+          
+        <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
+            <app-list-custom-entities [Id]="Entity.id" [Type]="item.name"></app-list-custom-entities>
+        </tab>         
         </tabset>
       </div>
 </div>
