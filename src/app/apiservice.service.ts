@@ -24,6 +24,7 @@ import { SignupDetails } from './Models/SignupDetails';
 import { Activity } from './Models/Activity';
 import { AuthService } from './AuthService';
 import { CustomEntityType } from './Models/CustomEntityType';
+import { CustomEntity } from './Models/CustomEntity';
 
 @Injectable()
 export class ApiService {
@@ -56,12 +57,15 @@ export class ApiService {
     private DissassociateRegionFromInvestmentUrl = this.InvestmentsUrlEndpoint + '/DissassociateRegion/{regionID}/{investmentID}';
     private DissassociateFactorFromInvestmentUrl = this.InvestmentsUrlEndpoint + '/DissassociateFactor/{factorID}/{investmentID}';
     private DissassociateRiskFromInvestmentUrl = this.InvestmentsUrlEndpoint + '/DissassociateRisk/{riskID}/{investmentID}';
+    private DissassociateCustomEntityFromInvestmentUrl = this.InvestmentsUrlEndpoint
+    + '/DissassociateCustomEntity/{customEntityID}/{investmentID}';
 
     /* Body contains the list of entities */
     private AssociateGroupWithInvestmentUrl = this.InvestmentsUrlEndpoint + '/AssociateGroups/{investmentID}';
     private AssociateRegionWithInvestmentUrl = this.InvestmentsUrlEndpoint + '/AssociateRegions/{investmentID}';
     private AssociateFactorWithInvestmentUrl = this.InvestmentsUrlEndpoint + '/AssociateFactors/{investmentID}';
     private AssociateRiskWithInvestmentUrl = this.InvestmentsUrlEndpoint + '/AssociateRisks/{investmentID}';
+    private AssociateCustomEntityWithInvestmentUrl = this.InvestmentsUrlEndpoint + '/AssociateCustomEntities/{investmentID}';
 
     private InvestmentRisksGraphUrl = this.InvestmentsUrlEndpoint + '/RisksGraph/{id}';
     private InvestmentGroupsGraphUrl = this.InvestmentsUrlEndpoint + '/GroupsGraph/{id}';
@@ -73,6 +77,7 @@ export class ApiService {
     private GetSignupEndpointUrl = this.SignupUrlEndpoint;
     private GetCustomEntityTypesUrl = this.CustomEntityTypeEndpoint;
     private GetCustomEntitiesByTypeAndIdUrl = this.CustomEntityEndpoint + '/ByType/{type}/{id}';
+    private CustomEntitiesUrl = this.CustomEntityEndpoint + '/{id}';
 
     constructor(private http: HttpClient) { }
 
@@ -98,6 +103,8 @@ export class ApiService {
             url = url.replace('{entityType}', 'Risk');
         } else if ( type === EntityTypes.Region) {
             url = url.replace('{entityType}', 'Region');
+        } else if ( type === EntityTypes.CustomEntity) {
+            url = url.replace('{entitytype', 'CustomEntity');
         }
         return url;
     }
@@ -243,6 +250,13 @@ export class ApiService {
                         .catch(this.handleError);
     }
 
+    GetCustomEntity(id: number): Observable<CustomEntity> {
+        console.log('Getting Custom Entity id=' + id);
+        return this.http.get(this.CustomEntitiesUrl.replace('{id}', '' + id))
+                        .do((data => console.log('GetCustomEntity: ' + JSON.stringify(data))))
+                        .catch(this.handleError);
+    }
+
     AssociateEntityWithInvestment(entityType: EntityTypes, entityIDs: number[], investmentId: number): Observable<any> {
         console.log('Entity=' + EntityTypes[entityType] +
         ' AssociateEntityWithInvestment ids=' + entityIDs.join(',') +
@@ -256,6 +270,8 @@ export class ApiService {
             url =  this.AssociateGroupWithInvestmentUrl;
         } else if (entityType === EntityTypes.Region) {
             url =  this.AssociateRegionWithInvestmentUrl;
+        } else if (entityType === EntityTypes.CustomEntity) {
+            url = this.AssociateCustomEntityWithInvestmentUrl;
         }
 
         console.log('url is ' + url);
@@ -278,6 +294,8 @@ export class ApiService {
             url =  this.DissassociateGroupFromInvestmentUrl.replace('{groupID}', '' + entityID);
         } else if (entityType === EntityTypes.Region) {
             url =  this.DissassociateRegionFromInvestmentUrl.replace('{regionID}', '' + entityID);
+        } else if (entityType === EntityTypes.CustomEntity) {
+            url = this.DissassociateCustomEntityFromInvestmentUrl.replace('{customEntityID}', '' + entityID);
         }
         url = url.replace('{investmentID}', '' + investmentId);
         console.log('url is ' + url);
@@ -286,10 +304,25 @@ export class ApiService {
                         .catch(this.handleError);
     }
 
+
     CreateInvestment(investment: Investment): Observable<Investment> {
         console.log('CreateInvestment...' + JSON.stringify(investment));
         return this.http.post(this.InvestmentsUrlEndpoint, investment)
             .do( (data => console.log('do CreateInvestment: ' + JSON.stringify(data))))
+            .catch(this.handleError);
+    }
+
+    CreateCustomEntity(customEntity: CustomEntity): Observable<CustomEntity> {
+        console.log('CreateCustom...' + JSON.stringify(customEntity));
+        return this.http.post(this.CustomEntityEndpoint, customEntity)
+            .do( (data => console.log('do CreateCustomEntity: ' + JSON.stringify(data))))
+            .catch(this.handleError);
+    }
+
+    CreateCustomEntityType(customEntityType: CustomEntityType): Observable<CustomEntityType> {
+        console.log('CreateCustomType...' + JSON.stringify(customEntityType));
+        return this.http.post(this.CustomEntityTypeEndpoint, customEntityType)
+            .do( (data => console.log('do CreateCustomEntityType: ' + JSON.stringify(data))))
             .catch(this.handleError);
     }
 
@@ -341,6 +374,8 @@ export class ApiService {
             url =  this.GroupByIdUrlEndpoint.replace('{id}', '' + id);
         } else if (entityType === EntityTypes.Region) {
             url =  this.RegionByIdUrlEndpoint.replace('{id}', '' + id);
+        } else if (entityType === EntityTypes.CustomEntity) {
+            url = this.CustomEntitiesUrl.replace('{id}', '' + id);
         }
 
         console.log('Delete entity via url:' + url);
@@ -388,6 +423,8 @@ export class ApiService {
             url =  this.GroupByIdUrlEndpoint.replace('{id}', '' + id);
         } else if (entityType === EntityTypes.Region) {
             url =  this.RegionByIdUrlEndpoint.replace('{id}', '' + id);
+        } else if (entityType === EntityTypes.CustomEntity) {
+            url = this.CustomEntitiesUrl.replace('{id}', '' + id);
         }
 
         return this.http.patch(url, patchObj, httpOptions)

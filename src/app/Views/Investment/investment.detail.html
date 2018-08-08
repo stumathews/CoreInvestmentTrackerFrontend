@@ -58,8 +58,13 @@
         </tab>
           
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
-            <app-list-custom-entities [Id]="Entity.id" [Type]="item.name"></app-list-custom-entities>
-        </tab>         
+            <app-list-custom-entities [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" >
+
+            </app-list-custom-entities>
+            
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
+            <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button>
+        </tab>        
         </tabset>
       </div>
 </div>

@@ -2,6 +2,7 @@
 import { InvestmentRisk } from './InvestmentRisk';
 import { InvestmentGroup } from './InvestmentGroup';
 import { Region } from './Region';
+import { CustomEntity } from './CustomEntity';
 
 export interface Investment {
   id: number;
@@ -16,6 +17,7 @@ export interface Investment {
   regions?: (RegionsLink)[] | null;
   risks?: (RisksLink)[] | null;
   groups?: (GroupsLink)[] | null;
+  customentities?: (CustomEntity)[] | null;
 }
 export interface FactorsLink {
   investmentID: number;
@@ -36,4 +38,11 @@ export interface GroupsLink {
   investmentID: number;
   investmentGroupID: number;
   investmentGroup?: InvestmentGroup;
+}
+
+export interface CustomEntitiesLink {
+  investmentID: number;
+  investment?: Investment;
+  CustomEntityId: number;
+  CustomEntity: CustomEntity;
 }

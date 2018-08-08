@@ -8,6 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import 'rxjs/add/operator/finally';
 import { CustomEntityType } from '../../Models/CustomEntityType';
+import { CustomEntity } from '../../Models/CustomEntity';
 
 @Component({
   selector: 'app-list-custom-entities',
@@ -16,21 +17,27 @@ import { CustomEntityType } from '../../Models/CustomEntityType';
 export class ListCustomEntitiesComponent  implements OnInit {
   errorMessage: string;
   Title = 'Custom entities';
-  CustomEntities: CustomEntityType[];
-  private _type: string;
+  @Input() CustomEntities: CustomEntity[];
   @Input() private Id: string;
+  @Input() Type: string;
 
-  @Input()
-  set Type(type: string) {
-    this.apiService.GetCustomEntitiesByType(type, this.Id)
-    .subscribe(entities => this.CustomEntities = entities, error => this.errorMessage = <any>error);
-    this._type = type;
-  }
-  get Type(): string {
-    return this._type;
-  }
-
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('Getting entities by type: ' + this.Type );
+    this.apiService.GetCustomEntitiesByType(this.Type , this.Id)
+    .subscribe(entities => this.CustomEntities = entities , error => this.errorMessage = <any>error);
+   }
 
   constructor(protected apiService: ApiService) { }
+
+  DeleteCustomEntity(entityId: number) {
+    const toRemove = this.CustomEntities.filter((each) => { if (each.id === entityId) { return each; } });
+    this.apiService
+    .DeleteEntity(EntityTypes.CustomEntity, entityId)
+    .finally(() => {
+      const i = this.CustomEntities.indexOf(toRemove[0]);
+      this.CustomEntities.splice(i, 1);
+      this.ngOnInit();
+    })
+    .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
+  }
 }

@@ -18,7 +18,7 @@ export class AuthService {
 
     hasValidIdToken(): boolean {
         if (this.token) {
-            console.log(`Yes, a valid token: ${this.token}`);
+            //console.log(`Yes, a valid token: ${this.token}`);
             return true;
          } else {
             console.log(`Nope, not a valid token: ${this.token}`);

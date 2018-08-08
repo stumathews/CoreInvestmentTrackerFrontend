@@ -3,3 +3,7 @@ export interface CustomEntityType {
     name: string;
     description: string;
 }
+
+/*
+"customEntityType": { "id": 1, "name": "test", "description": "test" }, 
+*/

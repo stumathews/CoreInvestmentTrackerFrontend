@@ -11,6 +11,8 @@ import { Link } from './Models/Link';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CustomEntity } from './Models/CustomEntity';
+import { validateConfig } from '@angular/router/src/config';
 
 
 export abstract class SelectEntitiesComponent {
@@ -68,6 +70,18 @@ export abstract class SelectEntitiesComponent {
           });
         }
       }
+    public ConvertCustomEntitiesToCheckModels(entities: CustomEntity[]):CheckModel[] {
+        if (entities) {
+            return entities.filter((item) => { if(item) { return item;}}).map((value, index, array) => {
+                return <CheckModel> {
+                    id: value.id,
+                    name: value.name,
+                    description: value.description,
+                    checked: false
+                };
+            });
+        }
+    }
     public GetEntityIds(): number[] {
         return this.Items.map((item) => {
             if (item.checked) { return item.id; }
@@ -133,7 +147,9 @@ export enum EntityTypes {
     Region,
     User,
     Note,
-    Activity
+    Activity,
+    CustomEntity
+
 }
 
 export abstract class EntityUtilities {

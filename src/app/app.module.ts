@@ -61,6 +61,11 @@ import { NavbarComponent } from './Views/App/navbar/navbar.component';
 import { SignupComponent } from './Views/signup/signup.component';
 import { ListActivitiesComponent } from './Views/Shared/list-activites';
 import { ListCustomEntitiesComponent } from './Views/Shared/list-custom-entities';
+import { AssociateCustomEntitiesComponent } from './Views/Investment/associate-custom-entities';
+import { NewCustomEntityComponent } from './Views/CustomEntity/new-custom-entity';
+import { FilterByType } from './custom-entities-filter';
+import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-custom-entity-types';
+import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custom-entity-type';
 
 
 @NgModule({
@@ -76,7 +81,8 @@ import { ListCustomEntitiesComponent } from './Views/Shared/list-custom-entities
     AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
     SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
-    ListCustomEntitiesComponent
+    ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
+    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent
   ],
   imports: [
     TabsModule.forRoot(),

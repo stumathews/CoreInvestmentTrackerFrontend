@@ -35,6 +35,10 @@ import { DetailedInvestmentsComponent } from './Views/Investment/detailed-invest
 import { LoginComponent } from './Views/Login/login.component';
 import { AuthGuard } from './AuthGuardService';
 import { SignupComponent } from './Views/signup/signup.component';
+import { AssociateCustomEntitiesComponent } from './Views/Investment/associate-custom-entities';
+import { NewCustomEntityComponent } from './Views/CustomEntity/new-custom-entity';
+import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custom-entity-type';
+import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-custom-entity-types';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Home', pathMatch: 'full'},
@@ -69,8 +73,12 @@ const appRoutes: Routes = [
     { path : 'AssociateRisks/:id', component: AssociateRisksComponent, canActivate: [AuthGuard]  },
     { path : 'AssociateGroups/:id', component: AssociateGroupsComponent, canActivate: [AuthGuard]  },
     { path : 'AssociateRegions/:id', component: AssociateRegionsComponent, canActivate: [AuthGuard]  },
+    { path : 'AssociateCustomEntities/:id', component: AssociateCustomEntitiesComponent, canActivate: [AuthGuard]  },
     /*{ path : 'RisksGraph', component: GraphComponent },*/
     { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent, canActivate: [AuthGuard]  },
+    { path : 'NewCustomEntity/:owningEntityType/:owningEntityId', component: NewCustomEntityComponent, canActivate: [AuthGuard]  },
+    { path : 'NewCustomEntityType', component: NewCustomEntityTypeComponent, canActivate: [AuthGuard]  },
+    { path : 'CustomEntityTypes', component: ListCustomEntityTypesComponent, canActivate: [AuthGuard]  },
     { path : 'Signup', component: SignupComponent}
 ];
 

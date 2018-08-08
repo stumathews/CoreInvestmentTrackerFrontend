@@ -20,6 +20,9 @@ import { AssociateRegionsComponent } from './associate-regions';
 import { Region } from '../../Models/Region';
 import { Activity } from '../../Models/Activity';
 import { CustomEntityType } from '../../Models/CustomEntityType';
+import { AssociateCustomEntitiesComponent } from './associate-custom-entities';
+import { CustomEntity } from '../../Models/CustomEntity';
+import { NewCustomEntityComponent } from '../CustomEntity/new-custom-entity';
 
 @Component({
   selector: 'app-investment-detail',
@@ -32,6 +35,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   Notes: InvestmentNote[] = [];
   Activities: Activity[] = [];
   CustomTypes: CustomEntityType[] = [];
+  CustomEntities: CustomEntity[] = [];
   errorMessage: string;
 
   @ViewChild('childModal') childModal: ModalDirective;
@@ -58,6 +62,24 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
       console.log('event recieved:' + JSON.stringify(risk));
       const link: RisksLink = {investmentRisk: null, investmentID: this.Entity.id, investmentRiskID: risk.id};
       this.Entity.risks.push(link);
+      this.modalRef.hide();
+    });
+  }
+
+  openModalWithAssociateCustomEntityComponent(type: string) {
+    // const initialState = {
+    //   InvestmentId: this.Entity.id,
+    //   CustomEntityType: type
+    // };
+    this.modalRef = this.modalService.show(AssociateCustomEntitiesComponent);
+    // this.modalRef = this.modalService.show(AssociateCustomEntitiesComponent, {initialState});
+    this.modalRef.content.InvestmentId = this.Entity.id;
+    this.modalRef.content.CustomEntityType = type;
+    this.modalRef.content.init();
+    console.log('passed in custom entity type:' + type);
+    this.modalRef.content.AssociatedCustomEntityEvent.subscribe((entity: CustomEntity) => {
+      console.log('event recieved:' + JSON.stringify(entity));
+      this.Entity.customentities.push(entity);
       this.modalRef.hide();
     });
   }
@@ -101,6 +123,19 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     this.modalRef.content.OwningEntityType = EntityTypes.Investment;
     this.modalRef.content.CreatedNote.subscribe((value) => {
       this.Notes.push(value);
+      this.modalRef.hide();
+    });
+  }
+
+  openModalWithNewCustomEntityComponent(type: string) {
+    this.modalRef = this.modalService.show(NewCustomEntityComponent);
+    this.modalRef.content.OwningEntityId = this.Entity.id;
+    this.modalRef.content.OwningEntityType = EntityTypes.Investment;
+    this.modalRef.content.Type = type;
+    this.modalRef.content.init();
+    this.modalRef.content.CreatedCustomEntity.subscribe((value) => {
+      console.log('got custom entitiy:: ' + JSON.stringify(value));
+      this.CustomEntities.push(value);
       this.modalRef.hide();
     });
   }
