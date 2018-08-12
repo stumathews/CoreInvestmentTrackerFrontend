@@ -1,5 +1,5 @@
 <div *ngIf="CustomEntities">
-    <h4>{{Type}}s</h4>
+    <h4>{{Type}}</h4>
     <p>
         These are the associated {{Type}}s
     </p>
@@ -16,7 +16,7 @@
             <td>{{ entity.description  }}</td>   
             <!-- <td>{{entity.?owningCustomEntity}}</td>         -->
             <td><a *ngIf="entity"  href="javascript:void(0)" (click)="DeleteCustomEntity(entity.id)">Delete</a></td>               
-            <td>{{entity |json}}</td>
+            <!-- <td>{{entity |json}}</td> -->
         </tr>
         
     </table>    

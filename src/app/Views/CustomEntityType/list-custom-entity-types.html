@@ -1,8 +1,9 @@
 <div *ngIf="CustomEntityTypes">
     <h4>{{ Title }}</h4>
     <p>
-        Notes add small extra pieces of information that inform about the investment.
+        You define custom types of aspects that you can associate with your investment here. 
     </p>
+    <p>For example, you might define 'Product' and then add products for each investments</p>
     <a [routerLink]="['/NewCustomEntityType']" class="btn btn-primary">Create new type</a>
     <table class="table table-hover">
         <thead>
@@ -10,15 +11,15 @@
             <th>Note Description</th>
             <th>Action</th>
         </thead>
-        <tr *ngFor="let note of CustomEntityTypes">
-            <td>{{ note.name  }}</td>
-            <td>{{ note.description }}</td> 
-            <!-- <td><a *ngIf="note"  href="javascript:void(0)" (click)="DeleteNote(note.id)">Delete</a></td> -->
+        <tr *ngFor="let type of CustomEntityTypes">
+            <td>{{ type.name  }}</td>
+            <td>{{ type.description }}</td> 
+            <td><a *ngIf="CustomEntityTypes"  href="javascript:void(0)" (click)="DeleteType(type.id)">Delete</a></td>
         </tr>
         
     </table>
     
-    <p><strong>Total: {{ Notes.length }}</strong></p>        
+    <p><strong>Total: {{ CustomEntityTypes.length }}</strong></p>        
     <!-- This still works
          p><a *ngIf="OwningEntityType" [routerLink]="['/NewNote', EntityTypes[OwningEntityType], OwningEntityId]" class="btn btn-primary">Create Note</a></p> -->
 </div>

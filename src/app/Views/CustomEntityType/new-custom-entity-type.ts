@@ -35,6 +35,6 @@ export class NewCustomEntityTypeComponent extends EntityUtilities implements OnI
 
   onSubmit(form: CustomEntityType) {
     this.apiService.CreateCustomEntityType(form).subscribe( (entityType) => this.Entity = entityType);
-    this.router.navigateByUrl('/NewInvestmentWizard/(NewInvestmentWizardOutlet:SelectFactors)');
+    this.router.navigateByUrl('/CustomEntityTypes');
   }
 }

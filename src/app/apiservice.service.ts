@@ -71,6 +71,7 @@ export class ApiService {
     private InvestmentGroupsGraphUrl = this.InvestmentsUrlEndpoint + '/GroupsGraph/{id}';
     private InvestmentFactorsGraphUrl = this.InvestmentsUrlEndpoint + '/FactorsGraph/{id}';
     private InvestmentRegionsGraphUrl = this.InvestmentsUrlEndpoint + '/RegionsGraph/{id}';
+    private InvestmentCustomEntitiesGraphUrl = this.InvestmentsUrlEndpoint + '/CustomEntitiesGraph/{id}';
     private GenerateSharedInvestmentsGraphDataForAllUrl = this.baseURL + '/{entityType}/GenerateSharedInvestmentsGraphDataForAll';
     private GenerateEntityInvestmentsGraphForForUrl = this.baseURL + '/{entityType}/GenerateEntityInvestmentsGraphFor/{id}';
     private GetTokenEndpointUrl = this.TokenUrlEndpoint;
@@ -78,6 +79,7 @@ export class ApiService {
     private GetCustomEntityTypesUrl = this.CustomEntityTypeEndpoint;
     private GetCustomEntitiesByTypeAndIdUrl = this.CustomEntityEndpoint + '/ByType/{type}/{id}';
     private CustomEntitiesUrl = this.CustomEntityEndpoint + '/{id}';
+    private CustomEntityTypeUrl = this.CustomEntityTypeEndpoint + '/{id}';
 
     constructor(private http: HttpClient) { }
 
@@ -148,6 +150,8 @@ export class ApiService {
             url = this.InvestmentRisksGraphUrl;
         } else if ( type === EntityTypes.Region) {
             url = this.InvestmentRegionsGraphUrl;
+        } else if ( type === EntityTypes.CustomEntity) {
+            url = this.InvestmentCustomEntitiesGraphUrl;
         }
 
         url = url.replace('{id}', investmentID);
@@ -324,6 +328,14 @@ export class ApiService {
         return this.http.post(this.CustomEntityTypeEndpoint, customEntityType)
             .do( (data => console.log('do CreateCustomEntityType: ' + JSON.stringify(data))))
             .catch(this.handleError);
+    }
+
+    DeleteCustomEntityType(id: number): Observable<any> {
+        const url = this.CustomEntityTypeUrl.replace('{id}', id + '');
+        console.log('Delete entity TYPE via url:' + url);
+        return this.http.delete(url)
+        .do((data => console.log('do DeleteEntityType: ' + JSON.stringify(data))))
+        .catch(this.handleError);
     }
 
     CreateInvestmentInfluenceFactor(factor: InvestmentInfluenceFactor): Observable<InvestmentInfluenceFactor> {

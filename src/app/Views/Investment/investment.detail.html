@@ -61,6 +61,7 @@
             <app-list-custom-entities [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" >
 
             </app-list-custom-entities>
+            <!-- <app-graph [EntityType]="EntityTypes.CustomEntity" [InvestmentId]="Entity.id"></app-graph> -->
             
             <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button>

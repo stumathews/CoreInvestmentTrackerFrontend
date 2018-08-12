@@ -18,7 +18,7 @@ export class ListCustomEntityTypesComponent extends EntityUtilities implements O
   modalRef: BsModalRef;
   EntityTypes = EntityTypes;
   errorMessage: string;
-  Title = 'Create new Custom Entity Type';
+  Title = 'Create new custom entity type';
   CustomEntityTypes: CustomEntityType[] = [];
 
   ngOnInit() {
@@ -28,5 +28,15 @@ export class ListCustomEntityTypesComponent extends EntityUtilities implements O
   constructor(protected apiService: ApiService,
               private modalService: BsModalService) { super(apiService); }
 
-  DeleteNote(entityId: number) { }
+  DeleteType(entityId: number) {
+    this.apiService.DeleteCustomEntityType(entityId)
+    .finally(() => {
+      const toRemove = this.CustomEntityTypes.filter((each) => { if (each.id === entityId) { return each; } });
+      const i = this.CustomEntityTypes.indexOf(toRemove[0]);
+      this.CustomEntityTypes.splice(i, 1);
+      this.ngOnInit();
+    })
+    .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
+
+   }
 }
