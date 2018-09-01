@@ -62,7 +62,9 @@
             <!-- <app-graph [EntityType]="EntityTypes.CustomEntity" [InvestmentId]="Entity.id"></app-graph> -->
             
             <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
-            <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button>
+            <!-- Doesn't work by default because of key conflict, need to think how to make a 
+                sensible key that will solve this problem and maintain custom entity flexibility model
+            <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
         </tab>        
         </tabset>
       </div>

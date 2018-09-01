@@ -37,6 +37,7 @@ export class ApiService {
     private RisksUrlEndpoint = this.baseURL + '/Risk';
     private RegionsUrlEndpoint = this.baseURL + '/Region';
     private NotesUrlEndpoint = this.baseURL + '/Notes';
+    private NotesUrlByIdEndpoint = this.baseURL + '/Notes/{id}';
     private ActivitiesUrlEndpoint = this.baseURL + '/Activity';
     private InvestmentByIdUrlEndpoint = this.baseURL + '/Investment/{id}';
     private RiskByIdUrlEndpoint = this.baseURL + '/Risk/{id}';
@@ -417,7 +418,7 @@ export class ApiService {
         }];
         let url;
 
-        console.log('Patch for Entity' + EntityTypes[entityType] + ' patch is : ' + JSON.stringify(patchObj));
+        console.log('Patch for Entity ' + EntityTypes[entityType] + ' patch is : ' + JSON.stringify(patchObj));
 
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const httpOptions = {
@@ -438,7 +439,11 @@ export class ApiService {
             url =  this.RegionByIdUrlEndpoint.replace('{id}', '' + id);
         } else if (entityType === EntityTypes.CustomEntity) {
             url = this.CustomEntitiesUrl.replace('{id}', '' + id);
+        } else if (entityType === EntityTypes.Note) {
+            url = this.NotesUrlByIdEndpoint.replace('{id}', '' + id);
         }
+
+        console.log('url is ' + url);
 
         return this.http.patch(url, patchObj, httpOptions)
         .do((data => console.log('do patch risk: ' + JSON.stringify(data))))

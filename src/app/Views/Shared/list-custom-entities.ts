@@ -14,14 +14,14 @@ import { CustomEntity } from '../../Models/CustomEntity';
   selector: 'app-list-custom-entities',
   templateUrl: './list-custom-entities.html'
 })
-export class ListCustomEntitiesComponent  implements OnInit {
+export class ListCustomEntitiesComponent extends EntityUtilities  implements OnInit {
   errorMessage: string;
   Title = 'Custom entities';
   @Input() CustomEntities: CustomEntity[];
   @Input() private Id: string;
   @Input() Type: string;
   ngOnInit() {}
-  constructor(private apiService: ApiService ) { }
+  constructor(protected apiService: ApiService ) { super(apiService); }
 
   DeleteCustomEntity(entityId: number) {
     const toRemove = this.CustomEntities.filter((each) => { if (each.id === entityId) { return each; } });
@@ -34,4 +34,11 @@ export class ListCustomEntitiesComponent  implements OnInit {
     })
     .subscribe( code => console.log('code was ' + code) , error => this.errorMessage = error);
   }
+
+  public saveEditable(element, id: number) {
+    const toRemove = this.CustomEntities.filter((each) => { if (each.id === id) { return each; } });
+      const i = this.CustomEntities.indexOf(toRemove[0]);
+    this.saveEditableWrapper(element, id, EntityTypes.CustomEntity, this.CustomEntities[i]);
+  }
+
 }

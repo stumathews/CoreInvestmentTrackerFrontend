@@ -27,6 +27,7 @@ import { NewCustomEntityComponent } from '../CustomEntity/new-custom-entity';
 @Component({
   selector: 'app-investment-detail',
   templateUrl: './investment.detail.html',
+  styleUrls: ['./investment.detail.css']
   })
 
 export class InvestmentDetailComponent extends DetailComponentBase implements OnInit {

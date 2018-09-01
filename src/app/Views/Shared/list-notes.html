@@ -10,13 +10,13 @@
                 <th>Action</th>
             </thead>
             <tr *ngFor="let note of Notes">
-                <td>{{ note.name  }}</td>
-                <td>{{ note.description }}</td> 
+                <td><inline-editor  #nameElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="note.name" (onSave)="saveEditable(nameElement, note.id)" name="name"  (onError)="myHandleError()"></inline-editor></td>                
+                <td><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="note.description" (onSave)="saveEditable(descriptionElement, note.id)" name="description"  (onError)="myHandleError()"></inline-editor></td> 
                 <td><a *ngIf="note"  href="javascript:void(0)" (click)="DeleteNote(note.id)">Delete</a></td>               
             </tr>
             
         </table>
-        
+        <div>{{selectedText}}</div>
         <p><strong>Total: {{ Notes.length }}</strong></p>        
         <!-- This still works
              p><a *ngIf="OwningEntityType" [routerLink]="['/NewNote', EntityTypes[OwningEntityType], OwningEntityId]" class="btn btn-primary">Create Note</a></p> -->

@@ -89,6 +89,7 @@ export abstract class SelectEntitiesComponent {
     }
 }
 
+
 export abstract class DetailComponentBase implements OnInit  {
     EntityTypes = EntityTypes;
     Entity: Investment | InvestmentGroup | InvestmentInfluenceFactor | InvestmentRisk | Region;
@@ -157,6 +158,16 @@ export abstract class EntityUtilities {
     constructor(protected apiService: ApiService) { }
     errorMessage: string;
     searchText: string;
+
+    public saveEditableWrapper(element, id: number, type: EntityTypes, entity: any) {
+        const property = element.name;
+        const newVal = entity[property];
+        this.apiService.UpdateEntity(type, +id, property, newVal)
+                       .subscribe(code =>  console.log('back from patch'),
+                                  error => this.errorMessage = <any>error);
+}
+
+
     populateInvestmentFully(investment: Investment) {
         investment.factors.forEach((factor, findex) => {
         this.apiService.GetFactor(factor.investmentInfluenceFactorID).subscribe( result => {

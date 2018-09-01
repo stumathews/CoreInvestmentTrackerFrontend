@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
 import { EntityUtilities, EntityTypes } from '../../Utilities';
@@ -6,6 +6,7 @@ import { InvestmentNote } from '../../Models/InvestmentNote';
 import { NewInvestmentNoteComponent } from '../Note/new-note';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
 
 import 'rxjs/add/operator/finally';
 
@@ -55,5 +56,11 @@ export class ListNotesComponent extends EntityUtilities implements OnInit {
       this.ngOnInit();
     })
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
+  }
+
+  public saveEditable(element, id: number) {
+    const toRemove = this.Notes.filter((each) => { if (each.id === id) { return each; } });
+      const i = this.Notes.indexOf(toRemove[0]);
+    this.saveEditableWrapper(element, id, EntityTypes.Note, this.Notes[i]);
   }
 }
