@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit} from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
 import { EntityUtilities, EntityTypes } from '../../Utilities';

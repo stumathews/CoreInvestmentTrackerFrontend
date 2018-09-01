@@ -24,28 +24,23 @@ import { BsModalRef } from 'ngx-bootstrap';
   })
 
 export class AssociateCustomEntitiesComponent extends SelectEntitiesComponent implements OnInit {
-  constructor(private apiService: ApiService,
-              private route: ActivatedRoute,
-              private location: Location,
-              private router: Router,
-              public bsModalRef: BsModalRef) {
-                  super();
-                }
+
   EntityType: EntityTypes = EntityTypes.CustomEntity;
   @Input() InvestmentId: number;
   @Input() CustomEntityType: string;
   @Output() AssociatedCustomEntityEvent = new EventEmitter<CustomEntity>();
 
+  constructor(private apiService: ApiService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router,
+    public bsModalRef: BsModalRef) { super(); }
+
   ngOnInit(): void {
-
-  }
-
-  init() {
-    console.log('getting custom entities of type ' + this.CustomEntityType + ' id is: ' + this.InvestmentId);
-    this.apiService.GetCustomEntitiesByType(this.CustomEntityType , this.InvestmentId + '')
+    this.apiService.GetAllCustomEntitiesByType(this.CustomEntityType)
     .subscribe(entities => {this.Items = this.ConvertCustomEntitiesToCheckModels(entities); },
     error => this.error = <any>error);
-  }
+   }
 
   onNext() {
     const investmentId = this.InvestmentId ? this.InvestmentId : +this.route.snapshot.paramMap.get('id');

@@ -78,6 +78,7 @@ export class ApiService {
     private GetSignupEndpointUrl = this.SignupUrlEndpoint;
     private GetCustomEntityTypesUrl = this.CustomEntityTypeEndpoint;
     private GetCustomEntitiesByTypeAndIdUrl = this.CustomEntityEndpoint + '/ByType/{type}/{id}';
+    private GetAllCustomEntitiesByTypeUrl = this.CustomEntityEndpoint + '/ByType/{type}';
     private CustomEntitiesUrl = this.CustomEntityEndpoint + '/{id}';
     private CustomEntityTypeUrl = this.CustomEntityTypeEndpoint + '/{id}';
 
@@ -445,10 +446,16 @@ export class ApiService {
     }
 
     GetCustomEntitiesByType(type: string, id: string): Observable<CustomEntity[]> {
-        console.log('Getting custom entity types...type=' + type + ' id=' + id);
         return this.http.get(this.GetCustomEntitiesByTypeAndIdUrl
             .replace('{type}', '' + type)
             .replace('{id}', id))
+        .do((data => console.log('Got entities for type ' + type + ':' + JSON.stringify(data))))
+        .catch(this.handleError);
+    }
+
+    GetAllCustomEntitiesByType(type: string): Observable<CustomEntity[]> {
+        return this.http.get(this.GetAllCustomEntitiesByTypeUrl
+            .replace('{type}', type))
         .do((data => console.log('Got entities for type ' + type + ':' + JSON.stringify(data))))
         .catch(this.handleError);
     }

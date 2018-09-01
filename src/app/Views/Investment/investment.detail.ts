@@ -99,18 +99,15 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   }
 
   openModalWithAssociateCustomEntityComponent(type: string) {
-    // const initialState = {
-    //   InvestmentId: this.Entity.id,
-    //   CustomEntityType: type
-    // };
-    this.modalRef = this.modalService.show(AssociateCustomEntitiesComponent);
-    // this.modalRef = this.modalService.show(AssociateCustomEntitiesComponent, {initialState});
+    const initialState = {
+      InvestmentId: this.Entity.id,
+      CustomEntityType: type
+    };
+    // this.modalRef = this.modalService.show(AssociateCustomEntitiesComponent);
+    this.modalRef = this.modalService.show(AssociateCustomEntitiesComponent, {initialState});
     this.modalRef.content.InvestmentId = this.Entity.id;
     this.modalRef.content.CustomEntityType = type;
-    this.modalRef.content.init();
-    console.log('passed in custom entity type:' + type);
     this.modalRef.content.AssociatedCustomEntityEvent.subscribe((entity: CustomEntity) => {
-      console.log('event recieved:' + JSON.stringify(entity));
       this.CustomEntities.push(entity);
       this.modalRef.hide();
     });
