@@ -7,19 +7,15 @@
         <thead>
             <td>Name</td>
             <th>Description</th>
-            <!-- <th>Owning Entity</th> -->
             <th>Action</th>
         </thead>
-        <tr *ngFor="let entity of CustomEntities | FilterByType : Type">
-        <!-- <tr *ngFor="let entity of CustomEntities"> -->
-                <td>{{ entity.name  }}</td>
+        <tr *ngFor="let entity of CustomEntities | FilterByType:Type">
+            <td>{{ entity.name  }}</td>
             <td>{{ entity.description  }}</td>   
-            <!-- <td>{{entity.?owningCustomEntity}}</td>         -->
             <td><a *ngIf="entity"  href="javascript:void(0)" (click)="DeleteCustomEntity(entity.id)">Delete</a></td>               
             <!-- <td>{{entity |json}}</td> -->
         </tr>
         
-    </table>    
-    <p><strong>Total: {{ CustomEntities.length }}</strong></p>        
+    </table>       
    
 </div>

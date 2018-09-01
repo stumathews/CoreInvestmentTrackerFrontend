@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit} from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
 import { EntityUtilities, EntityTypes } from '../../Utilities';
@@ -20,14 +20,8 @@ export class ListCustomEntitiesComponent  implements OnInit {
   @Input() CustomEntities: CustomEntity[];
   @Input() private Id: string;
   @Input() Type: string;
-
-  ngOnInit() {
-    console.log('Getting entities by type: ' + this.Type );
-    this.apiService.GetCustomEntitiesByType(this.Type , this.Id)
-    .subscribe(entities => this.CustomEntities = entities , error => this.errorMessage = <any>error);
-   }
-
-  constructor(protected apiService: ApiService) { }
+  ngOnInit() {}
+  constructor(private apiService: ApiService ) { }
 
   DeleteCustomEntity(entityId: number) {
     const toRemove = this.CustomEntities.filter((each) => { if (each.id === entityId) { return each; } });
@@ -38,6 +32,6 @@ export class ListCustomEntitiesComponent  implements OnInit {
       this.CustomEntities.splice(i, 1);
       this.ngOnInit();
     })
-    .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
+    .subscribe( code => console.log('code was ' + code) , error => this.errorMessage = error);
   }
 }

@@ -4,15 +4,14 @@ import { DbEntity } from './Models/DbEntity';
 import { CustomEntityType } from './Models/CustomEntityType';
 import { CustomEntity } from './Models/CustomEntity';
 @Pipe({
-  name: 'FilterByType'
+  name: 'FilterByType',
+  pure: false /* performance hit but going to deal with it */
 })
 export class FilterByType implements PipeTransform {
   transform(items: CustomEntity[], Type: string): any[] {
     if (!items) { return []; }
     if (!Type) { return items; }
-    console.log('filtering out type ' + Type);
-    console.log('number of items to filer is: ' + items.length);
-    items.forEach(item => console.log('got to filter ' + item.customEntityType.name));
-    return items.filter( (it: CustomEntity) => it.customEntityType.name === Type);
+    const i =  items.filter( (it: CustomEntity) => it.customEntityType.name === Type);
+    return i;
    }
 }

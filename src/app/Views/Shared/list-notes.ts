@@ -37,7 +37,7 @@ export class ListNotesComponent extends EntityUtilities implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log('list-notes init()');
   }
 
   constructor(protected apiService: ApiService,

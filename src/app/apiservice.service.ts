@@ -445,11 +445,11 @@ export class ApiService {
     }
 
     GetCustomEntitiesByType(type: string, id: string): Observable<CustomEntity[]> {
-        console.log('Getting custom entity types...');
+        console.log('Getting custom entity types...type=' + type + ' id=' + id);
         return this.http.get(this.GetCustomEntitiesByTypeAndIdUrl
             .replace('{type}', '' + type)
             .replace('{id}', id))
-        .do((data => console.log('Got Types:' + JSON.stringify(data))))
+        .do((data => console.log('Got entities for type ' + type + ':' + JSON.stringify(data))))
         .catch(this.handleError);
     }
 

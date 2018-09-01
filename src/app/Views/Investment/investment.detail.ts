@@ -48,12 +48,44 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
    }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap .get('id');
+    // Get Investement Id
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    // Fetch investment ojbect
     this.apiService.GetInvestment(id)
         .subscribe(investment => this.Entity = investment, error => this.errorMessage = <any>error);
-    this.apiService.GetCustomEntityTypes()
-        .subscribe(types => this.CustomTypes = types, error => this.errorMessage = <any>error);
+
+    // Get All entity types in the system
+    this.refreshCustomEntities(id, true);
   }
+
+  refreshCustomEntities(id: number, getTypes: boolean) {
+    const tempTypes = this.CustomTypes;
+    if (tempTypes.length > 0 || !getTypes) {
+      this.updateEntities(id, tempTypes);
+    } else {
+      this.CustomTypes = [];
+    this.apiService.GetCustomEntityTypes()
+    .subscribe(types => {
+      // For each entity type get this investment's custom entities
+      this.CustomTypes = types;
+      this.updateEntities(id, types);
+    }, error => this.errorMessage = <any>error);
+  }
+  }
+
+  updateEntities(id: number, types: CustomEntityType[]) {
+    this.CustomEntities = [];
+    types.forEach(type => {
+      this.apiService.GetCustomEntitiesByType(type.name, id + '').subscribe(entities => {
+          entities.forEach(entity => {
+            // Add each entity to the investment's known custom entities
+            this.CustomEntities.push(entity);
+           } );
+        } , error => this.errorMessage = <any>error);
+    });
+  }
+
 
   openModalWithAssociateRisksComponent() {
     this.modalRef = this.modalService.show(AssociateRisksComponent);
@@ -79,7 +111,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     console.log('passed in custom entity type:' + type);
     this.modalRef.content.AssociatedCustomEntityEvent.subscribe((entity: CustomEntity) => {
       console.log('event recieved:' + JSON.stringify(entity));
-      this.Entity.customentities.push(entity);
+      this.CustomEntities.push(entity);
       this.modalRef.hide();
     });
   }
@@ -132,9 +164,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     this.modalRef.content.OwningEntityId = this.Entity.id;
     this.modalRef.content.OwningEntityType = EntityTypes.Investment;
     this.modalRef.content.Type = type;
-    this.modalRef.content.init();
     this.modalRef.content.CreatedCustomEntity.subscribe((value) => {
-      console.log('got custom entitiy:: ' + JSON.stringify(value));
       this.CustomEntities.push(value);
       this.modalRef.hide();
     });

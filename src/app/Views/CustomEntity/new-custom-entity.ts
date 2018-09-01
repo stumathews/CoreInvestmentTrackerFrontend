@@ -40,16 +40,14 @@ export class NewCustomEntityComponent extends EntityUtilities implements OnInit 
     });
   }
 
-  init(): void {
-    
-   }
+  init(): void { }
 
   onSubmit(form: CustomEntity) {
     form.owningEntityType = this.OwningEntityType;
     form.owningEntityId = this.OwningEntityId;
     form.owningCustomEntity = <CustomEntity>{};
-    form.customEntityType = <CustomEntityType>{ name: this.Type};
-    console.log('custom entity looks liks this: ' + JSON.stringify(form));
+    form.customEntityType = <CustomEntityType>{name: this.Type};
+
     this.apiService.CreateCustomEntity(form).finally(() => {
       let redirectUrl = '';
       switch (this.OwningEntityType) {
@@ -72,11 +70,8 @@ export class NewCustomEntityComponent extends EntityUtilities implements OnInit 
           redirectUrl = '';
       }
       // this.router.navigate([redirectUrl + this.OwningEntityId]);
-    }).subscribe( (value) => {
-      console.log('About to emit value:' + JSON.stringify(value));
-      this.CreatedCustomEntity.emit(value);
-      console.log('received response: ' + JSON.stringify(value));
-    });
+    }).subscribe( (value) => this.CreatedCustomEntity.emit(value)
+    );
   }
 
 
