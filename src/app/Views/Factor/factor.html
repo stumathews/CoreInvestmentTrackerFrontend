@@ -24,6 +24,8 @@
         </tr>
     </table>
 
+    <app-piegraph *ngIf="Factors" [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Entities]="Factors" [InvestmentId]="0"></app-piegraph>
+
     <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="0"></app-shared-graph>
     
 

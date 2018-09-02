@@ -30,6 +30,7 @@
         <td><a (click)="delete(risk.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 </table>
+<app-piegraph *ngIf="Risks" [EntityType]="EntityTypes.InvestmentRisk" [Entities]="Risks" [InvestmentId]="0"></app-piegraph>
 <app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="0"></app-shared-graph>
 <p><strong>Total: {{ Risks?.length }}</strong></p>
 

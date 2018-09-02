@@ -18,7 +18,9 @@ import { Router } from '@angular/router';
 //   <footer><p>&copy; {{dateNow | date: yearFmt}} - Investment Tracker</p></footer>
 //   </div>
 // </div>`
-`<div id="wrapper">
+
+`<app-navbar></app-navbar>
+<div id="wrapper">
 <div id="sidebar-wrapper" class="col-md-1">
           <div id="sidebar">
           <app-side-nav></app-side-nav>

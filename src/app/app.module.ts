@@ -66,7 +66,8 @@ import { NewCustomEntityComponent } from './Views/CustomEntity/new-custom-entity
 import { FilterByType } from './custom-entities-filter';
 import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-custom-entity-types';
 import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custom-entity-type';
-
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { PieGraphComponent } from './Graphs/pie/piegraph.component';
 
 @NgModule({
   declarations: [
@@ -82,12 +83,12 @@ import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custo
     SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
-    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent
+    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent
   ],
   imports: [
     TabsModule.forRoot(),
     BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
-    InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot()
+    InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot()
   ],
   entryComponents: [
     ListGroupsComponent,
