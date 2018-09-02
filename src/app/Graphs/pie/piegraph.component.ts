@@ -97,13 +97,13 @@ context.translate(width / 2, height / 2);
 
   arcs.forEach(function(d, i) {
     context.beginPath();
-    arc(d);
+    arc(<any>d);
     context.fillStyle = colors[i];
     context.fill();
   });
 
   context.beginPath();
-  arcs.forEach(arc);
+  arcs.forEach(<any>arc);
   context.strokeStyle = '#fff';
   context.stroke();
 
@@ -111,8 +111,8 @@ context.translate(width / 2, height / 2);
   context.textBaseline = 'middle';
   context.fillStyle = '#000';
   arcs.forEach(function(d) {
-    const c = labelArc.centroid(d);
-    context.fillText(d.data.name, c[0], c[1]);
+    const c = labelArc.centroid(<any>d);
+    context.fillText(d.data['name'], c[0], c[1]);
   });
 
   }
