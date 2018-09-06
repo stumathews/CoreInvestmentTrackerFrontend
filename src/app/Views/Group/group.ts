@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { InvestmentGroup } from '../../Models/InvestmentGroup';
 import { EntityTypes, DetailComponentBase } from '../../Utilities';
@@ -38,15 +38,16 @@ export class GroupComponent implements OnInit {
                     error => this.errorMessage = <any>error);
   }
 
-  openShowRelationships() {
+  openShowRelationships(template: TemplateRef<any>) {
     const initialState = {
       InvestmentId: 0,
       EntityType: EntityTypes.InvestmentGroup
     };
     // <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="0"></app-shared-graph>-->
-    this.modalRef = this.modalService.show(SharedGraphComponent, {initialState});
-    this.modalRef.content.InvestmentId = initialState.InvestmentId;
-    this.modalRef.content.EntityType = initialState.EntityType;
+    this.modalRef = this.modalService.show(template);
+    // this.modalRef = this.modalService.show(SharedGraphComponent, {initialState});
+    // this.modalRef.content.InvestmentId = initialState.InvestmentId;
+    // this.modalRef.content.EntityType = initialState.EntityType;
     this.modalRef.hide();
 
   }

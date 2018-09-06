@@ -21,8 +21,12 @@
           <tab heading="Groups" id="tab1">           
             <app-list-groups-via-grouplinks *ngIf="Entity" [ParentId]="Entity.id" [GroupLinks]="Entity.groups"></app-list-groups-via-grouplinks>
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateGroupsComponent()">Add a group</button>
-            <app-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="Entity.id"></app-graph>
-            <svg class="groups"></svg>            
+            <div>   
+                <app-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="Entity.id"></app-graph>
+                <!-- 
+                    <svg class="groups"></svg>            
+                -->
+            </div>
           </tab>
           <tab heading="Factors">
             <app-list-factors *ngIf="Entity" [ParentId]="Entity.id" [FactorLinks]="Entity.factors"></app-list-factors>

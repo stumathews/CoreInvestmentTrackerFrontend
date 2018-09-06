@@ -36,7 +36,7 @@
 </table>
 <p><strong>Total: {{ Groups?.length }}</strong></p>
 <p>
-        <button type="button" class="btn btn-primary" (click)="openShowRelationships()">Show relationships</button>
+        <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
         <a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a>
         </p>
 <div>
@@ -51,5 +51,15 @@
 -->
 
   
-
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Shared Relationships</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="0"></app-shared-graph>        
+    </div>
+  </ng-template>
 
