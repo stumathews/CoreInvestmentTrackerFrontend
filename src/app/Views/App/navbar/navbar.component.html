@@ -14,8 +14,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" [collapse]=isCollapsed>
       <ul class="nav navbar-nav">
-        
+        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>       -->
+            <li class="active"><a [routerLink]="['Investments']" >Investments</a></li>
+            <li><a [routerLink]="['DetailedInvestments']" > Detailed Investments</a></li>
+            <li><a [routerLink]="['Factors']" >Investment Factors</a></li>
+            <li><a [routerLink]="['Groups']">Investment Groups</a></li>
+            <li><a [routerLink]="['Risks']">Investment Risks</a></li>
+            <li><a [routerLink]="['Regions']">Investment Regions</a></li>
+            <li><a [routerLink]="['CustomEntityTypes']">Custom Aspects</a></li>        
       </ul>
+      
     
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="authService.hasValidIdToken()"><a href="#">Logout</a></li>               

@@ -9,9 +9,12 @@
         <dt>Type</dt>
         <dd><inline-editor #typeElement pattern="^.+$" min="1" type="text" [(ngModel)]="Entity.type" (onSave)="saveEditable(typeElement, Entity.id)" name="type" size="30"></inline-editor></dd>
     </dl>
-    <app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [Id]="Entity.id"></app-shared-graph>
+    
 </div>
 <div>
         <div><app-list-investments [Entity]="Entity"></app-list-investments>  
+</div>
+<div>
+    <app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [Id]="Entity.id"></app-shared-graph>
 </div>
 <div><div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentRisk]" [OwningEntityId]="Entity.id"></app-list-notes></div></div>

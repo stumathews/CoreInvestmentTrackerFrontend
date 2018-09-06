@@ -20,7 +20,10 @@
     </tr>
 
 </table>
-<app-piegraph *ngIf="Regions" [EntityType]="EntityTypes.Region" [Entities]="Regions" [InvestmentId]="0"></app-piegraph>
+<div>
+    <app-bargraph *ngIf="Regions" [EntityType]="EntityTypes.Region" [Entities]="Regions" [InvestmentId]="0"></app-bargraph>
+</div>
+<!--<app-piegraph *ngIf="Regions" [EntityType]="EntityTypes.Region" [Entities]="Regions" [InvestmentId]="0"></app-piegraph>-->
 
 <app-shared-graph [EntityType]="EntityTypes.Region" [InvestmentId]="0"></app-shared-graph>
 <p><strong>Total: {{ Regions?.length }}</strong></p>

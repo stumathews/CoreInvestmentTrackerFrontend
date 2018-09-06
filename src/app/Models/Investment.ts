@@ -46,3 +46,4 @@ export interface CustomEntitiesLink {
   CustomEntityId: number;
   CustomEntity: CustomEntity;
 }
+

@@ -23,8 +23,10 @@
             <td><a *ngIf="factor" (click)="delete(factor.id)" href="javascript:void(0)">Delete</a></td>
         </tr>
     </table>
-
-    <app-piegraph *ngIf="Factors" [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Entities]="Factors" [InvestmentId]="0"></app-piegraph>
+    <div>
+            <app-bargraph *ngIf="Factors" [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Entities]="Factors" [InvestmentId]="0"></app-bargraph>
+    </div>
+    <!--<app-piegraph *ngIf="Factors" [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Entities]="Factors" [InvestmentId]="0"></app-piegraph>-->
 
     <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="0"></app-shared-graph>
     

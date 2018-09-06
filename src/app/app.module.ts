@@ -68,6 +68,7 @@ import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-cu
 import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custom-entity-type';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PieGraphComponent } from './Graphs/pie/piegraph.component';
+import { BarGraphComponent } from './Graphs/bar/bargraph.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { PieGraphComponent } from './Graphs/pie/piegraph.component';
     SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
-    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent
+    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent
   ],
   imports: [
     TabsModule.forRoot(),
@@ -91,7 +92,7 @@ import { PieGraphComponent } from './Graphs/pie/piegraph.component';
     InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot()
   ],
   entryComponents: [
-    ListGroupsComponent,
+    ListGroupsComponent, SharedGraphComponent
   ],
   providers: [InvestmentService, AuthService, ApiService, BsModalService, AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true }],

@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CustomEntity } from './Models/CustomEntity';
 import { validateConfig } from '@angular/router/src/config';
+import { SharedGraphComponent } from './Graphs/graph/shared.graph.component';
 
 
 export abstract class SelectEntitiesComponent {
@@ -70,9 +71,9 @@ export abstract class SelectEntitiesComponent {
           });
         }
       }
-    public ConvertCustomEntitiesToCheckModels(entities: CustomEntity[]):CheckModel[] {
+    public ConvertCustomEntitiesToCheckModels(entities: CustomEntity[]): CheckModel[] {
         if (entities) {
-            return entities.filter((item) => { if(item) { return item;}}).map((value, index, array) => {
+            return entities.filter((item) => { if (item) { return item; }}).map((value, index, array) => {
                 return <CheckModel> {
                     id: value.id,
                     name: value.name,
@@ -89,10 +90,31 @@ export abstract class SelectEntitiesComponent {
     }
 }
 
+// // not used
+// export abstract class CommonEntityViewUtils {
+//   EntityTypes = EntityTypes;
+//   searchText: string;
+//   modalRef: BsModalRef;
+//   constructor(
+//     protected modalService: BsModalService,
+//     protected type: EntityTypes) { this.type = type; }
+
+//   openShowRelationships() {
+//     const initialState = {
+//       InvestmentId: 0,
+//       EntityType: this.type
+//     };
+//     this.modalRef = this.modalService.show(SharedGraphComponent, {initialState});
+//     this.modalRef.content.InvestmentId = initialState.InvestmentId;
+//     this.modalRef.content.EntityType = initialState.EntityType;
+//     this.modalRef.hide();
+
+//   }
+// }
 
 export abstract class DetailComponentBase implements OnInit  {
     EntityTypes = EntityTypes;
-    Entity: Investment | InvestmentGroup | InvestmentInfluenceFactor | InvestmentRisk | Region;
+    Entity: Investment | InvestmentGroup | InvestmentInfluenceFactor | InvestmentRisk | Region | CustomEntity;
     MyType: EntityTypes;
     errorMessage: string;
     modalRef: BsModalRef;

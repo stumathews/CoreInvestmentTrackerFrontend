@@ -1,10 +1,11 @@
-﻿<h2>Investment Groupings</h2>
+﻿<h2>Investment Groupings<span class="badge badge-light">New</span></h2>
+
 
 <p>
     Investments can be grouped into the same containers to add a relationship between them.
     Grouped investments share a commonality.
 </p>
-<a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a>
+
 <p>These are all the factors that are loaded in the database</p>
 
 <p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
@@ -33,10 +34,22 @@
         <td><a (click)="delete(group.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 </table>
-<app-piegraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-piegraph>
+<p><strong>Total: {{ Groups?.length }}</strong></p>
+<p>
+        <button type="button" class="btn btn-primary" (click)="openShowRelationships()">Show relationships</button>
+        <a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a>
+        </p>
+<div>
+    <app-bargraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-bargraph>
+</div>
+<!--
+    <app-piegraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-piegraph> 
+-->
 
-<app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="0"></app-shared-graph>-->
+<!-- 
+    <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="0"></app-shared-graph>
+-->
 
   
-<p><strong>Total: {{ Groups?.length }}</strong></p>
+
 

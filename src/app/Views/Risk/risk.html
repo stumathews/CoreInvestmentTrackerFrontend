@@ -8,7 +8,6 @@
     'Market' risks are those that are external to the company but affect the companies value such as the market conditions, supply and demand and customer satisfaction.
     'Company' risks are specific to the company and thus it can influence the value such as directory dismissal, product retirement and lay-offs.
 </p>
-
 <a [routerLink]="['/NewRisk']" class="btn btn-primary">Create Risk</a>
 <p></p>
 <p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
@@ -30,7 +29,12 @@
         <td><a (click)="delete(risk.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 </table>
-<app-piegraph *ngIf="Risks" [EntityType]="EntityTypes.InvestmentRisk" [Entities]="Risks" [InvestmentId]="0"></app-piegraph>
+<div>
+    <app-bargraph *ngIf="Risks" [EntityType]="EntityTypes.InvestmentRisk" [Entities]="Risks" [InvestmentId]="0"></app-bargraph>
+</div>
+<!-- <div>
+    <app-piegraph *ngIf="Risks" [EntityType]="EntityTypes.InvestmentRisk" [Entities]="Risks" [InvestmentId]="0"></app-piegraph>
+</div> -->
 <app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="0"></app-shared-graph>
 <p><strong>Total: {{ Risks?.length }}</strong></p>
 

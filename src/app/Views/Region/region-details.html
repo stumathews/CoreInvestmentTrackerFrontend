@@ -6,9 +6,12 @@
         <dt>Description</dt>
         <dd><inline-editor #descriptionElement type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description" size="30"></inline-editor></dd>
     </dl>
-    <app-shared-graph [EntityType]="EntityTypes.Region" [Id]="Entity.id"></app-shared-graph>
+   
 </div>
 <div>
         <div><app-list-investments [Entity]="Entity"></app-list-investments>  
+</div>
+<div>
+    <app-shared-graph [EntityType]="EntityTypes.Region" [Id]="Entity.id"></app-shared-graph>
 </div>
 <div><div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.Region]" [OwningEntityId]="Entity.id"></app-list-notes></div></div>
