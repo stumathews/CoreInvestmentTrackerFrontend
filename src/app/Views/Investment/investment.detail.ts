@@ -99,6 +99,11 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     });
   }
 
+  openAppGraph(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+    this.modalRef.hide();
+  }
+
   openModalWithAssociateCustomEntityComponent(type: string) {
     const initialState = {
       InvestmentId: this.Entity.id,

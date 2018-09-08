@@ -5,18 +5,21 @@ import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
 import 'rxjs/add/operator/finally';
+import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
+import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-risk',
   templateUrl: './risk.html'
 })
-export class RiskComponent implements OnInit {
+export class RiskComponent extends SharedGraphModalPopup implements OnInit {
   EntityTypes = EntityTypes;
   Risks: InvestmentRisk[];
   searchText: string;
   constructor(private apiService: ApiService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private bsModalService: BsModalService) { super(bsModalService); }
 
   errorMessage: string;
   ngOnInit(): void {

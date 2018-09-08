@@ -21,55 +21,97 @@
           <tab heading="Groups" id="tab1">           
             <app-list-groups-via-grouplinks *ngIf="Entity" [ParentId]="Entity.id" [GroupLinks]="Entity.groups"></app-list-groups-via-grouplinks>
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateGroupsComponent()">Add a group</button>
-            <div>   
-                <app-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="Entity.id"></app-graph>
-                <!-- 
-                    <svg class="groups"></svg>            
-                -->
-            </div>
+            <button type="button" class="btn btn-primary" (click)="openAppGraph(groups)">Show app graph</button>
           </tab>
           <tab heading="Factors">
             <app-list-factors *ngIf="Entity" [ParentId]="Entity.id" [FactorLinks]="Entity.factors"></app-list-factors>
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateFactorsComponent()">Add a factor</button>
-            <app-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="Entity.id"></app-graph>
-            <!-- Graph -->
-            <svg class="factors"></svg>
+            <button type="button" class="btn btn-primary" (click)="openAppGraph(factors)">Show app graph</button>
           </tab>
           <tab heading="Risks">
             <app-list-risks *ngIf="Entity" [ParentId]="Entity.id" [RiskLinks]="Entity.risks"></app-list-risks>
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateRisksComponent()">Add a risk</button>
-
             <a [routerLink]="['/NewRisk']" class="btn btn-primary">New risk</a>
-            <app-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="Entity.id"></app-graph>
-            <!-- Graph -->
-            <svg class="risks"></svg>
+            <button type="button" class="btn btn-primary" (click)="openAppGraph(risks)">Show app graph</button>            
           </tab>       
           <tab heading="Regions">
             <app-list-regions *ngIf="Entity" [ParentId]="Entity.id" [RegionLinks]="Entity.regions"></app-list-regions>
-            <!-- <a [routerLink]="['/AssociateRegions', Entity.id]"  href="javascript:void(0)">Add to a region</a> -->
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateRegionsComponent()">Add a region</button>
-            <app-graph [EntityType]="EntityTypes.Region" [InvestmentId]="Entity.id"></app-graph>
-            <svg class="regions"></svg>
+            <button type="button" class="btn btn-primary" (click)="openAppGraph(regions)">Show app graph</button>
         </tab>   
         <tab heading="Notes">
             <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-notes>
             <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
         </tab>  
         <tab heading="Activity">
-            <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id">
-
-            </app-list-activities>          
+            <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>          
         </tab>
           
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
             <app-list-custom-entities *ngIf="Entity" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
-            <!-- <app-graph [EntityType]="EntityTypes.CustomEntity" [InvestmentId]="Entity.id"></app-graph> -->
-            
             <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
             <!-- Doesn't work by default because of key conflict, need to think how to make a 
                 sensible key that will solve this problem and maintain custom entity flexibility model
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
         </tab>        
         </tabset>
-      </div>
+    </div>
+
+
+<ng-template #factors>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Influence factors</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">  
+            <app-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="Entity.id"></app-graph>
+            <!-- Graph -->
+            <svg class="factors"></svg>
+        </div>
+</ng-template>
+
+
+<ng-template #groups>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Investment Groups</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">  
+                <app-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="Entity.id"></app-graph>
+               
+        </div>
+</ng-template>
+
+
+<ng-template #risks>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Investment Risks</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">  
+            <app-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="Entity.id"></app-graph>
+        </div>
+</ng-template>
+
+
+<ng-template #regions>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Investment Regions</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">  
+            <app-graph [EntityType]="EntityTypes.Region" [InvestmentId]="Entity.id"></app-graph>
+        </div>
+</ng-template>
 </div>
+
+
+

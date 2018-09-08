@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.authService.setToken(response.token);
       if (this.authService.hasValidIdToken()) {
         this.isLoggedIn = true;
-        this.router.navigate(['/Home']);
+        this.router.navigate(['/Investments']);
       }
     } );
   }

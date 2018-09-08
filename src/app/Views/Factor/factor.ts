@@ -5,14 +5,16 @@ import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
 import 'rxjs/add/operator/finally';
+import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
+import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-factor',
   templateUrl: './factor.html'
 })
-export class FactorComponent implements OnInit {
+export class FactorComponent extends SharedGraphModalPopup implements OnInit {
   Factors: InvestmentInfluenceFactor[];
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private bsModalService: BsModalService) { super(bsModalService); }
   EntityTypes = EntityTypes;
   errorMessage: string;
   searchText: string;

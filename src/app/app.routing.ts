@@ -41,7 +41,7 @@ import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custo
 import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-custom-entity-types';
 
 const appRoutes: Routes = [
-    { path : '', redirectTo: 'Home', pathMatch: 'full'},
+    { path : '', redirectTo: 'Investments', pathMatch: 'full'},
     { path : 'Login', component: LoginComponent },
     { path : 'Home', component: HomeComponent, canActivate: [AuthGuard] },
     { path : 'Investments', component: InvestmentComponent, canActivate: [AuthGuard]  },

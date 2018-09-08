@@ -4,7 +4,7 @@
     These factors usually affect the underlying value of the investment either positively and negatively.
 </p>
 <p>Try to keep factors are specific as possible to the companies products and services such as 'Cost of Steel' when considering a steel manufacturing company.</p>
-<a [routerLink]="['/NewFactor']" class="btn btn-primary">Create Factor</a>
+
 <p></p>
 <p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
 <table class="table table-hover">
@@ -24,11 +24,31 @@
         </tr>
     </table>
     <div>
+        <p><strong>Total: {{ Factors?.length }}</strong></p>
+    </div>
+    <div>
+            <a [routerLink]="['/NewFactor']" class="btn btn-primary">Create Factor</a>
+            <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
+    </div>
+    <div>
             <app-bargraph *ngIf="Factors" [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Entities]="Factors" [InvestmentId]="0"></app-bargraph>
     </div>
+    
     <!--<app-piegraph *ngIf="Factors" [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Entities]="Factors" [InvestmentId]="0"></app-piegraph>-->
 
-    <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="0"></app-shared-graph>
+    
     
 
-<p><strong>Total: {{ Factors?.length }}</strong></p>
+
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Shared Investment Factors</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">  
+        <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [InvestmentId]="0"></app-shared-graph>
+    </div>
+  </ng-template>

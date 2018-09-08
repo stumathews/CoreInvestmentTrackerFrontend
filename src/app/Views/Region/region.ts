@@ -4,32 +4,29 @@ import { Region } from '../../Models/Region';
 import { EntityTypes, EntityUtilities  } from '../../Utilities';
 
 import 'rxjs/add/operator/finally';
+import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
+import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-region',
   templateUrl: './region.html'
 })
-export class RegionComponent  implements OnInit {
+export class RegionComponent extends SharedGraphModalPopup implements OnInit {
   EntityTypes = EntityTypes;
   Regions: Region[];
   searchText: string;
-  constructor(protected apiService: ApiService) { }
+  constructor(protected apiService: ApiService, protected bsModalService: BsModalService) { super(bsModalService); }
 
   errorMessage: string;
   ngOnInit(): void {
-    console.log('Hello world');
     this.apiService.GetRegions()
         .subscribe(regions => this.Regions = regions,
                    error => this.errorMessage = <any>error);
   }
 
   public delete(id: string) {
-    console.log('deleting id=' + id);
     this.apiService.DeleteEntity(EntityTypes.Region, +id)
-                    .finally(() => {
-                      this.ngOnInit();
-                    })
-                   .subscribe(entity => console.log(JSON.stringify(entity)),
-                              error => this.errorMessage = <any>error);
+                    .finally(() => this.ngOnInit())
+                   .subscribe(entity => console.log(JSON.stringify(entity)), error => this.errorMessage = <any>error);
   }
 }

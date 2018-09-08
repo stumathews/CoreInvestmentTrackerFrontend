@@ -8,8 +8,8 @@
     'Market' risks are those that are external to the company but affect the companies value such as the market conditions, supply and demand and customer satisfaction.
     'Company' risks are specific to the company and thus it can influence the value such as directory dismissal, product retirement and lay-offs.
 </p>
-<a [routerLink]="['/NewRisk']" class="btn btn-primary">Create Risk</a>
-<p></p>
+
+
 <p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
 <table class="table table-hover">
     <thead>
@@ -31,12 +31,25 @@
 </table>
 <p><strong>Total: {{ Risks?.length }}</strong></p>
 <div>
+        <a [routerLink]="['/NewRisk']" class="btn btn-primary">Create Risk</a>
+        <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
+</div>
+<div>
+    
     <app-bargraph *ngIf="Risks" [EntityType]="EntityTypes.InvestmentRisk" [Entities]="Risks" [InvestmentId]="0"></app-bargraph>
 </div>
 <!-- <div>
     <app-piegraph *ngIf="Risks" [EntityType]="EntityTypes.InvestmentRisk" [Entities]="Risks" [InvestmentId]="0"></app-piegraph>
 </div> -->
-<div>
-<app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="0"></app-shared-graph>
-</div>
 
+<ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Shared Investment Risks</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">  
+                <app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [InvestmentId]="0"></app-shared-graph>
+        </div>
+</ng-template>
