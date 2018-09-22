@@ -462,10 +462,10 @@ export class ApiService {
         .catch(this.handleError);
     }
 
-    GetCustomEntityType(id: string) : Observable<CustomEntityType> {
+    GetCustomEntityType(id: string): Observable<CustomEntityType> {
     return this.http.get(this.CustomEntityTypeUrl
         .replace('{id}', id))
-    .do((data => console.log('Got entity type for type ' + data[name] + ':' + JSON.stringify(data))))
+    .do((data => console.log('Got entity type for type ' + ':' + JSON.stringify(data))))
     .catch(this.handleError);
     }
 
