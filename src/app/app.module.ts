@@ -69,6 +69,8 @@ import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custo
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PieGraphComponent } from './Graphs/pie/piegraph.component';
 import { BarGraphComponent } from './Graphs/bar/bargraph.component';
+import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entity-type-details';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +86,8 @@ import { BarGraphComponent } from './Graphs/bar/bargraph.component';
     SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
-    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent
+    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
+    CustomEntityTypeComponent
   ],
   imports: [
     TabsModule.forRoot(),

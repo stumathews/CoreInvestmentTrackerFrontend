@@ -9,20 +9,34 @@
         <dd><inline-editor #typeElement  pattern="^.+$" type="text" min="1" type="text" [(ngModel)]="Entity.type" (onSave)="saveEditable(typeElement, Entity.id)" name="type" size="30"></inline-editor></dd>
     </dl>
     
+    <tabset>
+        <tab heading="Investments" id="tab_investments">           
+            <div>
+                <app-list-investments [Entity]="Entity"></app-list-investments>      
+            </div>
+        </tab>
+        <tab heading="Sub groups" id="tab_subgroups">
+            <div>
+                <h3>Sub groups</h3>
+                <app-list-groups [ParentGroup]="Entity" [Groups]="Entity.children"></app-list-groups>
+            </div>
+        </tab>
+        <tab heading="Notes" id="tab_notes">            
+        <div>
+            <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentGroup]" [OwningEntityId]="Entity.id"></app-list-notes>
+            <!--
+            <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-notes>
+            -->
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
+            
+        </div>
+        </tab>
+    </tabset>
 
-<div>
-    <app-list-investments [Entity]="Entity"></app-list-investments>      
-</div>
 <div>
     <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [Id]="Entity.id"></app-shared-graph>
 </div>
-<div>
-    <h3>Sub groups</h3>
-    <app-list-groups [ParentGroup]="Entity" [Groups]="Entity.children"></app-list-groups>
-</div>
-<div>
-        <app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentGroup]" [OwningEntityId]="Entity.id"></app-list-notes>
-</div>
+
 </div>
 
 

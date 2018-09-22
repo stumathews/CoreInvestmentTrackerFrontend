@@ -12,7 +12,7 @@
             <th>Action</th>
         </thead>
         <tr *ngFor="let type of CustomEntityTypes">
-            <td>{{ type.name  }}</td>
+            <td><a [routerLink]="['/CustomEntityType', type.id]">{{ type.name }}</a></td>
             <td>{{ type.description }}</td> 
             <td><a *ngIf="CustomEntityTypes"  href="javascript:void(0)" (click)="DeleteType(type.id)">Delete</a></td>
         </tr>

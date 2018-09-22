@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { EntityTypes, DetailComponentBase } from '../../Utilities';
 import { BsModalService } from 'ngx-bootstrap';
+import { InvestmentNote } from '../../Models/InvestmentNote';
+import { NewInvestmentNoteComponent } from '../Note/new-note';
 
 @Component({
   selector: 'app-factor-details',
@@ -13,6 +15,7 @@ import { BsModalService } from 'ngx-bootstrap';
 export class FactorDetailsComponent extends DetailComponentBase implements OnInit {
   EntityTypes = EntityTypes;
   Entity: InvestmentInfluenceFactor;
+  Notes: InvestmentNote[] = [];
   constructor(protected apiService: ApiService,
     protected route: ActivatedRoute,
     protected location: Location,
@@ -26,5 +29,14 @@ export class FactorDetailsComponent extends DetailComponentBase implements OnIni
     const id = +this.route.snapshot.paramMap .get('id');
     this.apiService.GetFactor(id).subscribe(factor => this.Entity = factor,
                    error => this.errorMessage = <any>error);
+  }
+  openModalWithNewNoteComponent() {
+    this.modalRef = this.modalService.show(NewInvestmentNoteComponent);
+    this.modalRef.content.OwningEntityId = this.Entity.id;
+    this.modalRef.content.OwningEntityType = EntityTypes.InvestmentInfluenceFactor;
+    this.modalRef.content.CreatedNote.subscribe((value) => {
+      this.Notes.push(value);
+      this.modalRef.hide();
+    });
   }
 }

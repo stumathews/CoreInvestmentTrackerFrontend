@@ -11,8 +11,20 @@
         <dd><inline-editor #influenceElement type="text" size="30" [(ngModel)]="Entity.influence" (onSave)="saveEditable(influenceElement, Entity.id)" name="influence"></inline-editor></dd>
     </dl>
     
-    <div><app-list-investments [Entity]="Entity"></app-list-investments></div>
-    <div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]" [OwningEntityId]="Entity.id"></app-list-notes></div>
+    <tabset>
+        <tab heading="Investments" id="tab_investments">           
+            <div>
+                <app-list-investments [Entity]="Entity"></app-list-investments>
+            </div>
+        </tab>
+        <tab heading="Notes" id="tab_notes">           
+            <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]" [OwningEntityId]="Entity.id"></app-list-notes>
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
+        </tab>
+    </tabset>
+
+    
+    
     <app-shared-graph [EntityType]="EntityTypes.InvestmentInfluenceFactor" [Id]="Entity.id"></app-shared-graph>
-    <app-new-note [OwningEntityId]="Entity.id" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentInfluenceFactor]"></app-new-note>
+    
 </div>

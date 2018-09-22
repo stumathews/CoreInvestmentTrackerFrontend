@@ -9,12 +9,23 @@
         <dt>Type</dt>
         <dd><inline-editor #typeElement pattern="^.+$" min="1" type="text" [(ngModel)]="Entity.type" (onSave)="saveEditable(typeElement, Entity.id)" name="type" size="30"></inline-editor></dd>
     </dl>
+
+    <tabset>
+        <tab heading="Investments" id="tab_investments">           
+            <div>
+                <app-list-investments [Entity]="Entity"></app-list-investments>
+            </div>
+        </tab>
+        <tab heading="Notes" id="tab_notes">           
+            <div>
+                <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentRisk]" [OwningEntityId]="Entity.id"></app-list-notes>
+                <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
+            </div>
+        </tab>
+    </tabset>
     
-</div>
-<div>
-        <div><app-list-investments [Entity]="Entity"></app-list-investments>  
-</div>
-<div>
+
+
     <app-shared-graph [EntityType]="EntityTypes.InvestmentRisk" [Id]="Entity.id"></app-shared-graph>
 </div>
-<div><div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentRisk]" [OwningEntityId]="Entity.id"></app-list-notes></div></div>
+

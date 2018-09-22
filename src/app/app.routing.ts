@@ -39,6 +39,7 @@ import { AssociateCustomEntitiesComponent } from './Views/Investment/associate-c
 import { NewCustomEntityComponent } from './Views/CustomEntity/new-custom-entity';
 import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custom-entity-type';
 import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-custom-entity-types';
+import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entity-type-details';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Investments', pathMatch: 'full'},
@@ -79,6 +80,7 @@ const appRoutes: Routes = [
     { path : 'NewCustomEntity/:owningEntityType/:owningEntityId', component: NewCustomEntityComponent, canActivate: [AuthGuard]  },
     { path : 'NewCustomEntityType', component: NewCustomEntityTypeComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityTypes', component: ListCustomEntityTypesComponent, canActivate: [AuthGuard]  },
+    { path : 'CustomEntityType/:id', component: CustomEntityTypeComponent, canActivate: [AuthGuard]  },
     { path : 'Signup', component: SignupComponent}
 ];
 

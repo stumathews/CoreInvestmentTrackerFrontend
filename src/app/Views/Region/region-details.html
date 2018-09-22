@@ -6,12 +6,17 @@
         <dt>Description</dt>
         <dd><inline-editor #descriptionElement type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description" size="30"></inline-editor></dd>
     </dl>
-   
-</div>
-<div>
-        <div><app-list-investments [Entity]="Entity"></app-list-investments>  
-</div>
-<div>
+    <tabset>
+        <tab heading="Investments" id="tab_investments">           
+            <div>
+                <app-list-investments [Entity]="Entity"></app-list-investments>
+            </div>
+        </tab>
+        <tab heading="Notes" id="tab_notes">
+            <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Region]" [OwningEntityId]="Entity.id"></app-list-notes>
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
+        </tab>      
+    </tabset>
+
     <app-shared-graph [EntityType]="EntityTypes.Region" [Id]="Entity.id"></app-shared-graph>
 </div>
-<div><div><app-list-notes *ngIf="Entity" [OwningEntityType]="EntityTypes[EntityTypes.Region]" [OwningEntityId]="Entity.id"></app-list-notes></div></div>

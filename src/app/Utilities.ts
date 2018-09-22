@@ -171,8 +171,8 @@ export enum EntityTypes {
     User,
     Note,
     Activity,
-    CustomEntity
-
+    CustomEntity,
+    CustomEntityType
 }
 
 export abstract class EntityUtilities {

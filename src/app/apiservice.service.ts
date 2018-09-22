@@ -340,6 +340,8 @@ export class ApiService {
         .catch(this.handleError);
     }
 
+
+
     CreateInvestmentInfluenceFactor(factor: InvestmentInfluenceFactor): Observable<InvestmentInfluenceFactor> {
         console.log('CreateInvestmentInfluenceFactor...' + JSON.stringify(factor));
         return this.http.post(this.FactorsUrlEndpoint, factor)
@@ -441,6 +443,8 @@ export class ApiService {
             url = this.CustomEntitiesUrl.replace('{id}', '' + id);
         } else if (entityType === EntityTypes.Note) {
             url = this.NotesUrlByIdEndpoint.replace('{id}', '' + id);
+        } else if (entityType === EntityTypes.CustomEntityType) {
+            url = this.CustomEntityTypeUrl.replace('{id}', '' + id);
         }
 
         console.log('url is ' + url);
@@ -456,6 +460,13 @@ export class ApiService {
             .replace('{id}', id))
         .do((data => console.log('Got entities for type ' + type + ':' + JSON.stringify(data))))
         .catch(this.handleError);
+    }
+
+    GetCustomEntityType(id: string) : Observable<CustomEntityType> {
+    return this.http.get(this.CustomEntityTypeUrl
+        .replace('{id}', id))
+    .do((data => console.log('Got entity type for type ' + data[name] + ':' + JSON.stringify(data))))
+    .catch(this.handleError);
     }
 
     GetAllCustomEntitiesByType(type: string): Observable<CustomEntity[]> {
