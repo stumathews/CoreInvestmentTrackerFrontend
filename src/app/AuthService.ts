@@ -7,28 +7,28 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
     constructor() { }
-
-    private token: string;
-
-
     setToken(token: string ) {
         console.log('Setting token to ' + token);
-        this.token = token;
+        localStorage.setItem('currentUser', token);
     }
 
     hasValidIdToken(): boolean {
-        if (this.token) {
-            //console.log(`Yes, a valid token: ${this.token}`);
-            return true;
+        if (localStorage.getItem('currentUser')) {
+            return true; // console.log(`Yes, a valid token: ${this.token}`);
          } else {
-            console.log(`Nope, not a valid token: ${this.token}`);
+            console.log('Nope, could not find currentUser in local session');
              return false;
         }
     }
 
     getAccessToken(): string {
-        // tslint:disable-next-line:max-line-length
-        console.log('access token is:' + this.token);
-        return this.token;
+        const token = localStorage.getItem('currentUser');
+        console.log('access token is:' + token);
+        return localStorage.getItem('currentUser');
+    }
+
+    logout() {
+        console.log('removing currentUser');
+        localStorage.removeItem('currentUser');
     }
 }

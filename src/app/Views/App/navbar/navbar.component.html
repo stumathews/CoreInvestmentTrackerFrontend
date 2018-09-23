@@ -20,7 +20,7 @@
       
     
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="authService.hasValidIdToken()"><a href="#">Logout</a></li>               
+        <li><a *ngIf ="authService.hasValidIdToken()" [routerLink]="" (click)="logout()">Logout</a></li>           
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -34,7 +34,6 @@ export class CustomEntityTypeComponent extends DetailComponentBase implements On
         this.Entity = entity;
         this.apiService.GetAllCustomEntitiesByType(this.Entity.name).subscribe((got) => this.CustomEntities = got);
      });
-    
   }
 
   openModalWithNewNoteComponent() {

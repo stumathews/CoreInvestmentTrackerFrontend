@@ -36,7 +36,8 @@
             </form>
           -->
             <ul class="nav navbar-nav navbar-right">
-              <li *ngIf="authService.hasValidIdToken()"><a href="#">Logout</a></li>
+              <li><a *ngIf ="authService.hasValidIdToken()" [routerLink]="" (click)="logout()">Click me</a></li>
+              <!-- <li *ngIf ="authService.hasValidIdToken()"><a href="#" (onClick)="logout">Logout</a></li> -->
                      <li class="dropdown" dropdown>
        <a href="#" dropdownToggle class="dropdown-toggle">Dropdown <span class="caret"></span></a>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
