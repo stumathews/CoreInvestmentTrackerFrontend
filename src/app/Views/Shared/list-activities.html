@@ -5,12 +5,35 @@
         </p>
         <table class="table table-hover">
             <thead>
-                <td>Time</td>
+                <th>Time</th>
+                <th>Name</th>
                 <th>Activity details</th>
+                <th>Owner Type</th>
+                <th>Owner Id</th>
+                <th>tag</th>
+                <th>User</th>
             </thead>
             <tr *ngFor="let activity of Activities">
-                    <td>{{ activity.atTime  }}</td>
+                <td>{{ activity.atTime  }}</td>
+                <td>{{ activity.name }}</td>
                 <td>{{ activity.details  }}</td>
+                <td>{{ EntityTypes[activity.owningEntityType] }}</td>
+                <td>{{ activity.owningEntityId  }}</td>
+                <td>{{ activity.tag  }}</td>
+                <td> {{activity.user }}</td>
+
+                <!-- 
+                     id: number;
+    name: string;
+    description: string;
+    user: string;
+    tag: string;
+    details: string;
+    atTime: string;
+    owningEntityId: number;
+    owningEntityType: EntityTypes;
+                -->
+                <td></td>
                 
             </tr>
             
