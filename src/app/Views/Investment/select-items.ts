@@ -15,6 +15,7 @@ import { CheckModel } from '../../Models/CheckModel';
 
 export class SelectItemsComponent {
   p: number;
+  searchText: string;
   constructor(private apiService: ApiService,
               private route: ActivatedRoute,
               private location: Location,
