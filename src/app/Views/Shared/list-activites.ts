@@ -17,6 +17,7 @@ export class ListActivitiesComponent extends EntityUtilities implements OnInit {
   EntityTypes = EntityTypes;
   errorMessage: string;
   Title = 'Activities';
+  p: number;
   @Input() Activities: Activity[];
   private _OwningEntityType: EntityTypes;
   @Input() OwningEntityId: number;
@@ -39,5 +40,6 @@ export class ListActivitiesComponent extends EntityUtilities implements OnInit {
   constructor(protected apiService: ApiService,
               private modalService: BsModalService) {
     super(apiService);
+    this.p = 1;
   }
 }

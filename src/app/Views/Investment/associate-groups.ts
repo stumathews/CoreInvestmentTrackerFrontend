@@ -27,12 +27,13 @@ export class AssociateGroupsComponent extends SelectEntitiesComponent implements
   EntityType: EntityTypes = EntityTypes.InvestmentGroup;
   @Input() InvestmentId: number;
   @Output() AssociatedGroupEvent = new EventEmitter<InvestmentGroup>();
+
   ngOnInit(): void {
         this.apiService.GetGroups().subscribe(groups => {
           this.Items = this.ConvertGroupsToCheckModel(groups);
         },
         error => this.error = <any>error);
-}
+  }
 
   onNext() {
   const investmentId = this.InvestmentId ? this.InvestmentId : +this.route.snapshot.paramMap.get('id');

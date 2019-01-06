@@ -1,8 +1,13 @@
 ﻿<div *ngIf="Entity">
+        <div class="pull-right"><button type="button" class="btn btn-primary" (click)="switchView()">Show/Hide tabs</button>
+        </div>
     <h1><inline-editor #nameElement type="text" [(ngModel)]="Entity.name" (onSave)="saveEditable(nameElement, Entity.id)" name="name" size="8"></inline-editor></h1>    
     <h4>Investment</h4>        
+    
     <hr />
+    
     <dl class="dl-horizontal">
+
         <dt>Description</dt>
             <dd><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
         <dt>Symbol</dt>
@@ -14,10 +19,11 @@
         <dt>Initial Investment</dt>
             <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
         <dt>Value</dt>
-            <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>
-    </dl>    
+            <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
+    </dl>
+    
     <div>            
-        <tabset>
+        <tabset *ngIf="showTabs">
           <tab heading="Groups" id="tab1">           
             <app-list-groups-via-grouplinks *ngIf="Entity" [ParentId]="Entity.id" [GroupLinks]="Entity.groups"></app-list-groups-via-grouplinks>
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateGroupsComponent()">Add a group</button>
@@ -57,6 +63,42 @@
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
         </tab>        
         </tabset>
+
+        <div *ngIf="!showTabs">
+                      
+                <app-list-groups-via-grouplinks *ngIf="Entity" [ParentId]="Entity.id" [GroupLinks]="Entity.groups"></app-list-groups-via-grouplinks>
+                <button type="button" class="btn btn-primary" (click)="openModalWithAssociateGroupsComponent()">Add a group</button>
+                <button type="button" class="btn btn-primary" (click)="openAppGraph(groups)">Show app graph</button>
+            <hr/>
+                <app-list-factors *ngIf="Entity" [ParentId]="Entity.id" [FactorLinks]="Entity.factors"></app-list-factors>
+                <button type="button" class="btn btn-primary" (click)="openModalWithAssociateFactorsComponent()">Add a factor</button>
+                <button type="button" class="btn btn-primary" (click)="openAppGraph(factors)">Show app graph</button>
+            <hr/>
+                <app-list-risks *ngIf="Entity" [ParentId]="Entity.id" [RiskLinks]="Entity.risks"></app-list-risks>
+                <button type="button" class="btn btn-primary" (click)="openModalWithAssociateRisksComponent()">Add a risk</button>
+                <a [routerLink]="['/NewRisk']" class="btn btn-primary">New risk</a>
+                <button type="button" class="btn btn-primary" (click)="openAppGraph(risks)">Show app graph</button>            
+            <hr/> 
+                <app-list-regions *ngIf="Entity" [ParentId]="Entity.id" [RegionLinks]="Entity.regions"></app-list-regions>
+                <button type="button" class="btn btn-primary" (click)="openModalWithAssociateRegionsComponent()">Add a region</button>
+                <button type="button" class="btn btn-primary" (click)="openAppGraph(regions)">Show app graph</button>
+            <hr/>
+                <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-notes>
+                <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
+            <hr/>      
+                <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>                      
+                <app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph>           
+            <hr/>  
+            <div *ngFor="let item of CustomTypes">
+                <!-- <p>{{item.description}}</p> -->
+                <app-list-custom-entities *ngIf="Entity" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
+                <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
+                <!-- Doesn't work by default because of key conflict, need to think how to make a 
+                    sensible key that will solve this problem and maintain custom entity flexibility model
+                <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
+                <hr/> 
+            </div> 
+       
         
     </div>
 
@@ -84,11 +126,9 @@
           </button>
         </div>
         <div class="modal-body">  
-                <app-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="Entity.id"></app-graph>
-               
+                <app-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="Entity.id"></app-graph>               
         </div>
 </ng-template>
-
 
 <ng-template #risks>
         <div class="modal-header">

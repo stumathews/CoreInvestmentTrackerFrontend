@@ -13,7 +13,7 @@
                 <th>tag</th>
                 <th>User</th>
             </thead>
-            <tr *ngFor="let activity of Activities">
+            <tr *ngFor="let activity of Activities | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                 <td>{{ activity.lastModifiedTime | date : 'medium'  }}</td>
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.details  }}</td>
@@ -38,6 +38,7 @@
             </tr>
             
         </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
         
         <p><strong>Total: {{ Activities.length }}</strong></p>        
         <!-- This still works

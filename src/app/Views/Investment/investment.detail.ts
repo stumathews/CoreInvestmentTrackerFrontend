@@ -38,6 +38,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   CustomTypes: CustomEntityType[] = [];
   CustomEntities: CustomEntity[] = [];
   errorMessage: string;
+  showTabs = false;
 
   @ViewChild('childModal') childModal: ModalDirective;
   constructor(protected apiService: ApiService,
@@ -58,6 +59,10 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
 
     // Get All entity types in the system
     this.refreshCustomEntities(id, true);
+  }
+
+  switchView(): void {
+    this.showTabs = !this.showTabs;
   }
 
   refreshCustomEntities(id: number, getTypes: boolean) {
