@@ -27,7 +27,8 @@
         <p><strong>Total: {{ Factors?.length }}</strong></p>
     </div>
     <div>
-            <a [routerLink]="['/NewFactor']" class="btn btn-primary">Create Factor</a>
+            <!-- <a [routerLink]="['/NewFactor']" class="btn btn-primary">Create Factor</a> -->
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewFactorComponent()">Create Factor</button>
             <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
     </div>
     <div>

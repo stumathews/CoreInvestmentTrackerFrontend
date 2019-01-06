@@ -9,6 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import 'rxjs/add/operator/finally';
 import { CustomEntityType } from '../../Models/CustomEntityType';
+import { NewCustomEntityTypeComponent } from './new-custom-entity-type';
 
 @Component({
   selector: 'app-list-custom-entity-types',
@@ -39,4 +40,12 @@ export class ListCustomEntityTypesComponent extends EntityUtilities implements O
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
 
    }
+
+   openModalWithNewEntityTypeComponent() {
+    this.modalRef = this.modalService.show(NewCustomEntityTypeComponent);
+    this.modalRef.content.CreatedCustomEntityTypeEvent.subscribe((value) => {
+      this.CustomEntityTypes.push(value);
+      this.modalRef.hide();
+    });
+  }
 }

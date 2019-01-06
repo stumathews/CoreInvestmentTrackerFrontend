@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Region } from '../../Models/Region';
 import { ActivatedRoute } from '@angular/router';
@@ -22,6 +22,8 @@ export class NewRegionComponent implements OnInit {
               private router: Router) { }
   errorMessage: string;
 
+  @Output() CreatedRegionEvent = new EventEmitter<Region>();
+
   ngOnInit(): void {
       this.form = new FormGroup({
         name: new FormControl('', GetRequiredTextValidators()),
@@ -31,10 +33,11 @@ export class NewRegionComponent implements OnInit {
 
   onSubmit(form: Region) {
     this.apiService.CreateRegion(form).finally(() => {
-      this.router.navigate(['/Regions']);
+      this.CreatedRegionEvent.emit(form);
     }).subscribe( (value) => {
       console.log('received response: ' + JSON.stringify(value));
-      this.goHome();
+      // this.router.navigate(['/Regions']);
+      // this.goHome();
     });
   }
 

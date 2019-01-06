@@ -70,6 +70,8 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PieGraphComponent } from './Graphs/pie/piegraph.component';
 import { BarGraphComponent } from './Graphs/bar/bargraph.component';
 import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entity-type-details';
+import { GenericBarGraphComponent } from './Graphs/d3/bar/generic-bar.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -87,12 +89,13 @@ import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entit
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
     ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
-    CustomEntityTypeComponent
+    CustomEntityTypeComponent, GenericBarGraphComponent
   ],
   imports: [
     TabsModule.forRoot(),
     BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
-    InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot()
+    InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot(),
+    NgxPaginationModule
   ],
   entryComponents: [
     ListGroupsComponent, SharedGraphComponent

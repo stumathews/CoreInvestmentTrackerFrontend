@@ -7,6 +7,7 @@
         <thead>
             <td>Name</td>
             <th>Description</th>
+            <th>Last modified</th>
             <th>Action</th>
             <!--
             <th>Debug</th>
@@ -15,6 +16,7 @@
         <tr *ngFor="let entity of CustomEntities | FilterByType:Type">
             <td><inline-editor  #nameElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="entity.name" (onSave)="saveEditable(descriptionElement, entity.id)" name="name"  (onError)="myHandleError()"></inline-editor></td>
             <td><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="entity.description" (onSave)="saveEditable(descriptionElement, entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></td>   
+            <td>{{ entity.lastModifiedTime | date : 'medium'}}</td>
             <td><a *ngIf="entity"  href="javascript:void(0)" (click)="DeleteCustomEntity(entity.id)">Delete</a></td>               
             <!--
             <td>{{entity |json}}</td>

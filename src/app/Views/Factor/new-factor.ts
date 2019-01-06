@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { InvestmentInfluenceFactor } from '../../Models/InvestmentInfluenceFactor';
 import { ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class NewFactorComponent implements OnInit {
               private location: Location,
               private router: Router) { }
   errorMessage: string;
+  @Output() FactorCreatedEvent = new EventEmitter<InvestmentInfluenceFactor>();
 
   ngOnInit(): void {
       this.form = new FormGroup({
@@ -33,6 +34,7 @@ export class NewFactorComponent implements OnInit {
   onSubmit(form: InvestmentInfluenceFactor) {
     this.apiService.CreateInvestmentInfluenceFactor(form)
     .finally(() => {
+      this.FactorCreatedEvent.emit(form);
       this.router.navigate(['/Factors']);
     })
     .subscribe( (value) => {

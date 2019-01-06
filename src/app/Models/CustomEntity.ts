@@ -13,6 +13,8 @@ export interface CustomEntity {
     owningEntityType: number;
     investments?: (CustomEntitiesLink[]) | null;
     investmentIds?: number[];
+    createdTime: Date;
+    lastModifiedTime: Date;
 }
 
 

@@ -18,6 +18,8 @@ export interface Investment {
   risks?: (RisksLink)[] | null;
   groups?: (GroupsLink)[] | null;
   customentities?: (CustomEntity)[] | null;
+  createdTime: Date;
+  lastModifiedTime: Date;
 }
 export interface FactorsLink {
   investmentID: number;

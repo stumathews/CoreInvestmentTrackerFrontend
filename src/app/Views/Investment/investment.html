@@ -1,11 +1,11 @@
 ﻿<div *ngIf="Investments">
-<h1>Investments</h1>
+<h1>Investments<span class="badge badge-light">{{Investments.length}}</span></h1>
 
-<dl class="dl-horizontal">
+<!-- <dl class="dl-horizontal">
         <dt>Total</dt>
             <dd><p>{{Investments.length}}</p></dd>            
         
-    </dl>
+    </dl> -->
 <p>Investments represent the assets that are valuable to you. </p>
 <p>
     <a [routerLink]="['/NewInvestmentWizard']" class="btn btn-primary">Create Investment</a>    
@@ -14,20 +14,22 @@
 <table *ngIf="Investments" class="table table-hover">
     <thead>
         <th>Name</th>
-        <th>Description</th>  
+        <th>Description</th>         
         <th>Symbol</th>      
         <th>Value</th>
         <th></th> <!--Delete -->
     </thead>   
-        <tr *ngFor="let investment of Investments | filter : searchText">
+        <tr *ngFor="let investment of Investments | filter : searchText | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
             <td>         
                 <strong><a *ngIf="investment" [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a></strong>
             </td>
             <td>{{investment.description}}</td>            
+            
             <td>{{investment.symbol}}</td>
             <td>{{investment.value}}</td>
             <td><a (click)="delete(investment.id)" href="javascript:void(0)">Delete</a></td>            
         </tr>
 </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 <p>Total: {{Investments.length}}</p>
 </div>

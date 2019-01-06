@@ -31,7 +31,8 @@
 </table>
 <p><strong>Total: {{ Risks?.length }}</strong></p>
 <div>
-        <a [routerLink]="['/NewRisk']" class="btn btn-primary">Create Risk</a>
+        <!-- <a [routerLink]="['/NewRisk']" class="btn btn-primary">Create Risk</a> -->
+        <button type="button" class="btn btn-primary" (click)="openModalWithNewRiskComponent()">Create risk</button>
         <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
 </div>
 <div>

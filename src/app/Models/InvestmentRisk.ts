@@ -5,4 +5,6 @@ export interface InvestmentRisk {
   type: number;
   name: string;
   investments?: (RisksLink)[] | null;
+  createdTime: Date;
+  lastModifiedTime: Date;
 }

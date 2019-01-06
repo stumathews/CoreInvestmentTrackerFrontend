@@ -7,4 +7,6 @@ export interface InvestmentGroup {
   investments?: (GroupsLink)[] | null;
   parent: InvestmentGroup;
   children: InvestmentGroup[];
+  createdTime: Date;
+  lastModifiedTime: Date;
 }

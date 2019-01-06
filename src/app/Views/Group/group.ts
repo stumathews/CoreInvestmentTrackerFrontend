@@ -5,6 +5,7 @@ import { EntityTypes } from '../../Utilities';
 import 'rxjs/add/operator/finally';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
+import { NewGroupComponent } from './new-group';
 
 
 
@@ -31,8 +32,12 @@ export class GroupComponent extends SharedGraphModalPopup implements OnInit {
                    .subscribe(entity => console.log(JSON.stringify(entity)), error => this.errorMessage = <any>error);
   }
 
-  // openShowRelationships(template: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(template);
-  //   this.modalRef.hide();
-  // }
+  // openModalWithNewGroupComponent(template: TemplateRef<any>) {
+    openModalWithNewGroupComponent() {
+    this.modalRef = this.modalService.show(NewGroupComponent);
+    this.modalRef.content.CreatedGroupEvent.subscribe((value) => {
+      this.Groups.push(value);
+      this.modalRef.hide();
+    });
+  }
 }

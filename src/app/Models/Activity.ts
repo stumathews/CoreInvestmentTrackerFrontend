@@ -10,4 +10,7 @@ export class Activity {
     atTime: string;
     owningEntityId: number;
     owningEntityType: EntityTypes;
+    createdTime: Date;
+    lastModifiedTime: Date;
+
 }

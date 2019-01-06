@@ -14,7 +14,7 @@
                 <th>User</th>
             </thead>
             <tr *ngFor="let activity of Activities">
-                <td>{{ activity.atTime  }}</td>
+                <td>{{ activity.lastModifiedTime | date : 'medium'  }}</td>
                 <td>{{ activity.name }}</td>
                 <td>{{ activity.details  }}</td>
                 <td>{{ EntityTypes[activity.owningEntityType] }}</td>

@@ -8,7 +8,7 @@
         <dt>Type</dt>
         <dd><inline-editor #typeElement  pattern="^.+$" type="text" min="1" type="text" [(ngModel)]="Entity.type" (onSave)="saveEditable(typeElement, Entity.id)" name="type" size="30"></inline-editor></dd>
     </dl>
-    
+        
     <tabset>
         <tab heading="Investments" id="tab_investments">           
             <div>
@@ -32,10 +32,6 @@
         </div>
         </tab>
     </tabset>
-
-<div>
-    <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [Id]="Entity.id"></app-shared-graph>
-</div>
 
 </div>
 

@@ -1,4 +1,4 @@
-﻿<h2>Investment Groupings<span class="badge badge-light">New</span></h2>
+﻿<h2>Investment Groupings</h2>
 
 
 <p>
@@ -37,7 +37,8 @@
 <p><strong>Total: {{ Groups?.length }}</strong></p>
 <p>
         <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
-        <a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a>
+        <button type="button" class="btn btn-primary" (click)="openModalWithNewGroupComponent()">Create Group</button>
+        <!-- <a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a> -->
         </p>
 <div>
     <app-bargraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-bargraph>
@@ -62,4 +63,18 @@
         <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [InvestmentId]="0"></app-shared-graph>        
     </div>
   </ng-template>
+
+  <!-- <ng-template #creategroup>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Create Investment Groups</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-new-group></app-new-group>
+        </div>
+      </ng-template> -->
+
+      
 

@@ -21,7 +21,8 @@
 
 </table>
 <p><strong>Total: {{ Regions?.length }}</strong></p>
-<a [routerLink]="['/NewRegion']" class="btn btn-primary">Create Region</a>
+<!-- <a [routerLink]="['/NewRegion']" class="btn btn-primary">Create Region</a> -->
+<button type="button" class="btn btn-primary" (click)="openModalWithNewRegionComponent()">Create region</button>
 <button type="button" class="btn btn-primary" (click)="openShowRelationships(template)">Show relationships</button>
 
 

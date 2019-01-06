@@ -14,10 +14,13 @@ import { CheckModel } from '../../Models/CheckModel';
   })
 
 export class SelectItemsComponent {
+  p: number;
   constructor(private apiService: ApiService,
               private route: ActivatedRoute,
               private location: Location,
-              private router: Router) { }
+              private router: Router) {
+                this.p = 1;
+               }
   EntityTypes = EntityTypes;
   @Input() Items: CheckModel[];
   @Input() EntityType: EntityTypes;

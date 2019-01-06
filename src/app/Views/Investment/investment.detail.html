@@ -43,9 +43,9 @@
             <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-notes>
             <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
         </tab>  
-        <tab heading="Activity">
-            <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>          
-
+        <tab heading="Activity">                
+            <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>                      
+            <app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph>           
         </tab>
           
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
@@ -57,6 +57,7 @@
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
         </tab>        
         </tabset>
+        
     </div>
 
 
@@ -117,3 +118,6 @@
 
 
 
+<!-- <div>
+    <app-shared-graph [EntityType]="EntityTypes.InvestmentGroup" [Id]="Entity.id"></app-shared-graph>
+</div> -->

@@ -7,6 +7,7 @@ import { EntityTypes, DetailComponentBase } from '../../Utilities';
 import { BsModalService } from 'ngx-bootstrap';
 import { InvestmentNote } from '../../Models/InvestmentNote';
 import { NewInvestmentNoteComponent } from '../Note/new-note';
+import { NewGroupComponent } from './new-group';
 
 @Component({
   selector: 'app-group-details',
@@ -31,6 +32,11 @@ export class GroupDetailsComponent extends DetailComponentBase implements OnInit
                    error => this.errorMessage = <any>error);
   }
 
+  func() {
+    // {x, y}
+    this.Entity.investments.map( (i) => [i.investmentID])
+  }
+
   openModalWithNewNoteComponent() {
     this.modalRef = this.modalService.show(NewInvestmentNoteComponent);
     this.modalRef.content.OwningEntityId = this.Entity.id;
@@ -40,4 +46,5 @@ export class GroupDetailsComponent extends DetailComponentBase implements OnInit
       this.modalRef.hide();
     });
   }
+
 }

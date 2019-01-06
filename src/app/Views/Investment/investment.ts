@@ -14,9 +14,11 @@ import 'rxjs/add/operator/finally';
 export class InvestmentComponent extends EntityUtilities implements OnInit {
   Investments: Investment[];
   errorMessage: string;
+  p: number;
 
   constructor(protected apiService: ApiService) {
     super(apiService);
+    this.p = 1;
    }
 
   public delete(id: string) {

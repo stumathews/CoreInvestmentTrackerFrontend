@@ -6,6 +6,8 @@ export interface InvestmentNote {
   description: string;
   owningEntityId: number;
   owningEntityType: EntityTypes;
+  createdTime: Date;
+  lastModifiedTime: Date;
 }
 
 /*

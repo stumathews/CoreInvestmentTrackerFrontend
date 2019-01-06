@@ -4,4 +4,6 @@ export interface Region {
   description: string;
   name: string;
   investments?: (RegionsLink)[] | null;
+  createdTime: Date;
+  lastModifiedTime: Date;
 }

@@ -6,6 +6,7 @@ import { EntityTypes, EntityUtilities  } from '../../Utilities';
 import 'rxjs/add/operator/finally';
 import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
 import { BsModalService } from 'ngx-bootstrap';
+import { NewRegionComponent } from './new-region';
 
 @Component({
   selector: 'app-region',
@@ -28,5 +29,13 @@ export class RegionComponent extends SharedGraphModalPopup implements OnInit {
     this.apiService.DeleteEntity(EntityTypes.Region, +id)
                     .finally(() => this.ngOnInit())
                    .subscribe(entity => console.log(JSON.stringify(entity)), error => this.errorMessage = <any>error);
+  }
+
+  openModalWithNewRegionComponent() {
+    this.modalRef = this.modalService.show(NewRegionComponent);
+    this.modalRef.content.CreatedRegionEvent.subscribe((value) => {
+      this.Regions.push(value);
+      this.modalRef.hide();
+    });
   }
 }

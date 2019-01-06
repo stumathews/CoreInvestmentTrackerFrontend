@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { InvestmentRisk } from '../../Models/InvestmentRisk';
 import { ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class NewRiskComponent implements OnInit {
               private location: Location,
               private router: Router) { }
   errorMessage: string;
+  @Output() CreatedRiskEvent = new EventEmitter<InvestmentRisk>();
 
   ngOnInit(): void {
       this.form = new FormGroup({
@@ -33,6 +34,7 @@ export class NewRiskComponent implements OnInit {
   onSubmit(form: InvestmentRisk) {
     this.apiService.CreateInvestmentRisk(form).finally(() => {
        this.router.navigate(['/Risks']);
+       this.CreatedRiskEvent.emit(form);
     }).subscribe( (value) => {
       console.log('received response: ' + JSON.stringify(value));
        this.goHome();

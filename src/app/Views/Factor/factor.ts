@@ -7,6 +7,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 import 'rxjs/add/operator/finally';
 import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
 import { BsModalService } from 'ngx-bootstrap';
+import { NewFactorComponent } from './new-factor';
 
 @Component({
   selector: 'app-factor',
@@ -30,5 +31,12 @@ export class FactorComponent extends SharedGraphModalPopup implements OnInit {
                     })
                    .subscribe(entity => console.log('Received: ' + JSON.stringify(entity)),
                               error => this.errorMessage = <any>error);
+  }
+  openModalWithNewFactorComponent() {
+    this.modalRef = this.modalService.show(NewFactorComponent);
+    this.modalRef.content.FactorCreatedEvent.subscribe((value) => {
+      this.Factors.push(value);
+      this.modalRef.hide();
+    });
   }
 }

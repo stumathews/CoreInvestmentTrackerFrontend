@@ -5,5 +5,7 @@ export interface InvestmentInfluenceFactor {
   description: string;
   influence: string;
   investments?: (FactorsLink)[] | null;
+  createdTime: Date;
+  lastModifiedTime: Date;
 }
 

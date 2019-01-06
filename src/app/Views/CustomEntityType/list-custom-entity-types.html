@@ -7,8 +7,8 @@
     
     <table class="table table-hover">
         <thead>
-            <th>Note name</th>
-            <th>Note Description</th>
+            <th>Name</th>
+            <th>Description</th>
             <th>Action</th>
         </thead>
         <tr *ngFor="let type of CustomEntityTypes">
@@ -21,7 +21,8 @@
     
     <p><strong>Total: {{ CustomEntityTypes.length }}</strong></p>        
     <p>
-        <a [routerLink]="['/NewCustomEntityType']" class="btn btn-primary">Create new type</a>
+        <button type="button" class="btn btn-primary" (click)="openModalWithNewEntityTypeComponent()">Create custom type</button>
+        <!-- <a [routerLink]="['/NewCustomEntityType']" class="btn btn-primary">Create new type</a> -->
     </p>
     <!-- This still works
          p><a *ngIf="OwningEntityType" [routerLink]="['/NewNote', EntityTypes[OwningEntityType], OwningEntityId]" class="btn btn-primary">Create Note</a></p> -->

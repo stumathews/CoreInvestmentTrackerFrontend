@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
 import { ActivatedRoute , Router} from '@angular/router';
@@ -25,6 +25,7 @@ export class NewCustomEntityTypeComponent extends EntityUtilities implements OnI
               }
   Entity: CustomEntityType;
   errorMessage: string;
+  @Output() CreatedCustomEntityTypeEvent = new EventEmitter<CustomEntityType>();
 
   ngOnInit(): void {
       this.form = new FormGroup({
@@ -35,6 +36,7 @@ export class NewCustomEntityTypeComponent extends EntityUtilities implements OnI
 
   onSubmit(form: CustomEntityType) {
     this.apiService.CreateCustomEntityType(form).subscribe( (entityType) => this.Entity = entityType);
-    this.router.navigateByUrl('/CustomEntityTypes');
+    // this.router.navigateByUrl('/CustomEntityTypes');
+    this.CreatedCustomEntityTypeEvent.emit(form);
   }
 }

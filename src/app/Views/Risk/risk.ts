@@ -7,6 +7,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 import 'rxjs/add/operator/finally';
 import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
 import { BsModalService } from 'ngx-bootstrap';
+import { NewRiskComponent } from './new-risk';
 
 @Component({
   selector: 'app-risk',
@@ -40,5 +41,13 @@ export class RiskComponent extends SharedGraphModalPopup implements OnInit {
                       this.router.navigate(['/Risks']);
                   },
                               error => this.errorMessage = <any>error);
+  }
+
+  openModalWithNewRiskComponent() {
+    this.modalRef = this.modalService.show(NewRiskComponent);
+    this.modalRef.content.CreatedRiskEvent.subscribe((value) => {
+      this.Risks.push(value);
+      this.modalRef.hide();
+    });
   }
 }

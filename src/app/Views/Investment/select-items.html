@@ -1,13 +1,15 @@
-﻿<form>        
+﻿<p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
+<form>        
     <p>Select the items <strong>[{{[EntityTypes[EntityType]]}}]</strong> to associate with this investment</p>
    <div class="form-horizontal">
        <hr />
+       
        <table class="table table-hover">
             <thead>                                   
                 <th>Name</th>
                 <th>Description</th>     
             </thead>
-            <tr *ngFor="let item of Items">
+            <tr *ngFor="let item of Items | filter : searchText | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                 <td>
                     <input type="checkbox" name="item" [(ngModel)]="item.checked" value="{{item.name}}"/>
                     <span style="padding-left: 5px;">{{item.name}}</span>
@@ -15,6 +17,7 @@
                 <td>{{item.description}} </td>
             </tr>
         </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
    </div>
 </form>
 <!-- 
