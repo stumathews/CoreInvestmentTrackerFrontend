@@ -167,11 +167,12 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     });
   }
 
-  openModalWithNewCustomEntityComponent(type: string) {
+  openModalWithNewCustomEntityComponent(type: string, dataType: string) {
     this.modalRef = this.modalService.show(NewCustomEntityComponent);
     this.modalRef.content.OwningEntityId = this.Entity.id;
     this.modalRef.content.OwningEntityType = EntityTypes.Investment;
     this.modalRef.content.Type = type;
+    this.modalRef.content.DataType = dataType;
     this.modalRef.content.CreatedCustomEntity.subscribe((value) => {
       this.CustomEntities.push(value);
       this.modalRef.hide();

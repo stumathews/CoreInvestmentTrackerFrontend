@@ -10,6 +10,7 @@ import { GetRequiredTextValidators, GetRequiredNumberValidators, EntityUtilities
 import 'rxjs/add/operator/finally';
 import { CustomEntity } from '../../Models/CustomEntity';
 import { CustomEntityType } from '../../Models/CustomEntityType';
+import { KeysPipe } from '../../keys.pipe';
 
 @Component({
   selector: 'app-new-custom-entity',
@@ -28,12 +29,14 @@ export class NewCustomEntityComponent extends EntityUtilities implements OnInit 
   errorMessage: string;
   @Output() CreatedCustomEntity = new EventEmitter<CustomEntity>();
   @Input() Type: string;
+  @Input() DataType: EntityTypes;
   @Input() OwningEntityId: number;
   @Input() OwningEntityType: number;
-
   ngOnInit(): void {
       this.OwningEntityId = this.OwningEntityId ? this.OwningEntityId : +this.route.snapshot.paramMap.get('owningEntityId');
       this.OwningEntityType = this.OwningEntityType ? this.OwningEntityType : +this.route.snapshot.paramMap.get('owningEntityType');
+      this.DataType = this.DataType ? this.DataType : +this.route.snapshot.paramMap.get('dataType');
+      console.log('Datatype for custom entity was' + this.DataType);
       this.form = new FormGroup({
         name: new FormControl('', GetRequiredTextValidators()),
         description: new FormControl('', null),

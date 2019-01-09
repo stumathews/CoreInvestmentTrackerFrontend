@@ -5,6 +5,7 @@
     <dl *ngIf="Entity" class="dl-horizontal">       
         <dt>Description</dt>
         <dd><inline-editor #descriptionElement pattern="^.+$" type="text" min="1" type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description" size="30"></inline-editor></dd>
+        <dt>Data Type</dt><dd>{{Entity.dataType}}</dd>
     </dl>
     
     <tabset>

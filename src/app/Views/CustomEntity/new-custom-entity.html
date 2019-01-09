@@ -18,11 +18,11 @@
              </alert>
        </div>
        <div class="form-group">
-           <label class= "control-label col-md-2">Value</label>
+           <label class= "control-label col-md-2">Value ({{ EntityTypes[DataType] }})</label>
            <div class="col-md-10">
                <textarea rows="5" cols="50" name="description" class = "form-control" formControlName="description"></textarea>
            </div>
-       </div>
+       </div>       
        <div *ngIf="form.controls.description.errors?.pattern">
            <alert type="warning">
                <strong>Warning!</strong> Better check yourself, you're not looking too good.

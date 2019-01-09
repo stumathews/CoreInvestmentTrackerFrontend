@@ -172,7 +172,11 @@ export enum EntityTypes {
     Note,
     Activity,
     CustomEntity,
-    CustomEntityType
+    CustomEntityType,
+    Number,
+    String,
+    ListOfStrings,
+    ListOfNumbers
 }
 
 export abstract class EntityUtilities {

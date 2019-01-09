@@ -24,13 +24,16 @@ export class NewCustomEntityTypeComponent extends EntityUtilities implements OnI
                 super(apiService);
               }
   Entity: CustomEntityType;
+  dataTypes = EntityTypes; // Note no datatype specified for enum here for select enumerations
   errorMessage: string;
+  @Input() DataType: EntityTypes;
   @Output() CreatedCustomEntityTypeEvent = new EventEmitter<CustomEntityType>();
 
   ngOnInit(): void {
       this.form = new FormGroup({
         name: new FormControl(this.investmentService.Investment.name, GetRequiredTextValidators()),
         description: new FormControl(this.investmentService.Investment.description, GetRequiredTextValidators()),
+        dataType: new FormControl(null, Validators.required),
     });
   }
 

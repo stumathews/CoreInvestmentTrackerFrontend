@@ -77,7 +77,8 @@ const appRoutes: Routes = [
     { path : 'AssociateCustomEntities/:id', component: AssociateCustomEntitiesComponent, canActivate: [AuthGuard]  },
     /*{ path : 'RisksGraph', component: GraphComponent },*/
     { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent, canActivate: [AuthGuard]  },
-    { path : 'NewCustomEntity/:owningEntityType/:owningEntityId', component: NewCustomEntityComponent, canActivate: [AuthGuard]  },
+    { path : 'NewCustomEntity/:owningEntityType/:owningEntityId/:dataType',
+      component: NewCustomEntityComponent, canActivate: [AuthGuard]  },
     { path : 'NewCustomEntityType', component: NewCustomEntityTypeComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityTypes', component: ListCustomEntityTypesComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityType/:id', component: CustomEntityTypeComponent, canActivate: [AuthGuard]  },

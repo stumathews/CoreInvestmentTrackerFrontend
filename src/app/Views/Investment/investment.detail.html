@@ -57,7 +57,7 @@
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
             <p>{{item.description}}</p>
             <app-list-custom-entities *ngIf="Entity" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
-            <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name, item.dataType)">Add new {{item.name}} ({{item.dataType}})</button>            
             <!-- Doesn't work by default because of key conflict, need to think how to make a 
                 sensible key that will solve this problem and maintain custom entity flexibility model
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
@@ -89,10 +89,10 @@
                 <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>                      
                 <app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph>           
             <hr/>  
-            <div *ngFor="let item of CustomTypes">
+            <div *ngFor="let item of CustomTypes">                
                 <!-- <p>{{item.description}}</p> -->
                 <app-list-custom-entities *ngIf="Entity" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
-                <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name)">Add new {{item.name}}</button>            
+                <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name, item.dataType)">Add new {{item.name}} ({{item.dataType}})</button>            
                 <!-- Doesn't work by default because of key conflict, need to think how to make a 
                     sensible key that will solve this problem and maintain custom entity flexibility model
                 <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->

@@ -72,6 +72,7 @@ import { BarGraphComponent } from './Graphs/bar/bargraph.component';
 import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entity-type-details';
 import { GenericBarGraphComponent } from './Graphs/d3/bar/generic-bar.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { KeysPipe } from './keys.pipe';
 
 
 @NgModule({
@@ -89,7 +90,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
     ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
-    CustomEntityTypeComponent, GenericBarGraphComponent
+    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe
   ],
   imports: [
     TabsModule.forRoot(),

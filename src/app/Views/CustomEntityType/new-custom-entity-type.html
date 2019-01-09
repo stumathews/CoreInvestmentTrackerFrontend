@@ -27,12 +27,30 @@
                                 <small id="nameHelp" class="form-text text-muted">This is the description you'll give your type</small>         
                             </div>
                         </div>
+                        
                         <div *ngIf="form.controls.description.errors?.pattern">
                             <alert type="warning">
                                 <strong>Warning!</strong> Better check yourself, you're not looking too good.
                               </alert>
                         </div>
-                
+
+                        <div class="form-group">
+                                <label class= "control-label col-md-2">DataType</label>
+                                <div class="col-md-10">
+                                    <!-- <input type="text" name="dataType" class = "form-control" formControlName="dataType" placeholder="Data Type number here"/> -->
+                                    <select formControlName="dataType" name="dataType" class = "form-control">
+                                        <option *ngFor="let item of dataTypes | keys" [value]="item.key">{{item.value}}</option>
+                                    </select>
+                                    <small id="nameHelp" class="form-text text-muted">Data type here</small>         
+                                </div>
+                            </div>
+                            
+                            <div *ngIf="form.controls.description.errors?.pattern">
+                                <alert type="warning">
+                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                                  </alert>
+                            </div>
+
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Create" class="btn btn-default" [disabled]="!form.valid" />
