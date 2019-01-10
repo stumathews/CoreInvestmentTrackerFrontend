@@ -40,9 +40,11 @@ import { NewCustomEntityComponent } from './Views/CustomEntity/new-custom-entity
 import { NewCustomEntityTypeComponent } from './Views/CustomEntityType/new-custom-entity-type';
 import { ListCustomEntityTypesComponent } from './Views/CustomEntityType/list-custom-entity-types';
 import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entity-type-details';
+import { ErrorComponent } from './Views/Shared/errors';
 
 const appRoutes: Routes = [
     { path : '', redirectTo: 'Investments', pathMatch: 'full'},
+    { path: 'error', component: ErrorComponent },
     { path : 'Login', component: LoginComponent },
     { path : 'Home', component: HomeComponent, canActivate: [AuthGuard] },
     { path : 'Investments', component: InvestmentComponent, canActivate: [AuthGuard]  },
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
     { path : 'NewCustomEntityType', component: NewCustomEntityTypeComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityTypes', component: ListCustomEntityTypesComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityType/:id', component: CustomEntityTypeComponent, canActivate: [AuthGuard]  },
-    { path : 'Signup', component: SignupComponent}
+    { path : 'Signup', component: SignupComponent},
+    { path: '**', component: ErrorComponent, data: { error: 404 } },
 ];
 
 export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot(appRoutes);

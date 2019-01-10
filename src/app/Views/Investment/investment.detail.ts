@@ -177,6 +177,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
       this.CustomEntities.push(value);
       this.modalRef.hide();
     });
+
   }
 
   myHandleError(event) {

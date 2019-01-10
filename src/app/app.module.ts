@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertModule, CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
@@ -73,6 +73,9 @@ import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entit
 import { GenericBarGraphComponent } from './Graphs/d3/bar/generic-bar.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { KeysPipe } from './keys.pipe';
+import { MyErrorHandler } from './error-handler';
+import { ErrorComponent } from './Views/Shared/errors';
+import { NotificationService } from './notification.service';
 
 
 @NgModule({
@@ -90,7 +93,7 @@ import { KeysPipe } from './keys.pipe';
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
     ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
-    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe
+    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe, ErrorComponent
   ],
   imports: [
     TabsModule.forRoot(),
@@ -102,7 +105,8 @@ import { KeysPipe } from './keys.pipe';
     ListGroupsComponent, SharedGraphComponent
   ],
   providers: [InvestmentService, AuthService, ApiService, BsModalService, AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true }],
+    { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: MyErrorHandler },NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

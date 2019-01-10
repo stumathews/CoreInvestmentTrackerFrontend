@@ -27,7 +27,7 @@ import { CustomEntityType } from './Models/CustomEntityType';
 import { CustomEntity } from './Models/CustomEntity';
 
 @Injectable()
-export class ApiService {
+export class ApiService { 
 
     private baseURL = environment.baseUrl + '/api';
     private InvestmentsUrlEndpoint = this.baseURL + '/Investment';
@@ -84,6 +84,10 @@ export class ApiService {
     private CustomEntityTypeUrl = this.CustomEntityTypeEndpoint + '/{id}';
 
     constructor(private http: HttpClient) { }
+
+    testBadRequest(): any {
+        throw new Error('Method not implemented.');
+      }
 
     Login(userLoginInfo: UserLoginInfo): Observable<any> {
         return this.http

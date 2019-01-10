@@ -32,11 +32,12 @@ export class NewCustomEntityComponent extends EntityUtilities implements OnInit 
   @Input() DataType: EntityTypes;
   @Input() OwningEntityId: number;
   @Input() OwningEntityType: number;
+
   ngOnInit(): void {
-      this.OwningEntityId = this.OwningEntityId ? this.OwningEntityId : +this.route.snapshot.paramMap.get('owningEntityId');
+    this.OwningEntityId = this.OwningEntityId ? this.OwningEntityId : +this.route.snapshot.paramMap.get('owningEntityId');
       this.OwningEntityType = this.OwningEntityType ? this.OwningEntityType : +this.route.snapshot.paramMap.get('owningEntityType');
       this.DataType = this.DataType ? this.DataType : +this.route.snapshot.paramMap.get('dataType');
-      console.log('Datatype for custom entity was' + this.DataType);
+      console.log('Datatype for custom entity was' + EntityTypes[this.DataType]);
       this.form = new FormGroup({
         name: new FormControl('', GetRequiredTextValidators()),
         description: new FormControl('', null),
