@@ -19,7 +19,7 @@ export class ListCustomEntityTypesComponent extends EntityUtilities implements O
   modalRef: BsModalRef;
   EntityTypes = EntityTypes;
   errorMessage: string;
-  Title = 'Create new custom entity type';
+  Title = 'Custom Entities';
   CustomEntityTypes: CustomEntityType[] = [];
 
   ngOnInit() {

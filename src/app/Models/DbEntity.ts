@@ -4,4 +4,6 @@ export interface DbEntity {
     name: string;
     createdTime: Date;
     lastModifiedTime: Date;
+    isFlagged: boolean;
+    points: number;
   }

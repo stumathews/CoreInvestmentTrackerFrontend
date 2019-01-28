@@ -23,6 +23,7 @@ import { CustomEntityType } from '../../Models/CustomEntityType';
 import { AssociateCustomEntitiesComponent } from './associate-custom-entities';
 import { CustomEntity } from '../../Models/CustomEntity';
 import { NewCustomEntityComponent } from '../CustomEntity/new-custom-entity';
+import { DbEntity } from '../../Models/DbEntity';
 
 @Component({
   selector: 'app-investment-detail',
@@ -38,7 +39,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   CustomTypes: CustomEntityType[] = [];
   CustomEntities: CustomEntity[] = [];
   errorMessage: string;
-  showTabs = false;
+  showTabs = true;
 
   @ViewChild('childModal') childModal: ModalDirective;
   constructor(protected apiService: ApiService,

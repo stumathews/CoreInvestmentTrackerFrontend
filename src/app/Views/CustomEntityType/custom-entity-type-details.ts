@@ -9,6 +9,7 @@ import { InvestmentNote } from '../../Models/InvestmentNote';
 import { NewInvestmentNoteComponent } from '../Note/new-note';
 import { CustomEntityType } from '../../Models/CustomEntityType';
 import { CustomEntity } from '../../Models/CustomEntity';
+import { Investment, CustomEntitiesLink } from '../../Models/Investment';
 
 @Component({
   selector: 'app-custom-entity-type-details',
@@ -17,6 +18,7 @@ import { CustomEntity } from '../../Models/CustomEntity';
 export class CustomEntityTypeComponent extends DetailComponentBase implements OnInit  {
   Entity: CustomEntityType;
   CustomEntities: CustomEntity[] = [];
+  InvestmentLinks: Number[];
   Notes: InvestmentNote[] = [];
   constructor(protected apiService: ApiService,
      protected route: ActivatedRoute,
@@ -32,7 +34,8 @@ export class CustomEntityTypeComponent extends DetailComponentBase implements On
     const id = +this.route.snapshot.paramMap .get('id');
     this.apiService.GetCustomEntityType(id + '').subscribe((entity) => {
         this.Entity = entity;
-        this.apiService.GetAllCustomEntitiesByType(this.Entity.name).subscribe((got) => this.CustomEntities = got);
+        this.apiService.GetAllCustomEntitiesByType(this.Entity.name)
+        .subscribe((got) => this.CustomEntities = got);
      });
   }
 

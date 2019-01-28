@@ -15,6 +15,8 @@ export interface CustomEntity {
     investmentIds?: number[];
     createdTime: Date;
     lastModifiedTime: Date;
+    isFlagged: boolean;
+    points: number;
 }
 
 

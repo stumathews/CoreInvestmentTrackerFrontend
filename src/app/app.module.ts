@@ -76,6 +76,7 @@ import { KeysPipe } from './keys.pipe';
 import { MyErrorHandler } from './error-handler';
 import { ErrorComponent } from './Views/Shared/errors';
 import { NotificationService } from './notification.service';
+import { ListPinnedEntitiesComponent } from './Views/Shared/list-pinned-items';
 
 
 @NgModule({
@@ -93,7 +94,7 @@ import { NotificationService } from './notification.service';
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
     ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
-    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe, ErrorComponent
+    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe, ErrorComponent, ListPinnedEntitiesComponent
   ],
   imports: [
     TabsModule.forRoot(),
@@ -106,7 +107,7 @@ import { NotificationService } from './notification.service';
   ],
   providers: [InvestmentService, AuthService, ApiService, BsModalService, AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true },
-    { provide: ErrorHandler, useClass: MyErrorHandler },NotificationService],
+    { provide: ErrorHandler, useClass: MyErrorHandler }, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

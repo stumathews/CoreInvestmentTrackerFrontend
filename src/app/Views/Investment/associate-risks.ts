@@ -12,6 +12,7 @@ import { InvestmentRisk } from '../../Models/InvestmentRisk';
 import { InvestmentService } from '../../investment.service';
 import { InvestmentComponent } from './investment';
 import { OnChanges, SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Investment } from '../../Models/Investment';
 
 
 
@@ -30,12 +31,13 @@ export class AssociateRisksComponent extends SelectEntitiesComponent implements 
                   this.ExtraLinks = [ {displayName: 'Add New Risk', url: '/NewRisk'},
                                       {displayName: 'test1', url: 'testUrl1'}];
                 }
-  EntityType : EntityTypes = EntityTypes.InvestmentRisk;
+  EntityType: EntityTypes = EntityTypes.InvestmentRisk;
   @Input() InvestmentId: number;
   @Output() AssociatedRiskEvent = new EventEmitter<InvestmentRisk>();
   ngOnInit(): void {
     this.apiService.GetRisks().subscribe(risks => { this.Items = this.ConvertRisksToCheckModels(risks); },
                                          error => this.error = <any>error);
+
   }
 
   onNext() {
@@ -47,7 +49,6 @@ export class AssociateRisksComponent extends SelectEntitiesComponent implements 
     .subscribe((value) => {
       entityIds.forEach( id => {
         this.apiService.GetRisk(id).subscribe( risk => {
-          console.log('pushing newly associated risk ' + risk.name);
           this.AssociatedRiskEvent.emit(risk);
         }, error => { this.error = <any>error; });
 

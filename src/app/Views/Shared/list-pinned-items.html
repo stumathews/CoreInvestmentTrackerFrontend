@@ -1,0 +1,21 @@
+<div *ngIf="PinnedItems.length > 0">   
+    <alert *ngIf="CustomEntities.length > 0" type="warning">
+    <p><strong>Pinned Items</strong></p>     
+        <table class="table table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Description</th>
+                <!-- <th>Type</th> -->
+                <th>IsPinned</th>
+                
+            </thead>
+            <tr *ngFor="let item of PinnedItems">
+                <td>{{item.name}}</td>                
+                <td>{{item.description}}</td>
+                <!-- <td>{{EntityTypes[item.customEntityType.id]}}</td> -->
+                <td><inline-editor  #isFlaggedElement type="checkbox" [(ngModel)]="item.isFlagged" (onSave)="saveEditable(isFlaggedElement, item.id)" name="isFlagged"  (onError)="myHandleError()"></inline-editor></td>                                   
+            </tr>            
+        </table>  
+        </alert>      
+    </div>
+    

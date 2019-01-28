@@ -9,4 +9,6 @@ export interface InvestmentGroup {
   children: InvestmentGroup[];
   createdTime: Date;
   lastModifiedTime: Date;
+  isFlagged: boolean;
+  points: number;
 }

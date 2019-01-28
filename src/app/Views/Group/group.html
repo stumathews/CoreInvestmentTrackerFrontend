@@ -6,6 +6,10 @@
     Grouped investments share a commonality.
 </p>
 
+<div>
+        <app-bargraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-bargraph>
+    </div>
+
 <p>These are all the factors that are loaded in the database</p>
 
 <p><input class="form-control" [(ngModel)]="searchText" placeholder="Search text goes here"></p>
@@ -40,9 +44,7 @@
         <button type="button" class="btn btn-primary" (click)="openModalWithNewGroupComponent()">Create Group</button>
         <!-- <a [routerLink]="['/NewGroup']" class="btn btn-primary">Create Group</a> -->
         </p>
-<div>
-    <app-bargraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-bargraph>
-</div>
+
 <!--
     <app-piegraph *ngIf="Groups" [EntityType]="EntityTypes.InvestmentGroup" [Entities]="Groups" [InvestmentId]="0"></app-piegraph> 
 -->

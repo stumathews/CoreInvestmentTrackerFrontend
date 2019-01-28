@@ -5,24 +5,31 @@
     <h4>Investment</h4>        
     
     <hr />
-    
-    <dl class="dl-horizontal">
+    <div class="col-md-6">
+           
+        <dl class="dl-horizontal">
 
-        <dt>Description</dt>
-            <dd><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
-        <dt>Symbol</dt>
-            <dd><inline-editor #symbolElement pattern="^.+$"  type="text" min="1" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(symbolElement, Entity.id)" name="symbol" size="8" (onError)="myHandleError()"></inline-editor></dd>
-        <dt>Value proposition</dt>
-            <dd><inline-editor #valuePropositionElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(valuePropositionElement, Entity.id)" name="valueProposition" (onError)="myHandleError()"></inline-editor></dd>
-        <dt>DesirabilityStatement</dt>
-            <dd><inline-editor #desirabilityStatementElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(desirabilityStatementElement, Entity.id)" name="desirabilityStatement" (onError)="myHandleError()"></inline-editor></dd>
-        <dt>Initial Investment</dt>
-            <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
-        <dt>Value</dt>
-            <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
-    </dl>
+            <dt>Description</dt>
+                <dd><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
+            <dt>Symbol</dt>
+                <dd><inline-editor #symbolElement pattern="^.+$"  type="text" min="1" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(symbolElement, Entity.id)" name="symbol" size="8" (onError)="myHandleError()"></inline-editor></dd>
+            <dt>Value proposition</dt>
+                <dd><inline-editor #valuePropositionElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(valuePropositionElement, Entity.id)" name="valueProposition" (onError)="myHandleError()"></inline-editor></dd>
+            <dt>DesirabilityStatement</dt>
+                <dd><inline-editor #desirabilityStatementElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(desirabilityStatementElement, Entity.id)" name="desirabilityStatement" (onError)="myHandleError()"></inline-editor></dd>
+            <dt>Initial Investment</dt>
+                <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
+            <dt>Value</dt>
+                <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
+        </dl>
+
+    </div>
+    <div class="col-md-6">        
+        <app-list-pinned *ngIf="Entity" [PinnedItems]="CustomEntities"></app-list-pinned>              
+    </div>
     
-    <div>            
+    
+    <div class="col-md-12">            
         <tabset *ngIf="showTabs">
           <tab heading="Groups" id="tab1">           
             <app-list-groups-via-grouplinks *ngIf="Entity" [ParentId]="Entity.id" [GroupLinks]="Entity.groups"></app-list-groups-via-grouplinks>
@@ -55,8 +62,7 @@
         </tab>
           
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
-            <p>{{item.description}}</p>
-            <app-list-custom-entities *ngIf="Entity" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
+            <app-list-custom-entities *ngIf="Entity" [Description]="item.description" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
             <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name, item.dataType)">Add new {{item.name}}</button>            
             <!-- Doesn't work by default because of key conflict, need to think how to make a 
                 sensible key that will solve this problem and maintain custom entity flexibility model
@@ -92,7 +98,7 @@
             <div *ngFor="let item of CustomTypes">                
                 <!-- <p>{{item.description}}</p> -->
                 <app-list-custom-entities *ngIf="Entity" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
-                <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name, item.dataType)">Add new {{item.name}})</button>            
+                <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name, item.dataType)">Add new {{item.name}}</button>            
                 <!-- Doesn't work by default because of key conflict, need to think how to make a 
                     sensible key that will solve this problem and maintain custom entity flexibility model
                 <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
@@ -101,7 +107,8 @@
        
         
     </div>
-
+</div>
+</div>
 
 <ng-template #factors>
         <div class="modal-header">
@@ -154,7 +161,7 @@
             <app-graph [EntityType]="EntityTypes.Region" [InvestmentId]="Entity.id"></app-graph>
         </div>
 </ng-template>
-</div>
+
 
 
 

@@ -11,16 +11,16 @@ import { ApiService } from '../../apiservice.service';
    `
   <app-navbar></app-navbar>
   <div class="col-md-2">
-  <app-side-nav></app-side-nav>
-</div>
+   <app-side-nav></app-side-nav>
+  </div>
 <div class="col-md-10">
-  <div class="body-content">
   <div *ngIf="notification && showNotification" (click)="showNotification = !showNotification" class="notification">
     <p>{{ notification }}</p>
   </div>
   <router-outlet></router-outlet>
   <hr />
-  <footer><p>&copy; {{dateNow | date: yearFmt}} - Investment Tracker</p></footer>
+  <div class="col-md-12">
+   <footer><p>&copy; {{dateNow | date: yearFmt}} - Investment Tracker</p></footer>
   </div>
 </div>`,
   styleUrls: ['./app.css']

@@ -9,6 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import 'rxjs/add/operator/finally';
 import { CustomEntityType } from '../../Models/CustomEntityType';
 import { CustomEntity } from '../../Models/CustomEntity';
+import { DbEntity } from '../../Models/DbEntity';
 
 @Component({
   selector: 'app-list-custom-entities',
@@ -20,10 +21,11 @@ export class ListCustomEntitiesComponent extends EntityUtilities  implements OnI
   @Input() CustomEntities: CustomEntity[];
   @Input() private Id: string;
   @Input() Type: string;
+  @Input() Description: string;
   ngOnInit() {}
   constructor(protected apiService: ApiService ) { super(apiService); }
 
-  DeleteCustomEntity(entityId: number) {
+  public DeleteCustomEntity(entityId: number) {
     const toRemove = this.CustomEntities.filter((each) => { if (each.id === entityId) { return each; } });
     this.apiService
     .DeleteEntity(EntityTypes.CustomEntity, entityId)

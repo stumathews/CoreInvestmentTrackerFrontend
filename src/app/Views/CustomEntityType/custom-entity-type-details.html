@@ -1,11 +1,11 @@
 <div *ngIf="Entity">
     <h1><inline-editor #nameElement type="text" [(ngModel)]="Entity.name" (onSave)="saveEditable(nameElement, Entity.id)" name="name" size="30"></inline-editor></h1>
-    <h4>{{Entity.name}}</h4>
+    <h4>Custom Entity</h4>
     <hr />
     <dl *ngIf="Entity" class="dl-horizontal">       
         <dt>Description</dt>
         <dd><inline-editor #descriptionElement pattern="^.+$" type="text" min="1" type="text" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description" size="30"></inline-editor></dd>
-        <dt>Data Type</dt><dd>{{Entity.dataType}}</dd>
+        <dt>Data Type</dt><dd>{{EntityTypes[Entity.dataType]}}</dd>
     </dl>
     
     <tabset>

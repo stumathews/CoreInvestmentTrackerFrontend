@@ -61,7 +61,9 @@ export class BarGraphComponent implements OnInit, AfterViewInit, OnDestroy  {
   ngOnInit() {  }
 
   ngAfterViewInit() {
-      const graphData = this.Entities.map(e => {
+      const graphData = this.Entities
+      .filter( (item: HasInvestmentsEntity) => item.investments.length > 0)
+      .map(e => {
         return { 'name': e.name, 'value' : e.investments.length};
       });
       this.render(graphData);
@@ -72,15 +74,16 @@ export class BarGraphComponent implements OnInit, AfterViewInit, OnDestroy  {
     // const svg = d3.select('svg'),
     const SvgTagName = '#' + EntityTypes[this.EntityType] + '_bargraph';
     const svg = d3.select(SvgTagName),
-    margin = {top: 30, right: 40, bottom: 200, left: 50},
+    margin = {top: 30, right: 40, bottom: 200, left: 460},
+    //margin = {top: 30, right: 40, bottom: 200, left: 50},
     width = +svg.attr('width') - margin.left - margin.right,
     height = +svg.attr('height') - margin.top - margin.bottom;
 
     const x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
     y = d3.scaleLinear().rangeRound([height, 0]);
-
+   // translate(460,30) rotate(90)
     const g = svg.append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ') rotate(90)');
 
   x.domain(graph.map(function(d) { return d['name']; }));
   const max = d3.max(graph, function(d) { return d['value']; });
@@ -94,7 +97,7 @@ export class BarGraphComponent implements OnInit, AfterViewInit, OnDestroy  {
             .style('text-anchor', 'end')
             .attr('dx', '-.8em')
             .attr('dy', '.15em')
-            .attr('transform', 'rotate(-65)' );
+            .attr('transform', 'rotate(270)' );
 
   g.append('g')
       .attr('class', 'axis axis--y')
