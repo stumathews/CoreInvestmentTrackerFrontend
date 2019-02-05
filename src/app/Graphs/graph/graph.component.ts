@@ -92,7 +92,9 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
 
     this.simulation = d3.forceSimulation()
         .force('link', d3.forceLink().distance(90))
-        .force('charge', d3.forceManyBody())
+        //.force('charge', d3.forceManyBody())
+        .force('charge', d3.forceManyBody().strength(-1000).distanceMax(450)
+        .distanceMin(85))
         .force('center', d3.forceCenter(width / 2, height / 2));
     this.link = this.svg.append('g')
                 .attr('class', 'links')
