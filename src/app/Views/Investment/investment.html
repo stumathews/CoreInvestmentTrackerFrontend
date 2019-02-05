@@ -19,7 +19,7 @@
         <th>Value</th>
         <th></th> <!--Delete -->
     </thead>   
-        <tr *ngFor="let investment of Investments | filter : searchText | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+        <tr *ngFor="let investment of Investments | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
             <td>         
                 <strong><a *ngIf="investment" [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a></strong>
             </td>
