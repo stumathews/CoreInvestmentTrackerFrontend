@@ -64,9 +64,6 @@
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
             <app-list-custom-entities *ngIf="Entity" [Description]="item.description" [Id]="Entity.id" [Type]="item.name" [CustomEntities]="CustomEntities" ></app-list-custom-entities>
             <button type="button" class="btn btn-primary" (click)="openModalWithNewCustomEntityComponent(item.name, item.dataType)">Add new {{item.name}}</button>            
-            <!-- Doesn't work by default because of key conflict, need to think how to make a 
-                sensible key that will solve this problem and maintain custom entity flexibility model
-            <button type="button" class="btn btn-primary" (click)="openModalWithAssociateCustomEntityComponent(item.name)">Add existing  {{item.name}}</button> -->
         </tab>        
         </tabset>
 

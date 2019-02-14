@@ -82,6 +82,7 @@ export class ApiService {
     private GetAllCustomEntitiesByTypeUrl = this.CustomEntityEndpoint + '/ByType/{type}';
     private CustomEntitiesUrl = this.CustomEntityEndpoint + '/{id}';
     private CustomEntityTypeUrl = this.CustomEntityTypeEndpoint + '/{id}';
+    private CustomEntityTypesByOwningEntity = this.CustomEntityTypeEndpoint + '/ByOwningId/{owningId}';
 
     constructor(private http: HttpClient) { }
 
@@ -458,10 +459,10 @@ export class ApiService {
         .catch(this.handleError);
     }
 
-    GetCustomEntitiesByType(type: string, id: string): Observable<CustomEntity[]> {
+    GetCustomEntitiesByType(type: string, owningEntityId: string): Observable<CustomEntity[]> {
         return this.http.get(this.GetCustomEntitiesByTypeAndIdUrl
             .replace('{type}', '' + type)
-            .replace('{id}', id))
+            .replace('{id}', owningEntityId))
         .do((data => console.log('Got entities for type ' + type + ':' + JSON.stringify(data))))
         .catch(this.handleError);
     }
@@ -472,6 +473,15 @@ export class ApiService {
     .do((data => console.log('Got entity type for type ' + ':' + JSON.stringify(data))))
     .catch(this.handleError);
     }
+
+    //CustomEntityTypesByOwningEntity
+
+    GetCustomEntityTypesByOwner(owningId: string): Observable<CustomEntityType[]> {
+        return this.http.get(this.CustomEntityTypesByOwningEntity
+            .replace('{owningId}', owningId))
+        .do((data => console.log('Got entity type for type ' + ':' + JSON.stringify(data))))
+        .catch(this.handleError);
+        }
 
     GetAllCustomEntitiesByType(type: string): Observable<CustomEntity[]> {
         return this.http.get(this.GetAllCustomEntitiesByTypeUrl

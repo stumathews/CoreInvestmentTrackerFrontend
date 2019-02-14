@@ -21,26 +21,23 @@
                 <td>{{ investment.description }}</td>
                 <td>
                     <span *ngFor="let region of investment.regions">
-                        <a [routerLink]="['/RegionDetails', region.id    ]">{{ region.region?.name }}</a>
+                        <a [routerLink]="['/RegionDetails', region.id]">{{ region.region?.name }}</a>
                     </span>
-                    
                 </td>
                 <td>
-                        <span *ngFor="let risk of investment.risks">
-                                <a *ngIf=" risk.investmentRisk" [routerLink]="['/RiskDetails', risk?.investmentRisk?.id    ]">{{ risk.investmentRisk?.name }}</a>  
-                        </span>
-                    
+                    <span *ngFor="let risk of investment.risks">
+                        <a  [routerLink]="['/RiskDetails', risk?.investmentRisk?.id]">{{ risk.investmentRisk?.name }}</a>                                
+                    </span>                    
                 </td>
                 <td>
-                        <span *ngFor="let factor of investment.factors">
-                            <a [routerLink]="['/FactorDetails', factor.investmentInfluenceFactorID]">{{ factor.investmentInfluenceFactor?.name }}</a> 
-                        </span>
-                    
+                    <span *ngFor="let factor of investment.factors">
+                        <a [routerLink]="['/FactorDetails', factor.investmentInfluenceFactorID]">{{ factor.investmentInfluenceFactor?.name }}</a> 
+                    </span>                    
                 </td>
                 <td>
-                        <span *ngFor="let group of investment.groups">
-                                <a [routerLink]="['/GroupDetails', group.investmentGroupID]">{{ group.investmentGroup?.name }}</a> 
-                        </span>
+                    <span *ngFor="let group of investment.groups">
+                            <a [routerLink]="['/GroupDetails', group.investmentGroupID]">{{ group.investmentGroup?.name }}</a> 
+                    </span>
                 </td>
                 <td>
                     <span>{{ investment.value }}</span><br />
