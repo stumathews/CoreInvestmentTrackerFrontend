@@ -77,7 +77,15 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
         .attr('x2', function(d) { return d.target.x; })
         .attr('y2', function(d) { return d.target.y; });
 
-        this.node.attr('transform', function(d) {
+        const radius = 15;
+
+    const width = 700;
+    const height = 700;
+
+        this.node
+         .attr('cx', function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+         .attr('cy', function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); })
+        .attr('transform', function(d) {
           return 'translate(' + d.x + ',' + d.y + ')';
         });
   }
@@ -91,11 +99,11 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
     this.color = d3.scaleOrdinal(d3.schemeCategory20);
 
     this.simulation = d3.forceSimulation()
-        .force('link', d3.forceLink().distance(90))
-        //.force('charge', d3.forceManyBody())
-        .force('charge', d3.forceManyBody().strength(-1000).distanceMax(450)
-        .distanceMin(85))
-        .force('center', d3.forceCenter(width / 2, height / 2));
+        .force('link', d3.forceLink())
+        //.force('link', d3.forceLink().distance(10))
+        .force('charge', d3.forceManyBody());
+        //.force('charge', d3.forceManyBody().distanceMax(450) .distanceMin(85))
+        //.force('center', d3.forceCenter(width / 2, height / 2));
     this.link = this.svg.append('g')
                 .attr('class', 'links')
                 .selectAll('line')
