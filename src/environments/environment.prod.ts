@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://18.130.238.68:80'
+  baseUrl: 'http://investment-manager-backend.herokuapp.com'
 };
