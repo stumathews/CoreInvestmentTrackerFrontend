@@ -72,7 +72,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
       this.updateEntities(id, tempTypes);
     } else {
       this.CustomTypes = [];
-      this.apiService.GetCustomEntityTypesByOwner(id + '')
+      this.apiService.GetCustomEntityTypes()
       .subscribe(types => {
         // For each entity type get this investment's custom entities
         this.CustomTypes = types;
