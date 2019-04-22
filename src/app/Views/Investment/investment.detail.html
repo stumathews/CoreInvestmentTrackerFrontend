@@ -15,12 +15,12 @@
                 <dd><inline-editor #symbolElement pattern="^.+$"  type="text" min="1" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(symbolElement, Entity.id)" name="symbol" size="8" (onError)="myHandleError()"></inline-editor></dd>
             <dt>Value proposition</dt>
                 <dd><inline-editor #valuePropositionElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.valueProposition" (onSave)="saveEditable(valuePropositionElement, Entity.id)" name="valueProposition" (onError)="myHandleError()"></inline-editor></dd>
-            <dt>DesirabilityStatement</dt>
+            <dt>Desirability Statement</dt>
                 <dd><inline-editor #desirabilityStatementElement pattern="^.+$"  type="text" size="100" min="1" [(ngModel)]="Entity.desirabilityStatement" (onSave)="saveEditable(desirabilityStatementElement, Entity.id)" name="desirabilityStatement" (onError)="myHandleError()"></inline-editor></dd>
             <dt>Initial Investment</dt>
-                <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
+                <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="number" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
             <dt>Value</dt>
-                <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
+                <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="number" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
             <dt>Last modified</dt>
                 <dd>{{Entity.lastModifiedTime  | date : "dd/MM/yyyy" }}</dd>
             <dt>Points</dt>
