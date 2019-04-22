@@ -22,9 +22,9 @@
             <dt>Value</dt>
                 <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
             <dt>Last modified</dt>
-                <dd><td>{{Entity.lastModifiedTime  | date : "dd/MM/yyyy" }}</td>   </dd>
+                <dd>{{Entity.lastModifiedTime  | date : "dd/MM/yyyy" }}</dd>
             <dt>Points</dt>
-                <dd><td>{{Entity.points }}</td>   </dd>
+                <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="number" min="1" [(ngModel)]="Entity.points" (onSave)="saveEditable(valueElement, Entity.id)" name="points" size="8" (onError)="myHandleError()"></inline-editor></dd>
         </dl>
 
     </div>
