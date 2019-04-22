@@ -5,12 +5,12 @@
     <h4>Investment</h4>        
     
     <hr />
-    <div class="col-md-6">
+    <div class="col-md-12">
            
         <dl class="dl-horizontal">
 
             <dt>Description</dt>
-                <dd><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
+                <dd><inline-editor  #descriptionElement pattern="^.+$" type="textarea" size="100" min="100" [(ngModel)]="Entity.description" (onSave)="saveEditable(descriptionElement, Entity.id)" name="description"  (onError)="myHandleError()"></inline-editor></dd>            
             <dt>Symbol</dt>
                 <dd><inline-editor #symbolElement pattern="^.+$"  type="text" min="1" [(ngModel)]="Entity.symbol" (onSave)="saveEditable(symbolElement, Entity.id)" name="symbol" size="8" (onError)="myHandleError()"></inline-editor></dd>
             <dt>Value proposition</dt>
@@ -21,6 +21,10 @@
                 <dd><inline-editor #initialInvestmentElement pattern="^[\d.]+$"  min="1" type="text" [(ngModel)]="Entity.initialInvestment" (onSave)="saveEditable(initialInvestmentElement, Entity.id)" name="initialInvestment" size="8" (onError)="myHandleError()"></inline-editor></dd>
             <dt>Value</dt>
                 <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="text" min="1" [(ngModel)]="Entity.value" (onSave)="saveEditable(valueElement, Entity.id)" name="value" size="8" (onError)="myHandleError()"></inline-editor></dd>            
+            <dt>Last modified</dt>
+                <dd><td>{{Entity.lastModifiedTime  | date : "dd/MM/yyyy" }}</td>   </dd>
+            <dt>Points</dt>
+                <dd><td>{{Entity.points }}</td>   </dd>
         </dl>
 
     </div>

@@ -14,10 +14,10 @@
 <table *ngIf="Investments" class="table table-hover">
     <thead>
         <th>Name</th>
-        <th>Points</th>
+        <!-- <th>Points</th> -->
         <th>Description</th>         
-        <th>Symbol</th>      
-        <th>Value</th>
+        <!-- <th>Symbol</th>      
+        <th>Value</th> -->
         <th>Last modified</th>        
         <th></th> <!--Delete -->
     </thead>   
@@ -25,11 +25,11 @@
             <td>         
                 <strong><a *ngIf="investment" [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a></strong>
             </td>
-            <td>{{investment.points}}</td>
+            <!-- <td>{{investment.points}}</td> -->
             <td>{{investment.description}}</td>            
-            <td>{{investment.symbol}}</td>
-            <td>{{investment.value}}</td>
-            <td>{{investment.lastModifiedTime  | date : 'medium' }}</td>            
+            <!-- <td>{{investment.symbol}}</td> -->
+            <!-- <td>{{investment.value}}</td> -->
+            <td>{{investment.lastModifiedTime  | date : "dd/MM/yyyy" }}</td>            
             <td><a (click)="delete(investment.id)" href="javascript:void(0)">Delete</a></td>            
         </tr>
 </table>
