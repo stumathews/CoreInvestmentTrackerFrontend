@@ -4,6 +4,8 @@ import { Investment } from '../../Models/Investment';
 import { EntityTypes, EntityUtilities  } from '../../Utilities';
 
 import 'rxjs/add/operator/finally';
+import { Common } from '../../Common/Common';
+import { textBinding } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-investment',
@@ -13,10 +15,10 @@ export class InvestmentComponent extends EntityUtilities implements OnInit {
   Investments: Investment[];
   errorMessage: string;
   p: number;
-
+  Common: Common = new Common();
   constructor(protected apiService: ApiService) {
     super(apiService);
-    this.p = 1;
+    this.p = 0;
    }
 
   public delete(id: string) {
@@ -29,6 +31,7 @@ export class InvestmentComponent extends EntityUtilities implements OnInit {
                     })
                    .subscribe(entity => console.log(JSON.stringify(entity)),
                               error => this.errorMessage = <any>error);
+
   }
 
   ngOnInit(): void {

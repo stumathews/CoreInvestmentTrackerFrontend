@@ -26,6 +26,7 @@ import { NewCustomEntityComponent } from '../CustomEntity/new-custom-entity';
 import { DbEntity } from '../../Models/DbEntity';
 import { NewTransactionComponent } from '../Transaction/new-transaction';
 import { InvestmentTransaction } from '../../Models/InvestmentTransaction';
+import { Common } from '../../Common/Common';
 
 @Component({
   selector: 'app-investment-detail',
@@ -43,6 +44,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   TotalCost = 0;
   errorMessage: string;
   showTabs = true;
+  Common: Common = new Common();
 
   @ViewChild('childModal') childModal: ModalDirective;
   constructor(protected apiService: ApiService,
@@ -54,6 +56,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
    }
 
   ngOnInit(): void {
+
     // Get Investement Id
     const id = +this.route.snapshot.paramMap.get('id');
 
@@ -61,11 +64,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     this.apiService.GetInvestment(id)
         .subscribe(investment => {
            this.Entity = investment, error => this.errorMessage = <any>error;
-           if (this.Entity.transactions.length > 0) {
-            this.Entity.transactions.forEach(element => {
-              this.TotalCost += element.pricePerUnit * element.numUnits;
-            });
-          }
+           this.TotalCost = this.Common.GetBookValueFromTransactions(this.Entity.transactions);
         });
 
     // Get All entity types in the system
@@ -75,6 +74,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   switchView(): void {
     this.showTabs = !this.showTabs;
   }
+
 
   refreshCustomEntities(id: number, getTypes: boolean) {
     const tempTypes = this.CustomTypes;
@@ -184,6 +184,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     this.modalRef.content.CreatedTransactionEvent.subscribe((value) => {
       console.log('transaction created event fired');
       this.Entity.transactions.push(value);
+      this.TotalCost = this.Common.GetBookValueFromTransactions(this.Entity.transactions);
       this.modalRef.hide();
     });
   }

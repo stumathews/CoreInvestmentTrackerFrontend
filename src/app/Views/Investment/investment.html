@@ -18,7 +18,8 @@
         <th>Description</th>         
         <!-- <th>Symbol</th>      
         <th>Value</th> -->
-        <th>Last modified</th>        
+        <th>Last modified</th> 
+        <th>Book value</th>       
         <th></th> <!--Delete -->
     </thead>   
         <tr *ngFor="let investment of Investments | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
@@ -29,7 +30,9 @@
             <td>{{investment.description}}</td>            
             <!-- <td>{{investment.symbol}}</td> -->
             <!-- <td>{{investment.value}}</td> -->
-            <td>{{investment.lastModifiedTime  | date : "dd/MM/yyyy" }}</td>            
+            <td>{{investment.lastModifiedTime  | date : "dd/MM/yyyy" }}</td>    
+            <td >{{Common.GetBookValueFromTransactions(investment.transactions) }}</td>
+            
             <td><a (click)="delete(investment.id)" href="javascript:void(0)">Delete</a></td>            
         </tr>
 </table>
