@@ -1,6 +1,7 @@
 ﻿import { InvestmentInfluenceFactor } from './InvestmentInfluenceFactor';
 import { InvestmentRisk } from './InvestmentRisk';
 import { InvestmentGroup } from './InvestmentGroup';
+import { InvestmentTransaction } from './InvestmentTransaction';
 import { Region } from './Region';
 import { CustomEntity } from './CustomEntity';
 
@@ -17,6 +18,7 @@ export interface Investment {
   regions?: (RegionsLink)[] | null;
   risks?: (RisksLink)[] | null;
   groups?: (GroupsLink)[] | null;
+  transactions?: (InvestmentTransaction)[] | null;
   customentities?: (CustomEntity)[] | null;
   createdTime: Date;
   lastModifiedTime: Date;
@@ -40,6 +42,12 @@ export interface GroupsLink {
   investmentID: number;
   investmentGroupID: number;
   investmentGroup?: InvestmentGroup;
+}
+
+export interface TransactionsLink {
+  investmentID: number;
+  investmentTransactionID: number;
+  investmentTransaction?: InvestmentTransaction;
 }
 
 export interface CustomEntitiesLink {

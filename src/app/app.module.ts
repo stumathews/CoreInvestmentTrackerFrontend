@@ -77,6 +77,8 @@ import { MyErrorHandler } from './error-handler';
 import { ErrorComponent } from './Views/Shared/errors';
 import { NotificationService } from './notification.service';
 import { ListPinnedEntitiesComponent } from './Views/Shared/list-pinned-items';
+import { ListTransactionsComponent } from './Views/Shared/list-transactions';
+import { NewTransactionComponent } from './Views/Transaction/new-transaction';
 
 
 @NgModule({
@@ -94,7 +96,8 @@ import { ListPinnedEntitiesComponent } from './Views/Shared/list-pinned-items';
     DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
     ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
     ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
-    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe, ErrorComponent, ListPinnedEntitiesComponent
+    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe, ErrorComponent, ListPinnedEntitiesComponent,
+    ListTransactionsComponent, NewTransactionComponent
   ],
   imports: [
     TabsModule.forRoot(),
@@ -103,7 +106,7 @@ import { ListPinnedEntitiesComponent } from './Views/Shared/list-pinned-items';
     NgxPaginationModule
   ],
   entryComponents: [
-    ListGroupsComponent, SharedGraphComponent
+    ListGroupsComponent, SharedGraphComponent, NewTransactionComponent
   ],
   providers: [InvestmentService, AuthService, ApiService, BsModalService, AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true },

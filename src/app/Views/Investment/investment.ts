@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
-import { InvestmentDetailComponent } from './investment.detail';
 import { EntityTypes, EntityUtilities  } from '../../Utilities';
-
 
 import 'rxjs/add/operator/finally';
 

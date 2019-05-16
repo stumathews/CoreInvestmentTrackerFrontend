@@ -25,6 +25,9 @@
                 <dd>{{Entity.lastModifiedTime  | date : "dd/MM/yyyy" }}</dd>
             <dt>Points</dt>
                 <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="number" min="1" [(ngModel)]="Entity.points" (onSave)="saveEditable(valueElement, Entity.id)" name="points" size="8" (onError)="myHandleError()"></inline-editor></dd>
+            <dt>Total Cost</dt>
+                <dd>{{TotalCost}}</dd>
+            
         </dl>
 
     </div>
@@ -56,13 +59,18 @@
             <button type="button" class="btn btn-primary" (click)="openModalWithAssociateRegionsComponent()">Add a region</button>
             <button type="button" class="btn btn-primary" (click)="openAppGraph(regions)">Show app graph</button>
         </tab>   
+        <tab heading="Transactions">
+            <app-list-transactionss *ngIf="Entity" [Transactions]="Entity.transactions"></app-list-transactionss>                        
+            <button type="button" class="btn btn-primary" (click)="openModalWithNewTransactionComponent()">Add a transaction</button>                        
+        </tab>   
         <tab heading="Notes">
             <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-notes>
             <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
         </tab>  
         <tab heading="Activity">                
             <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>                      
-            <app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph>           
+            <!-- <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.InvestmentTransaction]" [OwningEntityId]="Entity.id"></app-list-activities> -->
+            <!-- <app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph> -->
         </tab>
           
         <tab *ngFor="let item of CustomTypes" heading="{{item.name}}">
@@ -90,11 +98,16 @@
                 <button type="button" class="btn btn-primary" (click)="openModalWithAssociateRegionsComponent()">Add a region</button>
                 <button type="button" class="btn btn-primary" (click)="openAppGraph(regions)">Show app graph</button>
             <hr/>
+            
+            <app-list-transactionss *ngIf="Entity" [Transactions]="Entity.transactions"></app-list-transactionss>                        
+                <button type="button" class="btn btn-primary" (click)="openModalWithNewTransactionComponent()">Add a transaction</button>                        
+            
+            <hr/>
                 <app-list-notes *ngIf="Entity" [Notes]="Notes" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-notes>
                 <button type="button" class="btn btn-primary" (click)="openModalWithNewNoteComponent()">Add a note</button>            
             <hr/>      
                 <app-list-activities *ngIf="Entity" [Activities]="Activities" [OwningEntityType]="EntityTypes[EntityTypes.Investment]" [OwningEntityId]="Entity.id"></app-list-activities>                      
-                <app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph>           
+                <!--<app-generic-bar-graph *ngIf="Entity"  [Id]="Entity.Id" [Width]="501" [Height]="502" [XItem]="name" [YItem]="name" [Data]="Activities"></app-generic-bar-graph>-->
             <hr/>  
             <div *ngFor="let item of CustomTypes">                
                 <!-- <p>{{item.description}}</p> -->

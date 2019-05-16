@@ -176,7 +176,8 @@ export enum EntityTypes {
     Number,
     String,
     ListOfStrings,
-    ListOfNumbers
+    ListOfNumbers,
+    InvestmentTransaction
 }
 
 export abstract class EntityUtilities {

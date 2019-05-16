@@ -24,6 +24,8 @@ import { AssociateCustomEntitiesComponent } from './associate-custom-entities';
 import { CustomEntity } from '../../Models/CustomEntity';
 import { NewCustomEntityComponent } from '../CustomEntity/new-custom-entity';
 import { DbEntity } from '../../Models/DbEntity';
+import { NewTransactionComponent } from '../Transaction/new-transaction';
+import { InvestmentTransaction } from '../../Models/InvestmentTransaction';
 
 @Component({
   selector: 'app-investment-detail',
@@ -38,6 +40,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   Activities: Activity[] = [];
   CustomTypes: CustomEntityType[] = [];
   CustomEntities: CustomEntity[] = [];
+  TotalCost = 0;
   errorMessage: string;
   showTabs = true;
 
@@ -56,7 +59,14 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
 
     // Fetch investment ojbect
     this.apiService.GetInvestment(id)
-        .subscribe(investment => this.Entity = investment, error => this.errorMessage = <any>error);
+        .subscribe(investment => {
+           this.Entity = investment, error => this.errorMessage = <any>error;
+           if (this.Entity.transactions.length > 0) {
+            this.Entity.transactions.forEach(element => {
+              this.TotalCost += element.pricePerUnit * element.numUnits;
+            });
+          }
+        });
 
     // Get All entity types in the system
     this.refreshCustomEntities(id, true);
@@ -164,6 +174,16 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     this.modalRef.content.OwningEntityType = EntityTypes.Investment;
     this.modalRef.content.CreatedNote.subscribe((value) => {
       this.Notes.push(value);
+      this.modalRef.hide();
+    });
+  }
+
+  openModalWithNewTransactionComponent() {
+    this.modalRef = this.modalService.show(NewTransactionComponent);
+    this.modalRef.content.Investment = this.Entity;
+    this.modalRef.content.CreatedTransactionEvent.subscribe((value) => {
+      console.log('transaction created event fired');
+      this.Entity.transactions.push(value);
       this.modalRef.hide();
     });
   }

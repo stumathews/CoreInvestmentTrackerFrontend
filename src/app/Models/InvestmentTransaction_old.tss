@@ -1,0 +1,17 @@
+import { TransactionsLink, Investment } from './Investment';
+export interface InvestmentTransaction {
+  investment: Investment | null;
+  id: number | 0;
+  name: string | null;
+  description: string | null;
+  createdTime: Date;
+  lastModifiedTime: Date;
+  isFlagged: boolean;
+  points: number | 0;
+  /*Transaction members*/
+  // numUnits: number | 0;
+  // pricePerUnit: number | 0;
+  // currency: string | 'GBP';
+  // transactionType: string | 'BUY';
+  // investmentIds?: number[] | null;
+}

@@ -25,15 +25,17 @@ import { Activity } from './Models/Activity';
 import { AuthService } from './AuthService';
 import { CustomEntityType } from './Models/CustomEntityType';
 import { CustomEntity } from './Models/CustomEntity';
+import { InvestmentTransaction } from './Models/InvestmentTransaction';
 
 @Injectable()
-export class ApiService { 
+export class ApiService {
 
     private baseURL = environment.baseUrl + '/api';
     private InvestmentsUrlEndpoint = this.baseURL + '/Investment';
     private InvestmentsWithoutChildrenUrlEndpoint = this.InvestmentsUrlEndpoint + '/WithoutChildren';
     private FactorsUrlEndpoint = this.baseURL + '/Factor';
     private GroupsUrlEndpoint = this.baseURL + '/Group';
+    private TransactionsUrlEndpoint = this.baseURL + '/Transaction';
     private RisksUrlEndpoint = this.baseURL + '/Risk';
     private RegionsUrlEndpoint = this.baseURL + '/Region';
     private NotesUrlEndpoint = this.baseURL + '/Notes';
@@ -43,6 +45,7 @@ export class ApiService {
     private RiskByIdUrlEndpoint = this.baseURL + '/Risk/{id}';
     private FactorByIdUrlEndpoint = this.baseURL + '/Factor/{id}';
     private GroupByIdUrlEndpoint = this.baseURL + '/Group/{id}';
+    private TransactionByIdUrlEndpoint = this.baseURL + '/Transaction/{id}';
     private RegionByIdUrlEndpoint = this.baseURL + '/Region/{id}';
     private TokenUrlEndpoint = this.baseURL + '/Token';
     private NotesByParamsUrlEndpoint = this.baseURL + '/Notes/{owningEntityId}/{owningEntityType}/{id}';
@@ -238,6 +241,13 @@ export class ApiService {
                         .catch(this.handleError);
     }
 
+    GetTransaction(id: number): Observable<InvestmentTransaction> {
+        console.log('Getting transaction id=' + id);
+        return this.http.get(this.TransactionByIdUrlEndpoint.replace('{id}', '' + id))
+                        .do((data => console.log('GetGroup: ' + JSON.stringify(data))))
+                        .catch(this.handleError);
+    }
+
     GetNotes(OwningEntityType: EntityTypes, OwningEntityId: number): Observable<InvestmentNote[]> {
         console.log('Getting ' + OwningEntityType + 'notes...');
         return this.http.get(this.OwningEntityNotesUrlEndpoint.replace('{owningEntityID}', '' + OwningEntityId)
@@ -354,6 +364,12 @@ export class ApiService {
         .catch(this.handleError);
     }
 
+    CreateInvestmentTransaction(transaction: InvestmentTransaction): Observable<InvestmentTransaction> {
+        console.log('CreateInvestmentTransaction...' + JSON.stringify(transaction));
+        return this.http.post(this.TransactionsUrlEndpoint, transaction)
+        .do( (data => console.log('do CreateInvestmentTransaction: ' + JSON.stringify(data))))
+        .catch(this.handleError);
+    }
     CreateInvestmentGroup(group: InvestmentGroup): Observable<InvestmentGroup> {
         console.log('CreateInvestmentGroup...' + JSON.stringify(group));
         return this.http.post(this.GroupsUrlEndpoint, group)
@@ -397,6 +413,8 @@ export class ApiService {
             url =  this.RegionByIdUrlEndpoint.replace('{id}', '' + id);
         } else if (entityType === EntityTypes.CustomEntity) {
             url = this.CustomEntitiesUrl.replace('{id}', '' + id);
+        } else if (entityType === EntityTypes.InvestmentTransaction) {
+            url = this.TransactionByIdUrlEndpoint.replace('{id}', '' + id);
         }
 
         console.log('Delete entity via url:' + url);
@@ -450,6 +468,8 @@ export class ApiService {
             url = this.NotesUrlByIdEndpoint.replace('{id}', '' + id);
         } else if (entityType === EntityTypes.CustomEntityType) {
             url = this.CustomEntityTypeUrl.replace('{id}', '' + id);
+        } else if (entityType === EntityTypes.InvestmentTransaction) {
+            url = this.TransactionByIdUrlEndpoint.replace('{id}', '' + id);
         }
 
         console.log('url is ' + url);
@@ -473,8 +493,6 @@ export class ApiService {
     .do((data => console.log('Got entity type for type ' + ':' + JSON.stringify(data))))
     .catch(this.handleError);
     }
-
-    //CustomEntityTypesByOwningEntity
 
     GetCustomEntityTypesByOwner(owningId: string): Observable<CustomEntityType[]> {
         return this.http.get(this.CustomEntityTypesByOwningEntity

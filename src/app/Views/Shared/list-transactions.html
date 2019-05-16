@@ -1,0 +1,33 @@
+﻿<div>
+    <h4>{{ Title }}</h4>
+    <p>
+        Transactions represent the financial operations that occur on the investment such as buying or selling shares/units in it
+    </p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Units/Shares</th>
+            <th>Price Per Unit/Share</th>
+            <th>Transaction cost</th>
+            <th>Currency</th>
+              
+            <th>Transaction Date</th>
+            <th>Action</th>        
+        </tr>
+        </thead>
+        <tr *ngFor="let transaction of Transactions">
+            <td>{{transaction.name}}</td>
+            <td><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.description" (onSave)="saveEditable(descriptionElement, transaction.id)" name="description"  (onError)="myHandleError()"></inline-editor></td>                       
+            <td><inline-editor  #numUnitsElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.numUnits" (onSave)="saveEditable(numUnitsElement, transaction.id)" name="numUnits"  (onError)="myHandleError()"></inline-editor></td>
+            <td><inline-editor  #pricePerUnitElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.pricePerUnit" (onSave)="saveEditable(pricePerUnitElement, transaction.id)" name="pricePerUnit"  (onError)="myHandleError()"></inline-editor></td>
+            <td>{{ transaction.numUnits * transaction.pricePerUnit }}</td>
+            <td><inline-editor  #currencyElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.currency" (onSave)="saveEditable(currencyElement, transaction.id)" name="currency"  (onError)="myHandleError()"></inline-editor></td>                                   
+            <td><inline-editor  #transactionDateElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.transactionDate" (onSave)="saveEditable(transactionDateElement, transaction.id)" name="transactionDate"  (onError)="myHandleError()"></inline-editor></td>            
+            <td><a *ngIf="transaction"  href="javascript:void(0)" (click)="DeleteTransaction(transaction.id)">Delete</a></td> 
+        </tr>
+        
+    </table>
+    <p><strong>Total: {{ Transactions?.length }}</strong></p>    
+</div>

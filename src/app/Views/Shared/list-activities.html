@@ -41,7 +41,7 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
         
         <p><strong>Total: {{ Activities.length }}</strong></p>        
-        <!-- This still works
-             p><a *ngIf="OwningEntityType" [routerLink]="['/NewNote', EntityTypes[OwningEntityType], OwningEntityId]" class="btn btn-primary">Create Note</a></p> -->
+         <!-- <p><a *ngIf="OwningEntityType" [routerLink]="['/NewNote', EntityTypes[OwningEntityType], OwningEntityId]" class="btn btn-primary">Create Note</a></p> -->
+         <p>*Transactions currently aren't tracked yet</p>
     </div>
     
