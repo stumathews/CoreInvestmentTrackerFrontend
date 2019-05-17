@@ -154,6 +154,12 @@ export function GetRequiredTextValidators() {
       Validators.pattern('\\d+')]);
    }
 
+   export function GetRequiredDecimalNumberValidators() {
+    return Validators.compose( [
+      Validators.required,
+      Validators.pattern('^\\d+\.?\\d*?$')]);
+   }
+
 
   export function GetPasswordValidators() {
       return Validators.compose([

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-import { GetRequiredTextValidators, GetRequiredNumberValidators } from '../../Utilities';
+import { GetRequiredTextValidators, GetRequiredNumberValidators, GetRequiredDecimalNumberValidators } from '../../Utilities';
 import {Investment } from '../../Models/Investment';
 import 'rxjs/add/operator/finally';
 
@@ -31,7 +31,7 @@ export class NewTransactionComponent implements OnInit {
        description: new FormControl('desc', GetRequiredTextValidators()),
        type: new FormControl(0, GetRequiredTextValidators()),
        numUnits: new FormControl(1, GetRequiredNumberValidators()),
-       pricePerUnit: new FormControl(1, GetRequiredNumberValidators()),
+       pricePerUnit: new FormControl(1.0, Validators.pattern(/^-?\d+\.?\d*?$/)),
        currency: new FormControl('GBP', GetRequiredTextValidators()),
        transactionType: new FormControl(1, GetRequiredNumberValidators()),
     });

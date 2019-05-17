@@ -32,7 +32,7 @@
        <div class="form-group">
         <label class= "control-label col-md-2">NumUnits</label>
         <div class="col-md-10">
-            <input type="text" name="numUnits" class="form-control" formControlName="numUnits"/>
+            <input type="number" name="numUnits" class="form-control" formControlName="numUnits"/>
         </div>
     </div>
     <div *ngIf="form.controls.numUnits.errors?.pattern">
@@ -44,7 +44,7 @@
     <div class="form-group">
         <label class= "control-label col-md-2">Price Per Unit</label>
         <div class="col-md-10">
-            <input type="text" name="pricePerUnit" class="form-control" formControlName="pricePerUnit"/>
+            <input type="number" name="pricePerUnit" class="form-control" formControlName="pricePerUnit"/>
         </div>
     </div>
     <div *ngIf="form.controls.pricePerUnit.errors?.pattern">
