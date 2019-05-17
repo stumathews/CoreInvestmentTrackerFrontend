@@ -99,7 +99,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy  {
     this.color = d3.scaleOrdinal(d3.schemeCategory20);
 
     this.simulation = d3.forceSimulation()
-    .force('link', d3.forceLink())    
+    .force('link', d3.forceLink())
     .force('charge', d3.forceManyBody())
     .force('center', d3.forceCenter(width / 2, height / 2));
         //.force('link', d3.forceLink())

@@ -14,35 +14,42 @@
             </tr>
         </thead>
         <tr *ngFor="let investment of Investments">
+            
                 <td>         
-                    <a [routerLink]="['/InvestmentDetails', investment.id]">{{ investment.name }}</a>
+                    <a [routerLink]="['/InvestmentDetails', investment.id]">{{ investment?.name }}</a>
                     
                 </td>
-                <td>{{ investment.description }}</td>
+                
+                <td>{{ investment?.description }}</td>
                 <td>
                     <span *ngFor="let region of investment.regions">
                         <a [routerLink]="['/RegionDetails', region.id]">{{ region.region?.name }}</a>
                     </span>
                 </td>
+                
                 <td>
-                    <span *ngFor="let risk of investment.risks">
-                        <a  [routerLink]="['/RiskDetails', risk?.investmentRisk?.id]">{{ risk.investmentRisk?.name }}</a>                                
+                     <span *ngFor="let risk of investment.risks">
+                        <a *ngIf="risk" [routerLink]="['/RiskDetails', risk?.investmentRiskID]">{{ risk?.investmentRisk?.name }}</a>                                 
+                        <a *ngIf="!risk" >{{ risk?.investmentRisk?.name }}</a>                                
+                    
                     </span>                    
                 </td>
+                
                 <td>
                     <span *ngFor="let factor of investment.factors">
                         <a [routerLink]="['/FactorDetails', factor.investmentInfluenceFactorID]">{{ factor.investmentInfluenceFactor?.name }}</a> 
                     </span>                    
                 </td>
+                
                 <td>
                     <span *ngFor="let group of investment.groups">
                             <a [routerLink]="['/GroupDetails', group.investmentGroupID]">{{ group.investmentGroup?.name }}</a> 
                     </span>
                 </td>
                 <td>
-                    <span>{{ investment.value }}</span><br />
+                    <span>{{ investment?.value }}</span><br />
                 </td>
-     
+           
             </tr>
                 
         
