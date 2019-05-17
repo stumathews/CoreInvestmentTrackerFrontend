@@ -65,6 +65,17 @@
           </alert>
     </div>
 
+    <div class="form-group">
+        <label class= "control-label col-md-2">Transaction Date</label>
+        <div class="col-md-10">
+            <input type="text" name="transactionDate" class="form-control" formControlName="transactionDate"/>
+        </div>
+    </div>
+    <div *ngIf="form.controls.transactionDate.errors?.pattern">
+        <alert type="warning">
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+          </alert>
+    </div>
     <!-- <div class="form-group">
         <label class= "control-label col-md-2">Transaction Type</label>
         <div class="col-md-10">

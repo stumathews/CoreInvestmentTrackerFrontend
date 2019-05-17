@@ -181,7 +181,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
   openModalWithNewTransactionComponent() {
     this.modalRef = this.modalService.show(NewTransactionComponent);
     this.modalRef.content.Investment = this.Entity;
-    this.modalRef.content.CreatedTransactionEvent.subscribe((value) => {
+    this.modalRef.content.CreatedTransactionEvent.subscribe((value: InvestmentTransaction) => {
       console.log('transaction created event fired');
       this.Entity.transactions.push(value);
       this.TotalCost = this.Common.GetBookValueFromTransactions(this.Entity.transactions);
