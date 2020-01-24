@@ -10,9 +10,9 @@
             <th>Description</th>
             <th>Units/Shares</th>
             <th>Price Per Unit/Share</th>
-            <th>Transaction cost</th>
+            <th>Transaction Cost</th>
             <th>Currency</th>
-              
+            <th>Commission</th>  
             <th>Transaction Date</th>
             <th>Action</th>        
         </tr>
@@ -20,10 +20,11 @@
         <tr *ngFor="let transaction of Transactions">
             <td>{{transaction.name}}</td>
             <td><inline-editor  #descriptionElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.description" (onSave)="saveEditable(descriptionElement, transaction.id)" name="description"  (onError)="myHandleError()"></inline-editor></td>                       
-            <td><inline-editor  #numUnitsElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.numUnits" (onSave)="saveEditable(numUnitsElement, transaction.id)" name="numUnits"  (onError)="myHandleError()"></inline-editor></td>
+            <td><inline-editor  #numUnitsElement pattern="^.+$" type="number" size="100" min="1" [(ngModel)]="transaction.numUnits" (onSave)="saveEditable(numUnitsElement, transaction.id)" name="numUnits"  (onError)="myHandleError()"></inline-editor></td>
             <td><inline-editor  #pricePerUnitElement pattern="^-?\d+\.?\d*?$" type="text" size="100" min="1" [(ngModel)]="transaction.pricePerUnit" (onSave)="saveEditable(pricePerUnitElement, transaction.id)" name="pricePerUnit"  (onError)="myHandleError()"></inline-editor></td>
             <td>{{ transaction.numUnits * transaction.pricePerUnit }}</td>
             <td><inline-editor  #currencyElement pattern="^.+$" type="text" size="100" min="1" [(ngModel)]="transaction.currency" (onSave)="saveEditable(currencyElement, transaction.id)" name="currency"  (onError)="myHandleError()"></inline-editor></td>                                   
+            <td><inline-editor  #commissionElement pattern="^.+$" type="number" size="100" min="1" [(ngModel)]="transaction.commission" (onSave)="saveEditable(commissionElement, transaction.id)" name="commission"  (onError)="myHandleError()"></inline-editor></td>                                   
             <td><inline-editor  #transactionDateElement pattern="^(?=\s*\S).*$" type="date" size="100" min="1" [(ngModel)]="transaction.transactionDate" (onSave)="saveEditable(transactionDateElement, transaction.id)" name="transactionDate"  (onError)="myHandleError()"></inline-editor></td>            
             <td><a *ngIf="transaction"  href="javascript:void(0)" (click)="DeleteTransaction(transaction.id)">Delete</a></td> 
         </tr>

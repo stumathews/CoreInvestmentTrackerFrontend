@@ -68,4 +68,6 @@ export interface InvestmentTransaction {
      * Generic true/false marker for entity
      */
     isFlagged?: boolean;
+
+    commision: string;
 }
