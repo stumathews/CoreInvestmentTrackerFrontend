@@ -26,8 +26,7 @@
             <dt>Points</dt>
                 <dd><inline-editor #valueElement pattern="^[\d.]+$"  type="number" min="1" [(ngModel)]="Entity.points" (onSave)="saveEditable(valueElement, Entity.id)" name="points" size="8" (onError)="myHandleError()"></inline-editor></dd>
             <dt>Total Cost</dt>
-                <dd>{{TotalCost}}</dd>
-            
+                <dd>{{TotalCost}}</dd>                        
         </dl>
 
     </div>
@@ -45,7 +44,7 @@
           </tab>
           <tab heading="Factors">
             <app-list-factors *ngIf="Entity" [ParentId]="Entity.id" [FactorLinks]="Entity.factors"></app-list-factors>
-            <button type="button" class="btn btn-primary" (click)="openModalWithAssociateFactorsComponent()">Add a factor</button>
+            <button type="button" class="btn btn-primary" (click)="openModalWithAssociateFactorsComponent()">Associate a factor</button>
             <button type="button" class="btn btn-primary" (click)="openAppGraph(factors)">Show app graph</button>
           </tab>
           <tab heading="Risks">

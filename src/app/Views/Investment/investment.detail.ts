@@ -63,7 +63,7 @@ export class InvestmentDetailComponent extends DetailComponentBase implements On
     // Fetch investment ojbect
     this.apiService.GetInvestment(id)
         .subscribe(investment => {
-           this.Entity = investment, error => this.errorMessage = <any>error;
+           this.Entity = investment;
            this.TotalCost = this.Common.GetBookValueFromTransactions(this.Entity.transactions);
         });
 
