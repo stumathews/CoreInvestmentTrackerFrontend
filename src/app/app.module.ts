@@ -30,8 +30,8 @@ import { NewFactorComponent } from './Views/Factor/new-factor';
 import { NewGroupComponent } from './Views/Group/new-group';
 import { NewRegionComponent } from './Views/Region/new-region';
 import { NewRiskComponent } from './Views/Risk/new-risk';
-import { InlineEditorModule } from '@qontu/ngx-inline-editor';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
+import {InlineEditorModule} from '@qontu/ngx-inline-editor';
+//import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { InvestmentService } from './investment.service';
 import { SelectItemsComponent } from './Views/Investment/select-items';
 import { SelectFactorsComponent } from './Views/Investment/select-factors';
@@ -102,7 +102,9 @@ import { NewTransactionComponent } from './Views/Transaction/new-transaction';
   imports: [
     TabsModule.forRoot(),
     BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
-    InlineEditorModule, Angular2FontawesomeModule, CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot(),
+    InlineEditorModule,
+    // Angular2FontawesomeModule,
+     CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot(),
     NgxPaginationModule
   ],
   entryComponents: [

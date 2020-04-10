@@ -7,8 +7,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators, EntityUtilities, EntityTypes} from '../../Utilities';
 import { InvestmentNote } from '../../Models/InvestmentNote';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-note',
@@ -42,7 +42,7 @@ export class NewInvestmentNoteComponent extends EntityUtilities implements OnIni
     form.owningEntityType = this.OwningEntityType;
     form.owningEntityId = this.OwningEntityId;
     console.log('note looks liks this: ' + JSON.stringify(form));
-    this.apiService.CreateInvestmentNote(form).finally(() => {
+    this.apiService.CreateInvestmentNote(form).pipe(finalize(() => {
       let redirectUrl = '';
       switch (this.OwningEntityType) {
         case EntityTypes.Investment:
@@ -64,7 +64,7 @@ export class NewInvestmentNoteComponent extends EntityUtilities implements OnIni
           redirectUrl = '';
       }
       // this.router.navigate([redirectUrl + this.OwningEntityId]);
-    }).subscribe( (value) => {
+    })).subscribe( (value) => {
       console.log('About to emit value:' + JSON.stringify(value));
       this.CreatedNote.emit(value);
       console.log('received response: ' + JSON.stringify(value));

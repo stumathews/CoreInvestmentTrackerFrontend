@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-group',
@@ -32,10 +32,10 @@ export class NewGroupComponent implements OnInit {
   }
 
   onSubmit(form: InvestmentGroup) {
-    this.apiService.CreateInvestmentGroup(form).finally(() => {
+    this.apiService.CreateInvestmentGroup(form).pipe(finalize(() => {
       this.CreatedGroupEvent.emit(form);
       this.router.navigate(['/Groups']);
-    }).subscribe( (value) => {
+    })).subscribe( (value) => {
       console.log('received response: ' + JSON.stringify(value));
     });
   }

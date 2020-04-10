@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-risk',
@@ -32,10 +32,10 @@ export class NewRiskComponent implements OnInit {
   }
 
   onSubmit(form: InvestmentRisk) {
-    this.apiService.CreateInvestmentRisk(form).finally(() => {
+    this.apiService.CreateInvestmentRisk(form).pipe(finalize(() => {
        this.router.navigate(['/Risks']);
        this.CreatedRiskEvent.emit(form);
-    }).subscribe( (value) => {
+    })).subscribe( (value) => {
       console.log('received response: ' + JSON.stringify(value));
        this.goHome();
     });

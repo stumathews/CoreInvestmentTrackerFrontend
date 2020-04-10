@@ -6,8 +6,8 @@ import { GroupsLink } from '../../Models/Investment';
 import { HtmlAction } from '../../Models/HtmlAction';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list-groups-via-grouplinks',
@@ -34,12 +34,12 @@ export class ListGroupsViaGroupLinksComponent implements OnInit, DoCheck {
   DissasociateEntityFromInvestment(entityId: number, parentId: number) {
     this.apiService
     .DissassociateEntityFromInvestment(EntityTypes.InvestmentGroup, entityId, parentId )
-    .finally(() => {
+    .pipe(finalize(() => {
       const toRemove = this.Groups.filter((each) => { if (each.id === entityId) { return each; } });
       const i = this.Groups.indexOf(toRemove[0]);
       this.Groups.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
   }
   ngDoCheck(): void {

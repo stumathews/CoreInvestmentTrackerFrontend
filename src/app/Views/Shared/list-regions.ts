@@ -6,8 +6,8 @@ import { RegionsLink } from '../../Models/Investment';
 import { HtmlAction } from '../../Models/HtmlAction';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list-regions',
@@ -34,12 +34,12 @@ export class ListRegionsComponent implements OnInit, DoCheck {
   DissasociateEntityFromInvestment(entityId: number, parentId: number) {
     this.apiService
     .DissassociateEntityFromInvestment(EntityTypes.Region, entityId, parentId )
-    .finally(() => {
+    .pipe(finalize(() => {
       const toRemove = this.Regions.filter((each) => { if (each.id === entityId) { return each; } });
       const i = this.Regions.indexOf(toRemove[0]);
       this.Regions.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
   }
 

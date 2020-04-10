@@ -7,7 +7,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators, EntityUtilities, EntityTypes} from '../../Utilities';
 
-import 'rxjs/add/operator/finally';
 import { CustomEntity } from '../../Models/CustomEntity';
 import { CustomEntityType } from '../../Models/CustomEntityType';
 import { KeysPipe } from '../../keys.pipe';
@@ -52,7 +51,7 @@ export class NewCustomEntityComponent extends EntityUtilities implements OnInit 
     form.owningCustomEntity = <CustomEntity>{};
     form.customEntityType = <CustomEntityType>{name: this.Type};
 
-    this.apiService.CreateCustomEntity(form).finally(() => {
+    this.apiService.CreateCustomEntity(form).subscribe( (value) => {
       let redirectUrl = '';
       switch (this.OwningEntityType) {
         case EntityTypes.Investment:
@@ -73,8 +72,8 @@ export class NewCustomEntityComponent extends EntityUtilities implements OnInit 
         default:
           redirectUrl = '';
       }
-      // this.router.navigate([redirectUrl + this.OwningEntityId]);
-    }).subscribe( (value) => this.CreatedCustomEntity.emit(value)
+      return this.CreatedCustomEntity.emit(value);
+    }
     );
   }
 

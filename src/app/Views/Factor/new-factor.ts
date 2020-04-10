@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-factor',
@@ -33,10 +33,10 @@ export class NewFactorComponent implements OnInit {
 
   onSubmit(form: InvestmentInfluenceFactor) {
     this.apiService.CreateInvestmentInfluenceFactor(form)
-    .finally(() => {
+    .pipe(finalize(() => {
       this.FactorCreatedEvent.emit(form);
       this.router.navigate(['/Factors']);
-    })
+    }))
     .subscribe( (value) => {
       console.log('received response: ' + JSON.stringify(value));
       this.goHome();

@@ -3,9 +3,10 @@ import { ApiService } from '../../apiservice.service';
 import { Investment } from '../../Models/Investment';
 import { EntityTypes, EntityUtilities  } from '../../Utilities';
 
-import 'rxjs/add/operator/finally';
+
 import { Common } from '../../Common/Common';
 import { textBinding } from '@angular/core/src/render3/instructions';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-investment',
@@ -24,11 +25,11 @@ export class InvestmentComponent extends EntityUtilities implements OnInit {
   public delete(id: string) {
     console.log('deleting id=' + id);
     this.apiService.DeleteEntity(EntityTypes.Investment, +id)
-                    .finally(() => {
+                    .pipe(finalize(() => {
                       const deleted = this.Investments.filter((i) => { if (i.id === +id) { return i; } });
                       const index = this.Investments.indexOf(deleted[0], 0);
                       this.Investments.splice(index, 1);
-                    })
+                    }))
                    .subscribe(entity => console.log(JSON.stringify(entity)),
                               error => this.errorMessage = <any>error);
 

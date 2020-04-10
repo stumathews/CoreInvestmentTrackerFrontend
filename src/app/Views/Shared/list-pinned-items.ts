@@ -8,7 +8,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 
-import 'rxjs/add/operator/finally';
+
 import { DbEntity } from '../../Models/DbEntity';
 import { ListCustomEntitiesComponent } from './list-custom-entities';
 import { CustomEntity } from '../../Models/CustomEntity';

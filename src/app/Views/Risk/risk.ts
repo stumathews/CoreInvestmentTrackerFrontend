@@ -4,10 +4,11 @@ import { InvestmentRisk } from '../../Models/InvestmentRisk';
 import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
-import 'rxjs/add/operator/finally';
+
 import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
 import { BsModalService } from 'ngx-bootstrap';
 import { NewRiskComponent } from './new-risk';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-risk',
@@ -32,9 +33,9 @@ export class RiskComponent extends SharedGraphModalPopup implements OnInit {
   public delete(id: string) {
     console.log('deleting id=' + id);
     this.apiService.DeleteEntity(EntityTypes.InvestmentRisk, +id)
-                    .finally(() => {
+                    .pipe(finalize(() => {
                       this.ngOnInit();
-                    })
+                    }))
                    .subscribe(entity => {
                       console.log('Received: ' + JSON.stringify(entity));
                       console.log('Attempting to redirect...');

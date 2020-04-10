@@ -4,10 +4,11 @@ import { InvestmentInfluenceFactor } from '../../Models/InvestmentInfluenceFacto
 import { EntityTypes  } from '../../Utilities';
 import { ActivatedRoute , Router} from '@angular/router';
 
-import 'rxjs/add/operator/finally';
+
 import { SharedGraphModalPopup } from '../Shared/SharedGraphModalPopup';
 import { BsModalService } from 'ngx-bootstrap';
 import { NewFactorComponent } from './new-factor';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-factor',
@@ -26,9 +27,7 @@ export class FactorComponent extends SharedGraphModalPopup implements OnInit {
   public delete(id: string) {
     console.log('deleting id=' + id);
     this.apiService.DeleteEntity(EntityTypes.InvestmentInfluenceFactor, +id)
-                    .finally(() => {
-                      this.ngOnInit();
-                    })
+                    .pipe(finalize( () => this.ngOnInit()))
                    .subscribe(entity => console.log('Received: ' + JSON.stringify(entity)),
                               error => this.errorMessage = <any>error);
   }

@@ -6,10 +6,11 @@ import { Activity } from '../../Models/Activity';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
-import 'rxjs/add/operator/finally';
+
 import { CustomEntityType } from '../../Models/CustomEntityType';
 import { CustomEntity } from '../../Models/CustomEntity';
 import { DbEntity } from '../../Models/DbEntity';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-custom-entities',
@@ -29,11 +30,11 @@ export class ListCustomEntitiesComponent extends EntityUtilities  implements OnI
     const toRemove = this.CustomEntities.filter((each) => { if (each.id === entityId) { return each; } });
     this.apiService
     .DeleteEntity(EntityTypes.CustomEntity, entityId)
-    .finally(() => {
+    .pipe(finalize(() => {
       const i = this.CustomEntities.indexOf(toRemove[0]);
       this.CustomEntities.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was ' + code) , error => this.errorMessage = error);
   }
 

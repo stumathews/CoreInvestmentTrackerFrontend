@@ -7,8 +7,8 @@ import { HtmlAction } from '../../Models/HtmlAction';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes } from '../../Utilities';
 import { DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list-factors',
@@ -37,12 +37,12 @@ export class ListFactorsComponent implements OnInit, DoCheck {
   DissasociateEntityFromInvestment(entityId: number, parentId: number) {
     this.apiService
     .DissassociateEntityFromInvestment(EntityTypes.InvestmentInfluenceFactor, entityId, parentId )
-    .finally(() => {
+    .pipe(finalize(() => {
       const toRemove = this.Factors.filter((each) => { if (each.id === entityId) { return each; } });
       const i = this.Factors.indexOf(toRemove[0]);
       this.Factors.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
   }
 

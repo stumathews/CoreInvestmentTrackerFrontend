@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators, GetRequiredDecimalNumberValidators } from '../../Utilities';
 import {Investment } from '../../Models/Investment';
-import 'rxjs/add/operator/finally';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-transaction',
@@ -42,11 +42,11 @@ export class NewTransactionComponent implements OnInit {
 
   onSubmit(form: InvestmentTransaction) {
     form.investmentID = this.Investment.id;
-    this.apiService.CreateInvestmentTransaction(form).finally(() => {
+    this.apiService.CreateInvestmentTransaction(form).pipe(finalize(() => {
       this.CreatedTransactionEvent.emit(form);
       // this.router.navigate(['/Transactions']);
       console.log('submitted transaction');
-    }).subscribe((value) => {
+    })).subscribe((value) => {
       console.log('create transaction response: ' + JSON.stringify(value));
     });
   }

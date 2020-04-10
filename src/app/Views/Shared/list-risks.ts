@@ -6,8 +6,8 @@ import { RisksLink } from '../../Models/Investment';
 import { HtmlAction } from '../../Models/HtmlAction';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list-risks',
@@ -55,12 +55,12 @@ export class ListRiskComponent implements OnInit, DoCheck {
   DissasociateEntityFromInvestment(entityId: number, parentId: number) {
     this.apiService
     .DissassociateEntityFromInvestment(EntityTypes.InvestmentRisk, entityId, parentId )
-    .finally(() => {
+    .pipe(finalize(() => {
       const toRemove = this.Risks.filter((each) => { if (each.id === entityId) { return each; } });
       const i = this.Risks.indexOf(toRemove[0]);
       this.Risks.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
   }
 

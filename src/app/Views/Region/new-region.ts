@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GetRequiredTextValidators, GetRequiredNumberValidators } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-new-region',
@@ -32,9 +32,9 @@ export class NewRegionComponent implements OnInit {
   }
 
   onSubmit(form: Region) {
-    this.apiService.CreateRegion(form).finally(() => {
+    this.apiService.CreateRegion(form).pipe(finalize(() => {
       this.CreatedRegionEvent.emit(form);
-    }).subscribe( (value) => {
+    })).subscribe( (value) => {
       console.log('received response: ' + JSON.stringify(value));
       // this.router.navigate(['/Regions']);
       // this.goHome();

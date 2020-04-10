@@ -6,9 +6,9 @@ import { InvestmentNote } from '../../Models/InvestmentNote';
 import { NewInvestmentNoteComponent } from '../Note/new-note';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { finalize } from 'rxjs/operators';
 
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list-notes',
@@ -49,12 +49,12 @@ export class ListNotesComponent extends EntityUtilities implements OnInit {
   DeleteNote(entityId: number) {
     this.apiService
     .DeleteInvestmentNote(this.OwningEntityId, this.OwningEntityType, entityId)
-    .finally(() => {
+    .pipe(finalize(() => {
       const toRemove = this.Notes.filter((each) => { if (each.id === entityId) { return each; } });
       const i = this.Notes.indexOf(toRemove[0]);
       this.Notes.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
   }
 

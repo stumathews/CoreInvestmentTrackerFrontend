@@ -6,8 +6,8 @@ import { TransactionsLink } from '../../Models/Investment';
 import { HtmlAction } from '../../Models/HtmlAction';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EntityTypes, EntityUtilities } from '../../Utilities';
+import { finalize } from 'rxjs/operators';
 
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-list-transactionss',
@@ -32,12 +32,12 @@ export class ListTransactionsComponent extends EntityUtilities implements OnInit
 
   DeleteTransaction(entityId: number) {
     this.apiService.DeleteEntity(EntityTypes.InvestmentTransaction, entityId)
-    .finally(() => {
+    .pipe(finalize(() => {
       const toRemove = this.Transactions.filter((each) => { if (each.id === entityId) { return each; } });
       const i = this.Transactions.indexOf(toRemove[0]);
       this.Transactions.splice(i, 1);
       this.ngOnInit();
-    })
+    }))
     .subscribe( code => console.log('code was' + code) , error => this.errorMessage = error);
   }
 }
