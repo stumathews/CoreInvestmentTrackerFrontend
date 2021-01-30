@@ -15,7 +15,7 @@
     <tr *ngFor="let region of Regions | filter : searchText">
         <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.name }}</a></td>
         <td>{{ region.description }}</td>
-        <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.investments.length }}</a></td>
+        <td><a [routerLink]="['/RegionDetails', region.id]">{{ region.investments?.length }}</a></td>
         <td><a (click)="delete(region.id)" href="javascript:void(0)">Delete</a></td>
     </tr>
 
