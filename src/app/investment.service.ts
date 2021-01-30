@@ -17,7 +17,6 @@ export class InvestmentService {
     Risks: InvestmentRisk[] = [];
     Groups: InvestmentGroup[] = [];
     Regions: Region[] = [];
-
     SelectedFactors: CheckModel[];
     SelectedRisks: CheckModel[];
     SelectedGroups: CheckModel[];

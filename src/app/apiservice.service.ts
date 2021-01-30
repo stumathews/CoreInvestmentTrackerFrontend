@@ -1,4 +1,6 @@
 
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+
 import { Injectable } from '@angular/core';
 import { Response, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import { HttpClientModule, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -26,7 +28,6 @@ import { AuthService } from './AuthService';
 import { CustomEntityType } from './Models/CustomEntityType';
 import { CustomEntity } from './Models/CustomEntity';
 import { InvestmentTransaction } from './Models/InvestmentTransaction';
-import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {tap} from 'rxjs/internal/operators';
 
@@ -477,6 +478,6 @@ export class ApiService {
     }
 
     private handleError(response: HttpErrorResponse) {
-        throw Observable.throw(response);
+        throw observableThrowError(response);
     }
 }

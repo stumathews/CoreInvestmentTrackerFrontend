@@ -31,7 +31,7 @@ import { NewGroupComponent } from './Views/Group/new-group';
 import { NewRegionComponent } from './Views/Region/new-region';
 import { NewRiskComponent } from './Views/Risk/new-risk';
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
-//import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
+// import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { InvestmentService } from './investment.service';
 import { SelectItemsComponent } from './Views/Investment/select-items';
 import { SelectFactorsComponent } from './Views/Investment/select-factors';
@@ -45,7 +45,7 @@ import { AssociateRisksComponent } from './Views/Investment/associate-risks';
 import { AssociateGroupsComponent } from './Views/Investment/associate-groups';
 import { AssociateRegionsComponent } from './Views/Investment/associate-regions';
 import { GraphComponent } from './Graphs/graph/graph.component';
-import {  SharedGraphComponent } from './Graphs/graph/shared.graph.component';
+import { SharedGraphComponent } from './Graphs/graph/shared.graph.component';
 import { ListGroupsComponent } from './Views/Shared/list-groups';
 import { ListNotesComponent } from './Views/Shared/list-notes';
 import { NewInvestmentNoteComponent } from './Views/Note/new-note';
@@ -71,7 +71,7 @@ import { PieGraphComponent } from './Graphs/pie/piegraph.component';
 import { BarGraphComponent } from './Graphs/bar/bargraph.component';
 import { CustomEntityTypeComponent } from './Views/CustomEntityType/custom-entity-type-details';
 import { GenericBarGraphComponent } from './Graphs/d3/bar/generic-bar.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule} from 'ngx-pagination';
 import { KeysPipe } from './keys.pipe';
 import { MyErrorHandler } from './error-handler';
 import { ErrorComponent } from './Views/Shared/errors';
@@ -80,37 +80,96 @@ import { ListPinnedEntitiesComponent } from './Views/Shared/list-pinned-items';
 import { ListTransactionsComponent } from './Views/Shared/list-transactions';
 import { NewTransactionComponent } from './Views/Transaction/new-transaction';
 
-
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, SideNavComponent, InvestmentComponent,
-    FactorComponent, GroupComponent, RiskComponent, RegionComponent, InvestmentDetailComponent,
-    ListRiskComponent, ListFactorsComponent, ListGroupsViaGroupLinksComponent, ListRegionsComponent,
-    FactorDetailsComponent, GroupDetailsComponent, RegionDetailsComponent, ListInvestmentsComponent,
-    RiskDetailsComponent, NewInvestmentComponent, NewFactorComponent, NewGroupComponent,
-    NewRegionComponent, NewRiskComponent, SelectItemsComponent, SelectFactorsComponent,
-    NewInvestmentWizardComponent, SelectRisksComponent, SelectGroupsComponent, SelectRegionsComponent,
-    SummaryOfNewInvestmentComponent, AssociateFactorsComponent, AssociateRisksComponent,
-    AssociateGroupsComponent, AssociateRegionsComponent, GraphComponent, ListGroupsComponent,
-    SharedGraphComponent, ListNotesComponent, NewInvestmentNoteComponent, ListActivitiesComponent,
-    DetailedInvestmentsComponent, FilterPipe, LoginComponent, NavbarComponent, SignupComponent,
-    ListCustomEntitiesComponent, AssociateCustomEntitiesComponent, NewCustomEntityComponent, FilterByType,
-    ListCustomEntityTypesComponent, NewCustomEntityTypeComponent, PieGraphComponent, BarGraphComponent,
-    CustomEntityTypeComponent, GenericBarGraphComponent, KeysPipe, ErrorComponent, ListPinnedEntitiesComponent,
-    ListTransactionsComponent, NewTransactionComponent
+    AppComponent,
+    HomeComponent,
+    SideNavComponent,
+    InvestmentComponent,
+    FactorComponent,
+    GroupComponent,
+    RiskComponent,
+    RegionComponent,
+    InvestmentDetailComponent,
+    ListRiskComponent,
+    ListFactorsComponent,
+    ListGroupsViaGroupLinksComponent,
+    ListRegionsComponent,
+    FactorDetailsComponent,
+    GroupDetailsComponent,
+    RegionDetailsComponent,
+    ListInvestmentsComponent,
+    RiskDetailsComponent,
+    NewInvestmentComponent,
+    NewFactorComponent,
+    NewGroupComponent,
+    NewRegionComponent,
+    NewRiskComponent,
+    SelectItemsComponent,
+    SelectFactorsComponent,
+    NewInvestmentWizardComponent,
+    SelectRisksComponent,
+    SelectGroupsComponent,
+    SelectRegionsComponent,
+    SummaryOfNewInvestmentComponent,
+    AssociateFactorsComponent,
+    AssociateRisksComponent,
+    AssociateGroupsComponent,
+    AssociateRegionsComponent,
+    GraphComponent,
+    ListGroupsComponent,
+    SharedGraphComponent,
+    ListNotesComponent,
+    NewInvestmentNoteComponent,
+    ListActivitiesComponent,
+    DetailedInvestmentsComponent,
+    FilterPipe,
+    LoginComponent,
+    NavbarComponent,
+    SignupComponent,
+    ListCustomEntitiesComponent,
+    AssociateCustomEntitiesComponent,
+    NewCustomEntityComponent,
+    FilterByType,
+    ListCustomEntityTypesComponent,
+    NewCustomEntityTypeComponent,
+    PieGraphComponent,
+    BarGraphComponent,
+    CustomEntityTypeComponent,
+    GenericBarGraphComponent,
+    KeysPipe,
+    ErrorComponent,
+    ListPinnedEntitiesComponent,
+    ListTransactionsComponent,
+    NewTransactionComponent
   ],
   imports: [
     TabsModule.forRoot(),
-    BrowserModule, APP_ROUTING, AlertModule.forRoot(), ModalModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
+    BrowserModule,
+    APP_ROUTING,
+    AlertModule.forRoot(),
+    ModalModule.forRoot(),
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     InlineEditorModule,
     // Angular2FontawesomeModule,
-     CollapseModule.forRoot(), BsDropdownModule.forRoot(), PopoverModule.forRoot(),
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    PopoverModule.forRoot(),
     NgxPaginationModule
   ],
   entryComponents: [
-    ListGroupsComponent, SharedGraphComponent, NewTransactionComponent
+    ListGroupsComponent,
+    SharedGraphComponent,
+    NewTransactionComponent
   ],
-  providers: [InvestmentService, AuthService, ApiService, BsModalService, AuthGuard,
+  providers: [
+    InvestmentService,
+    AuthService,
+    ApiService,
+    BsModalService,
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: MyFirstInterceptor, multi: true },
     { provide: ErrorHandler, useClass: MyErrorHandler }, NotificationService],
   bootstrap: [AppComponent]

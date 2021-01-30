@@ -12,7 +12,7 @@ export class UrlInterceptor implements HttpInterceptor {
   constructor(private readonly injector: Injector, private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      console.log('intercept!');
+    console.log('intercept!');
     const auth = this.injector.get(AuthService);
     const notificationService = this.injector.get(NotificationService);
     const router = this.injector.get(Router);
@@ -21,6 +21,7 @@ export class UrlInterceptor implements HttpInterceptor {
     if (token) {
       req = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
     }
+
     if (!req.headers.has('Content-Type')) {
         req = req.clone({ headers: req.headers.set('Content-Type', 'application/json') });
       }

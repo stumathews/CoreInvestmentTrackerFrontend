@@ -3,6 +3,7 @@ import { Investment } from './Models/Investment';
 import { DbEntity } from './Models/DbEntity';
 import { CustomEntityType } from './Models/CustomEntityType';
 import { CustomEntity } from './Models/CustomEntity';
+
 @Pipe({
   name: 'FilterByType',
   pure: false /* performance hit but going to deal with it */

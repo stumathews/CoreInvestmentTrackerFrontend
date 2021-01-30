@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Investment } from './Models/Investment';
 import { DbEntity } from './Models/DbEntity';
+
 @Pipe({
   name: 'filter'
 })

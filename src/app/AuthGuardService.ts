@@ -9,8 +9,8 @@ import { AuthService } from './AuthService';
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly authService: AuthService,
-              private readonly router: Router) { }
+
+  constructor(private readonly authService: AuthService, private readonly router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
     if (this.authService.hasValidIdToken()) {

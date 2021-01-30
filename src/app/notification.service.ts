@@ -8,8 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class NotificationService {
 
   private _notification: BehaviorSubject<string> = new BehaviorSubject(null);
-  readonly notification$: Observable<string> = this._notification.asObservable()
-  .pipe(publish(), refCount());
+  readonly notification$: Observable<string> = this._notification.asObservable().pipe(publish(), refCount());
 
   constructor() {}
 

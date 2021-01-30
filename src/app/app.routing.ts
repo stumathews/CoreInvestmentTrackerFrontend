@@ -1,7 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithComponentFactories } from '@angular/core/src/linker/compiler';
-
 import { HomeComponent } from './Views/Home/home';
 import { InvestmentComponent } from './Views/Investment/investment';
 import { InvestmentDetailComponent } from './Views/Investment/investment.detail';
@@ -63,7 +62,6 @@ const appRoutes: Routes = [
     { path : 'NewGroup', component: NewGroupComponent, canActivate: [AuthGuard]  },
     { path : 'NewRegion', component: NewRegionComponent, canActivate: [AuthGuard]  },
     { path : 'NewRisk', component: NewRiskComponent, canActivate: [AuthGuard]  },
-   /* { path : 'SelectItems', component: SelectItemsComponent, }, */
     { path : 'NewInvestmentWizard', component: NewInvestmentWizardComponent, canActivate: [AuthGuard],  children: [
            { path : 'NewInvestment', component: NewInvestmentComponent, outlet: 'NewInvestmentWizardOutlet' },
            { path : 'SelectFactors', component: SelectFactorsComponent, outlet: 'NewInvestmentWizardOutlet' },
@@ -77,15 +75,16 @@ const appRoutes: Routes = [
     { path : 'AssociateGroups/:id', component: AssociateGroupsComponent, canActivate: [AuthGuard]  },
     { path : 'AssociateRegions/:id', component: AssociateRegionsComponent, canActivate: [AuthGuard]  },
     { path : 'AssociateCustomEntities/:id', component: AssociateCustomEntitiesComponent, canActivate: [AuthGuard]  },
-    /*{ path : 'RisksGraph', component: GraphComponent },*/
     { path : 'NewNote/:owningEntityType/:owningEntityId', component: NewInvestmentNoteComponent, canActivate: [AuthGuard]  },
-    { path : 'NewCustomEntity/:owningEntityType/:owningEntityId/:dataType',
-      component: NewCustomEntityComponent, canActivate: [AuthGuard]  },
+    // tslint:disable-next-line:max-line-length
+    { path : 'NewCustomEntity/:owningEntityType/:owningEntityId/:dataType', component: NewCustomEntityComponent, canActivate: [AuthGuard]  },
     { path : 'NewCustomEntityType', component: NewCustomEntityTypeComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityTypes', component: ListCustomEntityTypesComponent, canActivate: [AuthGuard]  },
     { path : 'CustomEntityType/:id', component: CustomEntityTypeComponent, canActivate: [AuthGuard]  },
     { path : 'Signup', component: SignupComponent},
     { path: '**', component: ErrorComponent, data: { error: 404 } },
+       /* { path : 'SelectItems', component: SelectItemsComponent, }, */
+       /*{ path : 'RisksGraph', component: GraphComponent },*/
 ];
 
 export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot(appRoutes);
